@@ -13,8 +13,26 @@ config_version=5
 config/name="2DPewPew"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.354508, 0.0795243, 0.439357, 1)
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="2DPewPew"
+
+[input]
+
+Forward={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[physics]
+
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.13379, 0.108789, 0.2789, 1)

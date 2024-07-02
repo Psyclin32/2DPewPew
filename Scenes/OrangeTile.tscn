@@ -3,13 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://2kmi3cs0reic" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="1_vqxrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvilu"]
+size = Vector2(1006.67, 1007.09)
 
-[node name="Sprite2D" type="Sprite2D"]
-position = Vector2(89, 158)
+[node name="OrangeTile" type="Sprite2D"]
+position = Vector2(77, -73)
 scale = Vector2(0.15, 0.141)
 texture = ExtResource("1_vqxrn")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6.66667, -1.25126e-07)
 shape = SubResource("RectangleShape2D_fvilu")
