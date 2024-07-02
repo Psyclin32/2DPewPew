@@ -25,15 +25,38 @@ public partial class player : CharacterBody2D
 		float time =  (float)delta;
 		
 		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
-		Velocity += inputs.Rotated(Rotation) * acceleration ;
-		//Velocity = Velocity.LimitLength(max_speed);
+		Velocity += inputs.Rotated(Rotation) * acceleration; 
+		Velocity = Velocity.LimitLength(max_speed); //limtis magnitude to input variable. 
+
+		// apparently with the engine, I don't need Velocity to always be multiplied by delta time? This breaks when I add it manually. 
+		//C# refresher - capitol letters are indicating class objects that are inherited. In this case Velocity  & Rotation. 
+		// inputs vector is put on Y axis as that is how this specific sprite is oriented. Change "forward" axis acording to sprite layout.
+		//note also for the inputs that "forward" is considered negative as Godot defaults to -y as "up". 
+		// NOT the same for the x-axis. +x is to the right like a platformer.  
+		
+		//side thoughts: note that with the global Vars I don't need to make so many locals and can directly manipulate as needed. 
+
+		//Debug.Print("Speed:   "+ Velocity.Length());
+
+
 		Rotate(Mathf.DegToRad(Input.GetAxis( "Rotate Left","Rotate Right")*rotation_speed *time));
+		// above is very dense but here it is. 
+		// GetAxis returns [-1 0 1] based on input. In this case, left is -1 rotation direction and right is +1 direction. 
+		// Returns 0 if nothing pressed
+
+		//MATH: Need Mathf library for DegtoRad method as the function Rotate from Node2D expects angles in RADS. 
+		// so put simply Rotate(rotation direction * speed * Delta Time)
+		//I guess this one does needed delta time for better smoothing. 
 		
 		if (inputs.Y == 0){
 			Velocity = Velocity.MoveToward(Vector2.Zero,dampening);
 		}
+		//a very quick and dirty "gravity" but works regardless of current velocity direction. 
+		// change dampening factor for different effects. 
+
 	
 		MoveAndSlide();
+		//mandatory call for physics movement. Call after math calcs for that. 
 	}
 }
 //CODE GRAVEYARD 

@@ -4,13 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/green_tile.tscn" id="2_qqnmw"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(-2, 2)
 
 [node name="player" parent="." instance=ExtResource("1_htbm3")]
 position = Vector2(1, 3)
+wall_min_slide_angle = 0.53058
+platform_on_leave = 2
+safe_margin = 2.666
 acceleration = 5.0
 rotation_speed = 200
 dampening = 1.0
-max_speed = 1000.0
+max_speed = 300.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -31,3 +35,38 @@ rotation = -0.457346
 position = Vector2(-383, -253)
 rotation = 0.17731
 scale = Vector2(0.0917992, 0.0720126)
+
+[node name="GreenTile5" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(1092, 207)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile6" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(1068, -177)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile7" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(826, 190)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile8" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(1525, -146)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile9" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(67, -434)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile10" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(3583, -147)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
+
+[node name="GreenTile11" parent="." instance=ExtResource("2_qqnmw")]
+position = Vector2(2656, -154)
+rotation = 0.696581
+scale = Vector2(0.104199, 0.0933747)
