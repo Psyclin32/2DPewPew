@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=6 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="PackedScene" uid="uid://boxuyb78ue02g" path="res://Scenes/player.tscn" id="1_htbm3"]
-[ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/Programer Art/green_tile.tscn" id="2_qqnmw"]
+[ext_resource type="Script" path="res://Scripts/Game_Manager.cs" id="1_nngie"]
+[ext_resource type="Texture2D" uid="uid://b0lq6dr2y78gr" path="res://addons/space_breaker_asset/space_breaker_asset/Background/galaxy.png" id="3_vqudf"]
+[ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Scenes/asteroid.tscn" id="4_d48cn"]
+[ext_resource type="Texture2D" uid="uid://bmlaajn3wjlcd" path="res://addons/space_breaker_asset/space_breaker_asset/Background/stars_texture.png" id="5_t8kga"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(-2, 2)
+script = ExtResource("1_nngie")
 
 [node name="player" parent="." instance=ExtResource("1_htbm3")]
-position = Vector2(1, 3)
 wall_min_slide_angle = 0.53058
 platform_on_leave = 2
 safe_margin = 2.666
@@ -19,55 +22,57 @@ dampening = 1.0
 
 [node name="Obsticles" type="Node2D" parent="."]
 
-[node name="GreenTile" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(-436, 204)
-rotation = -1.27904
+[node name="Asteroid" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(280, -155)
 
-[node name="GreenTile3" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(766, -269)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid2" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(-241, -155)
 
-[node name="GreenTile2" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(478, 198)
-rotation = -0.457346
+[node name="Asteroid3" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(280, 31)
 
-[node name="GreenTile4" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(-383, -253)
-rotation = 0.17731
-scale = Vector2(0.0917992, 0.0720126)
+[node name="Asteroid4" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(-962, -630)
 
-[node name="GreenTile5" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(1092, 207)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid5" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(-112, 659)
 
-[node name="GreenTile6" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(1068, -177)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid6" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(-943, 273)
 
-[node name="GreenTile7" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(826, 190)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid7" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(982, -505)
 
-[node name="GreenTile8" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(1525, -146)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid8" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(491, -638)
 
-[node name="GreenTile9" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(67, -434)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid9" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(-169, -656)
 
-[node name="GreenTile10" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(3583, -147)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="Asteroid10" parent="Obsticles" instance=ExtResource("4_d48cn")]
+position = Vector2(809, -115)
 
-[node name="GreenTile11" parent="Obsticles" instance=ExtResource("2_qqnmw")]
-position = Vector2(2656, -154)
-rotation = 0.696581
-scale = Vector2(0.104199, 0.0933747)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+show_behind_parent = true
+texture_repeat = 3
+position = Vector2(-207, -354)
+texture = ExtResource("5_t8kga")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 5
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(-100, -100)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = 5
+texture_repeat = 3
+position = Vector2(691, -367)
+scale = Vector2(1.12, 1.23333)
+texture = ExtResource("3_vqudf")

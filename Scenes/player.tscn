@@ -16,27 +16,9 @@ animations = [{
 "texture": ExtResource("3_d32cg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_d32cg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_d32cg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_d32cg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wsk7x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wsk7x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wsk7x")
-}, {
-"duration": 1.0,
 "texture": ExtResource("4_wsk7x")
 }],
-"loop": true,
+"loop": false,
 "name": &"Exhaust",
 "speed": 5.0
 }]
@@ -70,6 +52,7 @@ rotation = 0.645772
 scale = Vector2(0.690087, 0.72419)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
+frame_progress = 0.787126
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Thrusters"]
 position = Vector2(8, 30)

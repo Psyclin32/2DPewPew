@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.354508, 0.0795243, 0.439357, 1)
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=768
+
 [dotnet]
 
 project/assembly_name="2DPewPew"
