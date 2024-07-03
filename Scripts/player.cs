@@ -17,9 +17,17 @@ public partial class player : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+    public override void _Process(double delta)
+    {
+		player.get
 
 
-	public override void _PhysicsProcess(double delta)
+        base._Process(delta);
+    }
+
+
+
+    public override void _PhysicsProcess(double delta)
 	{	
 		
 		float time =  (float)delta;

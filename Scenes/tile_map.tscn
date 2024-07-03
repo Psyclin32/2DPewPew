@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://drbrsdqi1pmbw"]
 
-[ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/green_tile.tscn" id="1_odpcq"]
-[ext_resource type="PackedScene" uid="uid://bqcfm6t24fbqg" path="res://Scenes/OrangeTile.tscn" id="2_18kr0"]
+[ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/Programer Art/green_tile.tscn" id="1_odpcq"]
+[ext_resource type="PackedScene" uid="uid://bqcfm6t24fbqg" path="res://Scenes/Programer Art/OrangeTile.tscn" id="2_18kr0"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mag8a"]
 scenes/1/scene = ExtResource("1_odpcq")

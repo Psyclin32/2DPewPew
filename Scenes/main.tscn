@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="PackedScene" uid="uid://boxuyb78ue02g" path="res://Scenes/player.tscn" id="1_htbm3"]
-[ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/green_tile.tscn" id="2_qqnmw"]
+[ext_resource type="PackedScene" uid="uid://bj5qamninoe4h" path="res://Scenes/Programer Art/green_tile.tscn" id="2_qqnmw"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(-2, 2)
