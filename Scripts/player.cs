@@ -5,12 +5,14 @@ using System.Diagnostics;
 public partial class player : CharacterBody2D
 {
 	
-	[Export] public float acceleration ;
+	[Export] public float acceleration = 10;
 	//public const float acceleration  = 10.0f;
-	[Export] public int rotation_speed ;
-	[Export] public float dampening;
+	[Export] public int rotation_speed = 100;
+	[Export] public float dampening = 2;
 	//public const float dampening = 1.0f;	
-	[Export] public float max_speed;
+	[Export] public float max_speed = 300;
+
+	[Export] public Node2D turret;
 
 	
 	// public const float JumpVelocity = -400.0f;
@@ -18,9 +20,10 @@ public partial class player : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
     public override void _Process(double delta)
-    {
-		player.get
+    {	
 
+		turret.LookAt(GetGlobalMousePosition()); //Lookat requires Global Coords of mouse pointers
+		turret.Rotate(MathF.PI/2); //current asset is -90deg off, needs dynamic rotation to keep accurate. Rotation in code is in Radians thus PI/2.  
 
         base._Process(delta);
     }

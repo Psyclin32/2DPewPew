@@ -14,59 +14,60 @@ safe_margin = 2.666
 acceleration = 5.0
 rotation_speed = 200
 dampening = 1.0
-max_speed = 300.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
-[node name="GreenTile" parent="." instance=ExtResource("2_qqnmw")]
+[node name="Obsticles" type="Node2D" parent="."]
+
+[node name="GreenTile" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(-436, 204)
 rotation = -1.27904
 
-[node name="GreenTile3" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile3" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(766, -269)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile2" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile2" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(478, 198)
 rotation = -0.457346
 
-[node name="GreenTile4" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile4" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(-383, -253)
 rotation = 0.17731
 scale = Vector2(0.0917992, 0.0720126)
 
-[node name="GreenTile5" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile5" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(1092, 207)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile6" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile6" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(1068, -177)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile7" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile7" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(826, 190)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile8" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile8" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(1525, -146)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile9" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile9" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(67, -434)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile10" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile10" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(3583, -147)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)
 
-[node name="GreenTile11" parent="." instance=ExtResource("2_qqnmw")]
+[node name="GreenTile11" parent="Obsticles" instance=ExtResource("2_qqnmw")]
 position = Vector2(2656, -154)
 rotation = 0.696581
 scale = Vector2(0.104199, 0.0933747)

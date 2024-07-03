@@ -41,9 +41,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("turret")]
 motion_mode = 1
 script = ExtResource("1_pwq8g")
+turret = NodePath("Weapon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -55,6 +56,7 @@ texture = ExtResource("2_nbx85")
 
 [node name="Weapon" type="Sprite2D" parent="."]
 z_index = 1
+rotation = 1.5708
 scale = Vector2(0.35, 0.341)
 texture = ExtResource("5_v2g52")
 region_enabled = true
@@ -81,3 +83,5 @@ position = Vector2(0, 34)
 scale = Vector2(0.907543, 1.11209)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
