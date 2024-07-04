@@ -58,6 +58,10 @@ public partial class player : CharacterBody2D
 			ready_fire = false;
 			//Debug.Print("Weapon Fired!");
 		}
+
+		//Thruster Code?
+
+
 		base._Process(delta);
 	}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://boxuyb78ue02g"]
+[gd_scene load_steps=13 format=3 uid="uid://boxuyb78ue02g"]
 
 [ext_resource type="Script" path="res://Scripts/player.cs" id="1_pwq8g"]
 [ext_resource type="Texture2D" uid="uid://bjjbps6kwkb3p" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Medium/body_01.png" id="2_nbx85"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="4_acgd6"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_wsk7x"]
 [ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="5_v2g52"]
+[ext_resource type="Script" path="res://Scripts/Thrusters.cs" id="7_d4skv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0
@@ -35,10 +36,10 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("3_d32cg")
 }, {
-"duration": 1.0,
+"duration": 10.0,
 "texture": ExtResource("4_wsk7x")
 }],
 "loop": false,
@@ -50,7 +51,7 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_pwq8g")
 max_speed = 200.0
-Bullet_Speed = 425
+Bullet_Speed = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -85,23 +86,27 @@ autostart = true
 
 [node name="Thrusters" type="Node2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Thrusters"]
+[node name="Left_Th" type="AnimatedSprite2D" parent="Thrusters"]
 position = Vector2(-8, 30)
 rotation = 0.645772
 scale = Vector2(0.690087, 0.72419)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
-frame_progress = 0.787126
+script = ExtResource("7_d4skv")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Thrusters"]
+[node name="Right_Th" type="AnimatedSprite2D" parent="Thrusters"]
 position = Vector2(8, 30)
 rotation = -0.645772
 scale = Vector2(0.690087, 0.72419)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
+script = ExtResource("7_d4skv")
+This_Engine_Type = 1
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Thrusters"]
+[node name="Forward_Th" type="AnimatedSprite2D" parent="Thrusters"]
 position = Vector2(0, 34)
 scale = Vector2(0.907543, 1.11209)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
+script = ExtResource("7_d4skv")
+This_Engine_Type = 2
