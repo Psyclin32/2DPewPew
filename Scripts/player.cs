@@ -49,7 +49,7 @@ public partial class player : CharacterBody2D
 		Weapon.Rotate(MathF.PI / 2); //current asset is -90deg off, needs dynamic rotation to keep accurate. Rotation in code is in Radians thus PI/2.  
 
 		//Firing mechanism for gun
-		if (Input.IsActionJustPressed("Fire Weapon") & ready_fire)
+		if (Input.IsActionPressed("Fire Weapon") & ready_fire)
 		{
 			//Spawn in bullet instance then disable based on ROF with timer. 
 			fire_Weapon(gun_Barrel.GlobalPosition); //Marker needs to be child of weapon to properly track rotation
