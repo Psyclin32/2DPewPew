@@ -15,9 +15,9 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		anims.Play();
 
 		var timer = GetNode<Timer>("BulletExpire");
-		timer.WaitTime = LifeTIme;
+		timer.WaitTime = LifeTIme; 
 		timer.Timeout += OnBulletExpireTimeout;
-		timer.Start();
+		timer.Start();//Note that this method of grabbing time needs autoStart disabbled.
 
 	}
 
@@ -28,6 +28,6 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	}
 	private void OnBulletExpireTimeout()
 	{
-		QueueFree();
+		QueueFree();  //Destroys instances, freeing memory. 
 	}
 }
