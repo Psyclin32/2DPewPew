@@ -31,10 +31,6 @@ script = ExtResource("1_pwq8g")
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_6w0v8")
 
-[node name="GunBarrelPos" type="Marker2D" parent="."]
-position = Vector2(15, 0)
-scale = Vector2(0.35, 0.341)
-
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("2_nbx85")
@@ -47,8 +43,13 @@ texture = ExtResource("5_v2g52")
 region_enabled = true
 region_rect = Rect2(8, 0.277161, 48, 55.7228)
 
+[node name="GunBarrelPos" type="Marker2D" parent="Weapon"]
+position = Vector2(-0.000248228, -70.3812)
+rotation = -1.5708
+scale = Vector2(1.02639, 0.974286)
+
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [node name="Thrusters" type="Node2D" parent="."]
