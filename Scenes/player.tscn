@@ -49,6 +49,8 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_pwq8g")
+max_speed = 200.0
+Bullet_Speed = 425
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

@@ -14,6 +14,8 @@ public partial class player : CharacterBody2D
 	//public const float dampening = 1.0f;	
 	[Export] public float max_speed = 300;
 
+	[Export] public int Bullet_Speed = 350;
+
 
 
 	//[Export] public Node2D Weapon;
@@ -65,7 +67,7 @@ public partial class player : CharacterBody2D
 		RigidBody2D projectile = (RigidBody2D)_bulletScene.Instantiate(); //cast resource as Rigid Body. Associated Nodes script must extend the Node version we want to upack at its top level. 
 		projectile.Position = pos;  // gun_barrel POS
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
-		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * 400.0f;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
+		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		AddSibling(projectile); //DO NOT WANT AS CHILD TO PLAYER. BINDS ROTATION TO PLAYER CONTROLS. 
 
 

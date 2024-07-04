@@ -3,7 +3,8 @@ using System;
 using System.Collections;
 
 public partial class Bullet : RigidBody2D  //Needs to extend to get physics methods when object called. 
-{
+{	
+	[Export] public float LifeTIme = 2.5f;
 	 private AnimatedSprite2D anims = null; 
 	 //Bullet.GetNode<AnimatedSprite2D>("BulletSprites");
 
@@ -14,7 +15,9 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		anims.Play();
 
 		var timer = GetNode<Timer>("BulletExpire");
+		timer.WaitTime = LifeTIme;
 		timer.Timeout += OnBulletExpireTimeout;
+		timer.Start();
 
 	}
 
