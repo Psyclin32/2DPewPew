@@ -23,14 +23,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("turret")]
+[node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_pwq8g")
-turret = NodePath("Weapon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_6w0v8")
+
+[node name="GunBarrelPos" type="Marker2D" parent="."]
+position = Vector2(15, 0)
+scale = Vector2(0.35, 0.341)
 
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
@@ -43,6 +46,10 @@ scale = Vector2(0.35, 0.341)
 texture = ExtResource("5_v2g52")
 region_enabled = true
 region_rect = Rect2(8, 0.277161, 48, 55.7228)
+
+[node name="WeaponTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
 [node name="Thrusters" type="Node2D" parent="."]
 
@@ -66,5 +73,3 @@ position = Vector2(0, 34)
 scale = Vector2(0.907543, 1.11209)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
-
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://crvwfwhih0cqs"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_s81pw"]
+[ext_resource type="Texture2D" uid="uid://bn1dkbov41s6r" path="res://addons/Lunar Lander Upload/Effects/Fx_02.png" id="2_l74lm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s5nm"]
+radius = 3.0
+height = 12.0
+
+[node name="Bullet" type="RigidBody2D"]
+mass = 20.0
+script = ExtResource("1_s81pw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l74lm")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1s5nm")
