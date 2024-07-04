@@ -56,7 +56,7 @@ position = Vector2(809, -115)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.05, 0.05)
-motion_mirroring = Vector2(1920, 1080)
+motion_mirroring = Vector2(512, 384)
 
 [node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 show_behind_parent = true
