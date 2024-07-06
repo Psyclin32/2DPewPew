@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 //using System.Collections.ObjectModel;
 //using System.Diagnostics;
 //using System.Security.Cryptography.X509Certificates;
@@ -16,7 +17,7 @@ public partial class player : CharacterBody2D
 
 	[Export] public int Bullet_Speed = 350;
 
-
+	//[Export] public StatsClass PCStats;
 
 	//[Export] public Node2D Weapon;
 
@@ -24,15 +25,24 @@ public partial class player : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-
-
+	
+	private Timer _weaponTimer;
 	private bool ready_fire = false;
 	private PackedScene _bulletScene = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 
 	public override void _Ready()
-	{
-		var timer = GetNode<Timer>("WeaponTimer");
-		timer.Timeout += OnWeaponTimerTimeout;
+	{	
+		//Establishing Default Character stats
+		var PCStats = new StatsClass();
+		PCStats.SetStatValues();
+
+		//Debug.Print("Health = " + PCStats.GetStatValues(StatsClass._statNames.Health));
+		//Debug.Print("Shields = " + PCStats.GetStatValues(StatsClass._statNames.Shields));
+		//Debug.Print("Armor = " + PCStats.GetStatValues(StatsClass._statNames.Armor));
+
+		//load up the timer object and configure the signal 
+		_weaponTimer = GetNode<Timer>("WeaponTimer");
+		_weaponTimer.Timeout += OnWeaponTimerTimeout;
 
 
 		base._Ready();
@@ -44,6 +54,7 @@ public partial class player : CharacterBody2D
 
 		var Weapon = GetNode<Sprite2D>("Weapon");
 		var gun_Barrel = Weapon.GetNode<Marker2D>("GunBarrelPos");
+		var weapon_anims = Weapon.GetNode<AnimatedSprite2D>("ShootingSprite");
 		//gun_Barrel = GetNode<Marker2D>("GunBarrelPos");
 
 		//Weapon turret looking at cursor
@@ -56,6 +67,14 @@ public partial class player : CharacterBody2D
 			//Spawn in bullet instance then disable based on ROF with timer. 
 			fire_Weapon(gun_Barrel.GlobalPosition); //Marker needs to be child of weapon to properly track rotation
 			ready_fire = false;
+			_weaponTimer.Start();
+
+			//Trigger the animations
+			if(!weapon_anims.IsPlaying())
+			{
+				weapon_anims.Play();
+			}
+
 			//Debug.Print("Weapon Fired!");
 		}
 
@@ -93,6 +112,8 @@ public partial class player : CharacterBody2D
 
 		float time = (float)delta;
 
+		
+
 		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
 		Velocity += inputs.Rotated(Rotation) * acceleration;
 		Velocity = Velocity.LimitLength(max_speed); //limtis magnitude to input variable. 
@@ -129,30 +150,3 @@ public partial class player : CharacterBody2D
 		//mandatory call for physics movement. Call after math calcs for that. 
 	}
 }
-//CODE GRAVEYARD 
-//rot_dir += dir; 
-
-//Debug.Print("Rotation reading as: " + rot_dir);
-
-/*
-if (Input.IsActionPressed("Rotate Right")){
-rot_dir += 1;
-}
-
-if (Input.IsActionPressed("Rotate Right")){
-rot_dir -= 1;
-}*/
-
-
-/*
-if (Input.IsActionPressed("Forward")){
-	//Debug.Print("Forward Pressed!");
-	velocity.X += acceleration eleration *time; 
-}
-else{
-	velocity.X -= dampen*time;
-	if(velocity.X <= (float)(0.0)){
-		velocity.X = 0;	
-	}
-}
-*/

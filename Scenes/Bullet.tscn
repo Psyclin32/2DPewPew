@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cjskqo45ipocy" path="res://addons/Lunar Lander Upload/Effects/Explosion.png" id="3_p6bco"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s5nm"]
-radius = 3.0
-height = 12.0
+radius = 2.0
+height = 14.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xe4mu"]
 atlas = ExtResource("2_l74lm")
@@ -102,9 +102,10 @@ animations = [{
 collision_layer = 2
 collision_mask = 6
 mass = 20.0
-linear_damp = 0.33
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.25
 script = ExtResource("1_s81pw")
-LifeTIme = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -116,5 +117,7 @@ sprite_frames = SubResource("SpriteFrames_ero2s")
 animation = &"Bullets"
 
 [node name="BulletExpire" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -11,26 +11,32 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0m5p"]
-atlas = ExtResource("4_acgd6")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6ek4"]
 atlas = ExtResource("4_acgd6")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0m5p"]
+atlas = ExtResource("4_acgd6")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_swygi"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
+"texture": null
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_n6ek4")
+}, {
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_w0m5p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n6ek4")
+"texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"Muzzel Flash",
-"speed": 5.0
+"speed": 60.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
@@ -51,7 +57,7 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_pwq8g")
 max_speed = 200.0
-Bullet_Speed = 550
+Bullet_Speed = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -70,18 +76,20 @@ region_enabled = true
 region_rect = Rect2(8, 0.277161, 48, 55.7228)
 
 [node name="GunBarrelPos" type="Marker2D" parent="Weapon"]
-position = Vector2(-0.000248228, -70.3812)
+position = Vector2(-0.000196514, -55.7185)
 rotation = -1.5708
 scale = Vector2(1.02639, 0.974286)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Weapon"]
+[node name="ShootingSprite" type="AnimatedSprite2D" parent="Weapon"]
 position = Vector2(0, -35)
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
+frame = 1
 
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
+one_shot = true
 autostart = true
 
 [node name="Thrusters" type="Node2D" parent="."]
