@@ -27,6 +27,7 @@ public partial class player : CharacterBody2D
 
 	
 	private Timer _weaponTimer;
+	private AnimationPlayer _weaponAnims;
 	private bool ready_fire = false;
 	private PackedScene _bulletScene = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 
@@ -39,6 +40,9 @@ public partial class player : CharacterBody2D
 		//Debug.Print("Health = " + PCStats.GetStatValues(StatsClass._statNames.Health));
 		//Debug.Print("Shields = " + PCStats.GetStatValues(StatsClass._statNames.Shields));
 		//Debug.Print("Armor = " + PCStats.GetStatValues(StatsClass._statNames.Armor));
+
+		//load and configure animations for player object
+		_weaponAnims = GetNode<AnimationPlayer>("Weapon/FireAnims");
 
 		//load up the timer object and configure the signal 
 		_weaponTimer = GetNode<Timer>("WeaponTimer");
@@ -54,7 +58,8 @@ public partial class player : CharacterBody2D
 
 		var Weapon = GetNode<Sprite2D>("Weapon");
 		var gun_Barrel = Weapon.GetNode<Marker2D>("GunBarrelPos");
-		var weapon_anims = Weapon.GetNode<AnimatedSprite2D>("ShootingSprite");
+		
+		//var recoil_anim = Weapon.GetNode<AnimationPlayer>("Recoil");
 		//gun_Barrel = GetNode<Marker2D>("GunBarrelPos");
 
 		//Weapon turret looking at cursor
@@ -70,9 +75,10 @@ public partial class player : CharacterBody2D
 			_weaponTimer.Start();
 
 			//Trigger the animations
-			if(!weapon_anims.IsPlaying())
+			if(!_weaponAnims.IsPlaying())
 			{
-				weapon_anims.Play();
+				_weaponAnims.Play("Fire");
+
 			}
 
 			//Debug.Print("Weapon Fired!");

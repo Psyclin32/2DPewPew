@@ -104,7 +104,7 @@ collision_mask = 6
 mass = 20.0
 max_contacts_reported = 1
 contact_monitor = true
-linear_damp = 0.25
+linear_damp = 0.2
 script = ExtResource("1_s81pw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

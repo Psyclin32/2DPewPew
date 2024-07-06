@@ -1,43 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://boxuyb78ue02g"]
+[gd_scene load_steps=9 format=3 uid="uid://boxuyb78ue02g"]
 
 [ext_resource type="Script" path="res://Scripts/player.cs" id="1_pwq8g"]
 [ext_resource type="Texture2D" uid="uid://bjjbps6kwkb3p" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Medium/body_01.png" id="2_nbx85"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_d32cg"]
-[ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="4_acgd6"]
+[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="3_f67or"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_wsk7x"]
-[ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="5_v2g52"]
 [ext_resource type="Script" path="res://Scripts/Thrusters.cs" id="7_d4skv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n6ek4"]
-atlas = ExtResource("4_acgd6")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0m5p"]
-atlas = ExtResource("4_acgd6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_swygi"]
-animations = [{
-"frames": [{
-"duration": 0.5,
-"texture": null
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_n6ek4")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_w0m5p")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Muzzel Flash",
-"speed": 60.0
-}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
@@ -57,7 +28,7 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_pwq8g")
 max_speed = 200.0
-Bullet_Speed = 750
+Bullet_Speed = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -67,28 +38,10 @@ shape = SubResource("CapsuleShape2D_6w0v8")
 scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("2_nbx85")
 
-[node name="Weapon" type="Sprite2D" parent="."]
-z_index = 1
-rotation = 1.5708
-scale = Vector2(0.35, 0.341)
-texture = ExtResource("5_v2g52")
-region_enabled = true
-region_rect = Rect2(8, 0.277161, 48, 55.7228)
-
-[node name="GunBarrelPos" type="Marker2D" parent="Weapon"]
-position = Vector2(-0.000196514, -55.7185)
-rotation = -1.5708
-scale = Vector2(1.02639, 0.974286)
-
-[node name="ShootingSprite" type="AnimatedSprite2D" parent="Weapon"]
-position = Vector2(0, -35)
-rotation = -1.5708
-sprite_frames = SubResource("SpriteFrames_swygi")
-animation = &"Muzzel Flash"
-frame = 1
+[node name="Weapon" parent="." instance=ExtResource("3_f67or")]
 
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 autostart = true
 
