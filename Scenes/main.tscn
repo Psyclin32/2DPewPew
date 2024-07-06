@@ -57,12 +57,12 @@ position = Vector2(809, -115)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(1024, 1024)
 metadata/_edit_lock_ = true
 
 [node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 show_behind_parent = true
 texture_repeat = 3
-position = Vector2(-207, -354)
 texture = ExtResource("5_t8kga")
 centered = false
 metadata/_edit_lock_ = true
@@ -75,7 +75,6 @@ metadata/_edit_lock_ = true
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 z_index = 5
 texture_repeat = 3
-position = Vector2(691, -367)
+position = Vector2(691, -272)
 scale = Vector2(1.12, 1.23333)
 texture = ExtResource("3_vqudf")
-metadata/_edit_lock_ = true
