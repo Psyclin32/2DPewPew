@@ -5,6 +5,7 @@ using System.Diagnostics;
 public partial class StatsClass : Node2D
 {
 
+
 	public enum _statNames
 	{
 		Health,
@@ -18,10 +19,39 @@ public partial class StatsClass : Node2D
 	//private array body for stats. Scales with enums?? useful??
 	private int[] defaultValues = { 10, 20, 5 }; // HP/SHIELD/AR
 	//need get() set(). First time ever doing this yet I always see these shits lol
+	
+	//Constructors
+	public StatsClass(int hp)
+	{
+		_statValues = new int[3] {hp, 0 , 0};
+	}
+	public StatsClass(int hp, int shields)
+	{
+		_statValues = new int[3] {hp, shields , 0};
+	}
+	public StatsClass(int hp, int shields, int armor)
+	{
+		_statValues = new int[3] {hp, shields , armor};
+	}
+	public StatsClass()
+	{
+		_statValues = defaultValues;
+	}
+	
+	// GET SETS
 	public void SetStatValues()
 	{	
 			_statValues = defaultValues;	
 	} 
+	public void SetStatValues(int[] newValues)
+	{	
+			_statValues = newValues;	
+	} 
+	public void SetStatValues(_statNames j, int value)
+	{ 
+		_statValues[(int)j] += value;
+	}
+	
 	public int[] GetStatValues()
 	{
 		return _statValues;
@@ -41,7 +71,7 @@ public partial class StatsClass : Node2D
 			return _statValues[2];
 
 		default :
-			return _statValues[4];
+			return _statValues[3];
 		}
 	}
 

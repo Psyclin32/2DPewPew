@@ -1,3 +1,4 @@
 [gd_resource type="PhysicsMaterial" format=3 uid="uid://2cw333iwglng"]
 
 [resource]
+resource_local_to_scene = true
