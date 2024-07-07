@@ -31,29 +31,31 @@ public partial class Asteroid : RigidBody2D
     }
 
     public override void _Process(double delta)
-    {  
-        if(!isDead)
-        {    
-            int hp = _objectStats.GetStatValues(StatsClass._statNames.Health);
-            if  (hp > 7 ) 
-            {
-                this.rock.Frame = 0;
-            }
-            else if (3 <= hp & hp <= 7)
-            {
-                rock.Frame = 1;
-            }
-            else if (0 < hp)
-            {
-                rock.Frame = 2;
-            }
-            else if (hp <= 0) 
-            {
-                rockAnim.Play("Explosion");
-                isDead = true;
+    {   
+        
+
+        // if(!isDead)
+        // {    
+        //     int hp = _objectStats.GetStatValues(StatsClass._statNames.Health);
+        //     if  (hp > 7 ) 
+        //     {
+        //         this.rock.Frame = 0;
+        //     }
+        //     else if (3 <= hp & hp <= 7)
+        //     {
+        //         rock.Frame = 1;
+        //     }
+        //     else if (0 < hp)
+        //     {
+        //         rock.Frame = 2;
+        //     }
+        //     else if (hp <= 0) 
+        //     {
+        //         rockAnim.Play("Explosion");
+        //         isDead = true;
                 
-            }
-        }
+        //     }
+        // }
         
 
         base._Process(delta);
@@ -62,18 +64,17 @@ public partial class Asteroid : RigidBody2D
 
     private void OnBodyEntered(Bullet body)
     {
-        // register hit - change sprites
-        //Debug.Print("Hit!")
         if (Bullet.CanDamage)
         {
-            _objectStats.SetStatValues(StatsClass._statNames.Health, -body.GetDamage());
+            _objectStats.SetStatValues(StatsClass._statNames.Health, -body.GetDamage()); 
         }
+
+        //Debug.Print("You hit: " + Name)
+        //Debug.Print(" HP of target hit: " + _objectStats.GetStatValues(StatsClass._statNames.Health));
+
         //Debug.Print("Damage Expected: " + -body.GetDamage());
 
-        //Debug.Print("New HP: " + _objectStats.GetStatValues(StatsClass._statNames.Health));
-
-        
-
+        //Debug.Print("New HP: " + _objectStats.GetStatValues(StatsClass._statNames.Health))
     }
     // private void OnBodyEntered(Node2D body)
     // {
