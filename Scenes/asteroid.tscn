@@ -203,6 +203,5 @@ shape = SubResource("CapsuleShape2D_qlxr8")
 [node name="Asteroid" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_iuckh")
 animation = &"Explosion"
-frame = 4
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
