@@ -14,7 +14,7 @@ public partial class Asteroid : RigidBody2D
 
     public override void _Ready()
     {   
-        MyStats = new StatStruct.Stats(10,0);
+        MyStats = new StatStruct.Stats(10,0,0);
 
         rock = GetNode<AnimatedSprite2D>("Asteroid");
         rock.Animation = "DamageStates";
@@ -46,9 +46,23 @@ public partial class Asteroid : RigidBody2D
             else if (MyStats.Health <= 0) 
             {
                 rock.Play("Explosion");
+                rock.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
                 isDead = true;
             }
         }
+        else
+        {   
+             
+            //Disable physics collider while animation is finishing
+            //Use SetDeferred() due to being tied into the physics process. 
+
+            if (!rock.IsPlaying())
+            {
+                QueueFree(); //When animation finishes, destyroy the instance scene.
+            }
+        }
+
+
         base._Process(delta);
     }
 
