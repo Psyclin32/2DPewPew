@@ -67,11 +67,12 @@ public partial class Asteroid : RigidBody2D
     }
 
 
-    private void OnBodyEntered(Bullet body)
+    private void OnBodyEntered(Node2D body)
     {
-        if (Bullet.CanDamage)
+        if (body is Bullet)
         {
-            MyStats.Health -= body.GetDamage(); 
+            Bullet bullet = (Bullet) body;
+            MyStats.Health -= bullet.GetDamage(); 
         }
 
         // Debug.Print("You hit: " + Name);
