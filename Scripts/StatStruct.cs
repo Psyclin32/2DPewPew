@@ -5,16 +5,13 @@ using System.Security.Cryptography.X509Certificates;
 public partial class StatStruct : Node
 {
 
-	//Use for tracking both PC and NPC stats (My create separately if needed, unlikely in shrot term)
+	//Use for creating global flag and data objects (My create separately if needed, unlikely in short term)
 	//Tracking vitals like HP + shields and other "Live" data that is used at gameplay layer. 
 	public struct Stats
 	{	
-
 		public int Health;
 		public int Shields;
-
 		public int Armor;
-
 		public Stats(int x, int y, int z)
 		{
 		Health = x;	
@@ -23,7 +20,45 @@ public partial class StatStruct : Node
 		
 		Armor = z;
 		}
-		
 	}
+
+	public struct ObjectFlags
+	{// Used for higher node scense
+		public enum IFF
+		{
+			Neutral,
+			Ally,
+			Enemy,
+		}
+		public bool isPlayer;
+		public IFF unitIFF;
+		public ObjectFlags(bool x, IFF y)
+		{
+			isPlayer = x;
+			unitIFF = y;
+		}
+	}
+
+	public struct DamageObjects
+	{ //Used for weapon templates Likely might become an extended class as being here is quite high up in the data heirarchy
+		public enum WeaponType
+		{
+			Ballistic,
+			Missile,
+			Beam,
+		}
+		public WeaponType weaponType;
+		public int damageValue;
+		public bool hasPhysics;
+		
+		public DamageObjects(WeaponType type, bool physics, int damage)
+		{
+			weaponType = type;
+			hasPhysics = physics;
+			damageValue = damage;
+			
+		}
+	}
+
 
 }

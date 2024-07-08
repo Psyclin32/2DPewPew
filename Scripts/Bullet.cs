@@ -4,17 +4,16 @@ using System.Collections;
 
 public partial class Bullet : RigidBody2D  //Needs to extend to get physics methods when object called. 
 {	
-	//[Export] public float LifeTIme = 2.5f;
 	private AnimatedSprite2D anims = null; 
-	 //Bullet.GetNode<AnimatedSprite2D>("BulletSprites");
-	
-	
-	public static bool CanDamage = true;	
-	private int damage = 2;
+	private StatStruct.DamageObjects damageObjects;
+	//public static bool CanDamage = true;	
+	//private int damage = 1;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{	
+		damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, 1);
+
 		anims = GetNode<AnimatedSprite2D>("BulletSprites");
 		anims.Play();
 
@@ -33,7 +32,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	//Class Methods
 	public int GetDamage()
 	{
-		return damage;
+		return damageObjects.damageValue;
 	}
 
 	//Signaling call backs

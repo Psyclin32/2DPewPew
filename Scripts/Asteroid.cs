@@ -26,11 +26,8 @@ public partial class Asteroid : RigidBody2D
 
     public override void _Process(double delta)
     {   
-        
-
         if(!isDead)
-        {    
-            
+        {        
             if  (MyStats.Health > 7 ) 
             {
                 this.rock.Frame = 0;
@@ -45,27 +42,26 @@ public partial class Asteroid : RigidBody2D
             }
             else if (MyStats.Health <= 0) 
             {
+                // CollisionShape2D collider = GetNode<CollisionShape2D>("Collider");
+                // collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+                
+                GetChild(1).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+
                 rock.Play("Explosion");
-                rock.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
                 isDead = true;
             }
         }
         else
         {   
-             
             //Disable physics collider while animation is finishing
             //Use SetDeferred() due to being tied into the physics process. 
-
             if (!rock.IsPlaying())
             {
                 QueueFree(); //When animation finishes, destyroy the instance scene.
             }
         }
-
-
         base._Process(delta);
     }
-
 
     private void OnBodyEntered(Node2D body)
     {
@@ -83,10 +79,5 @@ public partial class Asteroid : RigidBody2D
         //Debug.Print("Damage Expected: " + -body.GetDamage())
         //Debug.Print("New HP: " + _objectStats.GetStatValues(StatsClass._statNames.Health))
     }
-    // private void OnBodyEntered(Node2D body)
-    // {
-    //    Debug.Print("Signal over load check");
-    // }
-
 }   
 

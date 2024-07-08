@@ -98,7 +98,8 @@ public partial class player : CharacterBody2D
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
 		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		AddSibling(projectile); //DO NOT WANT AS CHILD TO PLAYER. BINDS ROTATION TO PLAYER CONTROLS. 
-
+		//GetNode("Level Environment").AddChild(projectile);
+		//Debug.Print(GetTreeStringPretty());
 
 	}
 
