@@ -10,7 +10,7 @@
 position = Vector2(-2, 2)
 script = ExtResource("1_nngie")
 
-[node name="player" parent="." instance=ExtResource("1_htbm3")]
+[node name="Player" parent="." instance=ExtResource("1_htbm3")]
 wall_min_slide_angle = 0.53058
 platform_on_leave = 2
 safe_margin = 2.666
@@ -18,7 +18,7 @@ acceleration = 3.0
 rotation_speed = 150
 max_speed = 225.0
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Level Environment" type="Node2D" parent="."]
 script = ExtResource("3_exadr")

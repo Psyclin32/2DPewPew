@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.WebSockets;
 
@@ -16,14 +17,23 @@ public partial class Thrusters : AnimatedSprite2D
     [Export] 
     public Engine_Type This_Engine_Type;  //Make Local enum and export for options setting in editor. 
 
+    public Node Parent;
     public override void _Ready()
     {   
+        Parent = FindParent("Player"); 
+        Visible = false;
         base._Ready();
     }
 
     public override void _Process(double delta)
-    {   //LEFT ENGINE
-        
+    {
+        PlayerThrusters();
+        base._Process(delta);
+    }
+
+    public void PlayerThrusters()
+    {
+        //LEFT ENGINE
         if(Input.IsActionPressed("Rotate Left") & This_Engine_Type == Engine_Type.LEFT){
             //Debug.Print("ROTATE LEFT THRUSTER");
             Visible = true;
@@ -50,13 +60,6 @@ public partial class Thrusters : AnimatedSprite2D
             Visible = false;
             Frame = 0;
          }
-
-        base._Process(delta);
     }
-
-    // public void OnAnimationFinished()
-    // {
-    //     Debug.Print("Signal Triggered");
-    // }
     
 }

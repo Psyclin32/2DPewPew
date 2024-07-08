@@ -4,7 +4,6 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class StatStruct : Node
 {
-
 	//Use for creating global flag and data objects (My create separately if needed, unlikely in short term)
 	//Tracking vitals like HP + shields and other "Live" data that is used at gameplay layer. 
 	public struct Stats
@@ -15,9 +14,7 @@ public partial class StatStruct : Node
 		public Stats(int x, int y, int z)
 		{
 		Health = x;	
-		
 		Shields = y;
-		
 		Armor = z;
 		}
 	}
@@ -26,16 +23,17 @@ public partial class StatStruct : Node
 	{// Used for higher node scense
 		public enum IFF
 		{
+			Player,
 			Neutral,
 			Ally,
 			Enemy,
 		}
 		public bool isPlayer;
 		public IFF unitIFF;
-		public ObjectFlags(bool x, IFF y)
+		public ObjectFlags(bool isPlayer, IFF unitIFF)
 		{
-			isPlayer = x;
-			unitIFF = y;
+			this.isPlayer = isPlayer;
+			this.unitIFF = unitIFF;
 		}
 	}
 

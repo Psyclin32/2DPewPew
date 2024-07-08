@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd1830g3y5imi"]
+
+[ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="1_6xpkm"]
+[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="2_u4f3b"]
+[ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_beqya"]
+[ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_jhuty"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_beqya")
+}, {
+"duration": 10.0,
+"texture": ExtResource("4_jhuty")
+}],
+"loop": false,
+"name": &"Exhaust",
+"speed": 5.0
+}]
+
+[node name="EnemyAI" type="CharacterBody2D"]
+collision_mask = 5
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_6w0v8")
+
+[node name="Ship" type="Sprite2D" parent="."]
+scale = Vector2(0.472656, 0.492188)
+texture = ExtResource("1_6xpkm")
+
+[node name="Weapon" parent="." instance=ExtResource("2_u4f3b")]
+visible = false
+position = Vector2(0, -1)
+rotation = 0.0
+
+[node name="WeaponTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+autostart = true
+
+[node name="Thrusters" type="Node2D" parent="."]
+
+[node name="Left_Th" type="AnimatedSprite2D" parent="Thrusters"]
+visible = false
+position = Vector2(-8, 30)
+rotation = 0.645772
+scale = Vector2(0.690087, 0.72419)
+sprite_frames = SubResource("SpriteFrames_6wn5x")
+animation = &"Exhaust"
+
+[node name="Right_Th" type="AnimatedSprite2D" parent="Thrusters"]
+visible = false
+position = Vector2(8, 30)
+rotation = -0.645772
+scale = Vector2(0.690087, 0.72419)
+sprite_frames = SubResource("SpriteFrames_6wn5x")
+animation = &"Exhaust"
+
+[node name="Forward_Th" type="AnimatedSprite2D" parent="Thrusters"]
+position = Vector2(0, 16)
+scale = Vector2(0.75, 0.919)
+sprite_frames = SubResource("SpriteFrames_6wn5x")
+animation = &"Exhaust"
+
+[editable path="Weapon"]
