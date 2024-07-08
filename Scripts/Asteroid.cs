@@ -4,16 +4,11 @@ using System.Diagnostics;
 
 public partial class Asteroid : RigidBody2D
 {   
-    private StatsClass _objectStats;
-    private int Health = 10; 
-    
-    [Export] private static int[] _asteroidStats = {10, 0, 2};
-
-
+    //private int Health = 10; 
     private AnimatedSprite2D rock; 
     private AnimationPlayer rockAnim;
 
-    private StatStruct.Stats MyStats;
+    public StatStruct.Stats MyStats;
     private bool isDead = false;
 
 
@@ -33,30 +28,27 @@ public partial class Asteroid : RigidBody2D
     {   
         
 
-        // if(!isDead)
-        // {    
-        //     int hp = _objectStats.GetStatValues(StatsClass._statNames.Health);
-        //     if  (hp > 7 ) 
-        //     {
-        //         this.rock.Frame = 0;
-        //     }
-        //     else if (3 <= hp & hp <= 7)
-        //     {
-        //         rock.Frame = 1;
-        //     }
-        //     else if (0 < hp)
-        //     {
-        //         rock.Frame = 2;
-        //     }
-        //     else if (hp <= 0) 
-        //     {
-        //         rockAnim.Play("Explosion");
-        //         isDead = true;
-                
-        //     }
-        // }
-        
-
+        if(!isDead)
+        {    
+            
+            if  (MyStats.Health > 7 ) 
+            {
+                this.rock.Frame = 0;
+            }
+            else if (3 <= MyStats.Health & MyStats.Health <= 7)
+            {
+                rock.Frame = 1;
+            }
+            else if (0 < MyStats.Health)
+            {
+                rock.Frame = 2;
+            }
+            else if (MyStats.Health <= 0) 
+            {
+                rock.Play("Explosion");
+                isDead = true;
+            }
+        }
         base._Process(delta);
     }
 
@@ -65,11 +57,11 @@ public partial class Asteroid : RigidBody2D
     {
         if (Bullet.CanDamage)
         {
-            Health -= body.GetDamage(); 
+            MyStats.Health -= body.GetDamage(); 
         }
 
-        Debug.Print("You hit: " + Name);
-        Debug.Print("Health of target hit: " + Health);
+        // Debug.Print("You hit: " + Name);
+        // Debug.Print("Health of target hit: " + MyStats.Health);
 
         //Debug.Print("Damage Expected: " + -body.GetDamage());
 

@@ -17,7 +17,6 @@ position = Vector2(-2, 2)
 script = ExtResource("1_nngie")
 
 [node name="player" parent="." instance=ExtResource("1_htbm3")]
-position = Vector2(1, 0)
 wall_min_slide_angle = 0.53058
 platform_on_leave = 2
 safe_margin = 2.666
