@@ -17,6 +17,9 @@ public partial class player : CharacterBody2D
 
 	[Export] public int Bullet_Speed = 350;
 
+	[Signal] 
+	public delegate void PlayerTakesDammageEventHandler();
+
 	//[Export] public StatsClass PCStats;
 
 	//[Export] public Node2D Weapon;
@@ -33,10 +36,16 @@ public partial class player : CharacterBody2D
 
 	private StatStruct.Stats PCStats = new StatStruct.Stats(10,0,0);
 	private StatStruct.ObjectFlags PCFlags = new StatStruct.ObjectFlags(true, StatStruct.ObjectFlags.IFF.Player);
+	private Sprite2D Weapon; 
+
+	private Node2D SpawnContainer; 
+
+	
 
 	public override void _Ready()
 	{	
-
+		SpawnContainer = GetNode<Node2D>("ChildSpawns");
+		Weapon = GetNode<Sprite2D>("Weapon");
 		//load and configure animations for player object
 		_weaponAnims = GetNode<AnimationPlayer>("Weapon/FireAnims");
 		//load up the timer object and configure the signal 
@@ -48,7 +57,7 @@ public partial class player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		//Declare local nodes
-		var Weapon = GetNode<Sprite2D>("Weapon");
+		//var Weapon = GetNode<Sprite2D>("Weapon");
 		var gun_Barrel = Weapon.GetNode<Marker2D>("GunBarrelPos");
 		
 		//Weapon turret looking at cursor
@@ -74,14 +83,22 @@ public partial class player : CharacterBody2D
 
 	private void fire_Weapon(Vector2 pos)
 	{
-		RigidBody2D projectile = (RigidBody2D)_bulletScene.Instantiate(); //cast resource as Rigid Body. Associated Nodes script must extend the Node version we want to upack at its top level. 
+		RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
 		projectile.Position = pos;  // gun_barrel POS
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
 		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
-		AddSibling(projectile); //DO NOT WANT AS CHILD TO PLAYER. BINDS ROTATION TO PLAYER CONTROLS. 
+		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
+		SpawnContainer.AddChild(projectile); 
+		
 		//GetNode("Level Environment").AddChild(projectile);
 		//Debug.Print(GetTreeStringPretty());
 	}
+
+	private void OnPlayerTakesDamage(int x)
+	{
+		PCStats.Health -= x;
+	}
+
 
 	private void OnWeaponTimerTimeout()
 	{

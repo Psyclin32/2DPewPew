@@ -1,18 +1,17 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Diagnostics;
 
 public partial class Bullet : RigidBody2D  //Needs to extend to get physics methods when object called. 
 {	
-	private AnimatedSprite2D anims = null; 
-	private StatStruct.DamageObjects damageObjects;
-	//public static bool CanDamage = true;	
-	//private int damage = 1;
+	private AnimatedSprite2D anims; 
+	[Export] private static int damage = 1;
+	private StatStruct.DamageObjects damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, damage);
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{	
-		damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, 1);
+		//damageObjects 
 
 		anims = GetNode<AnimatedSprite2D>("BulletSprites");
 		anims.Play();
@@ -41,7 +40,26 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		QueueFree();  //Destroys instances, freeing memory. 
 	}
 	private void OnBodyEntered(Node2D target)
-	{	
+	{
+		// if (target.Owner == Owner)
+		// {
+		// 	Debug.Print(target.Owner.ToString());
+		// 	Debug.Print(Owner.ToString());
+			
+		// 	return;
+		// }
+		if (target is RigidBody2D)
+		{	
 		QueueFree();
+		}
+		else if (target is player)
+		{
+		Debug.Print("Player Self Hit!");
+		EmitSignal(player.SignalName.PlayerTakesDammage, damageObjects.damageValue);
+		}
+		else if (target is Enemy)
+		{
+		
+		}
 	}
 }

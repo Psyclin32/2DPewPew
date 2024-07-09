@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://boxuyb78ue02g" path="res://Scenes/player.tscn" id="1_htbm3"]
 [ext_resource type="Script" path="res://Scripts/Game_Manager.cs" id="1_nngie"]
-[ext_resource type="Script" path="res://Scenes/Environment.cs" id="3_exadr"]
+[ext_resource type="Script" path="res://Scripts/Environment.cs" id="3_exadr"]
 [ext_resource type="Texture2D" uid="uid://b0lq6dr2y78gr" path="res://addons/space_breaker_asset/space_breaker_asset/Background/galaxy.png" id="3_vqudf"]
 [ext_resource type="Texture2D" uid="uid://bmlaajn3wjlcd" path="res://addons/space_breaker_asset/space_breaker_asset/Background/stars_texture.png" id="5_t8kga"]
 

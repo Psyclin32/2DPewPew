@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class Environment : Node2D
 {
 	public PackedScene Asteroid = GD.Load<PackedScene>("res://Scenes/asteroid.tscn");
-	public PackedScene Enemy = GD.Load<PackedScene>("res://Scenes/Enemy02.tscn");
+	public PackedScene Enemy = GD.Load<PackedScene>("res://Scenes/Ships/BabyShip.tscn");
 
 	[Export]
 	public int numberEnemy = 1;

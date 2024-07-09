@@ -72,3 +72,7 @@ sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
 script = ExtResource("7_d4skv")
 This_Engine_Type = 2
+
+[node name="ChildSpawns" type="Node2D" parent="."]
+
+[connection signal="PlayerTakesDammage" from="." to="." method="OnPlayerTakesDammage"]
