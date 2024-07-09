@@ -33,7 +33,7 @@ public partial class Environment : Node2D
 	{
 		for (int i =0 ;  i <= n ; i++)
 		{
-		CharacterBody2D newEnemy = Enemy.Instantiate<CharacterBody2D>();
+		RigidBody2D newEnemy = Enemy.Instantiate<RigidBody2D>();
 		newEnemy.Position = new Vector2(150,150);
 		AddChild(newEnemy);
 		}

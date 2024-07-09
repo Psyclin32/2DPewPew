@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd1830g3y5imi"]
+[gd_scene load_steps=9 format=3 uid="uid://cd1830g3y5imi"]
 
 [ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="1_6xpkm"]
 [ext_resource type="Script" path="res://Scenes/Ships/Enemy.cs" id="1_vix0l"]
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="2_u4f3b"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_beqya"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_jhuty"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nwne1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 radius = 6.0
@@ -23,9 +25,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="CharacterBody2D"]
-collision_mask = 5
-motion_mode = 1
+[node name="EnemyAI" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_nwne1")
 script = ExtResource("1_vix0l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

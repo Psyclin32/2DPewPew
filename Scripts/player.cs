@@ -17,8 +17,7 @@ public partial class player : CharacterBody2D
 
 	[Export] public int Bullet_Speed = 350;
 
-	[Signal] 
-	public delegate void PlayerTakesDammageEventHandler();
+	//[Signal]  public delegate void PlayerTakesDammageEventHandler();
 
 	//[Export] public StatsClass PCStats;
 
@@ -88,17 +87,18 @@ public partial class player : CharacterBody2D
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
 		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
+		projectile.CollisionMask = 38; //bit mask for 2 + 3 + 6;
 		SpawnContainer.AddChild(projectile); 
 		
 		//GetNode("Level Environment").AddChild(projectile);
 		//Debug.Print(GetTreeStringPretty());
 	}
 
-	private void OnPlayerTakesDamage(int x)
+	public void TakeDamage(int damage)
 	{
-		PCStats.Health -= x;
+		PCStats.Health -= damage;
+		Debug.Print("HP of ship:" + PCStats.Health);
 	}
-
 
 	private void OnWeaponTimerTimeout()
 	{
@@ -135,5 +135,9 @@ public partial class player : CharacterBody2D
 		// change dampening factor for different effects. 
 		MoveAndSlide();
 		//mandatory call for physics movement. Call after math calcs for that. 
+	}
+	private void OnPlayerTakesDamage(int x)
+	{
+		PCStats.Health -= x;
 	}
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : RigidBody2D
 {
 [Export]
 private PackedScene _bulletScene = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");

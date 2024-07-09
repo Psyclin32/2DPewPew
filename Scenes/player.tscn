@@ -25,11 +25,11 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 5
+collision_mask = 54
 motion_mode = 1
 script = ExtResource("1_pwq8g")
 max_speed = 200.0
-Bullet_Speed = 800
+Bullet_Speed = 650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -42,7 +42,7 @@ texture = ExtResource("2_nbx85")
 [node name="Weapon" parent="." instance=ExtResource("3_f67or")]
 
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 one_shot = true
 autostart = true
 
@@ -74,5 +74,3 @@ script = ExtResource("7_d4skv")
 This_Engine_Type = 2
 
 [node name="ChildSpawns" type="Node2D" parent="."]
-
-[connection signal="PlayerTakesDammage" from="." to="." method="OnPlayerTakesDammage"]

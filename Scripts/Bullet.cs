@@ -27,9 +27,22 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	{			
 
 	}
+    public override void _PhysicsProcess(double delta)
+    {
+		var collision = MoveAndCollide(LinearVelocity * (float)delta);
+		if(collision != null)
+		{
+			if(collision.GetCollider().HasMethod("TakeDamage"))
+			{
+				collision.GetCollider().Call("TakeDamage", GetDamage());
+			}
+		}
 
-	//Class Methods
-	public int GetDamage()
+        base._PhysicsProcess(delta);
+    }
+
+    //Class Methods
+    public int GetDamage()
 	{
 		return damageObjects.damageValue;
 	}
@@ -50,16 +63,19 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		// }
 		if (target is RigidBody2D)
 		{	
-		QueueFree();
+			QueueFree();
 		}
 		else if (target is player)
 		{
-		Debug.Print("Player Self Hit!");
-		EmitSignal(player.SignalName.PlayerTakesDammage, damageObjects.damageValue);
+
+		//Debug.Print("Player Self Hit!");
+		//EmitSignal(player.SignalName.PlayerTakesDammage, damageObjects.damageValue);
 		}
 		else if (target is Enemy)
 		{
-		
+			QueueFree();
+
+
 		}
 	}
 }
