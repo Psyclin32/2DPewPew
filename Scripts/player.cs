@@ -87,7 +87,7 @@ public partial class player : CharacterBody2D
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
 		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
-		projectile.CollisionMask = 38; //bit mask for 2 + 3 + 6;
+		projectile.CollisionMask = 54; //bit mask for bits 2 + 3 + 5 + 6;
 		SpawnContainer.AddChild(projectile); 
 		
 		//GetNode("Level Environment").AddChild(projectile);

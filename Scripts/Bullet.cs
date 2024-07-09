@@ -9,6 +9,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	[Export] private static int damage = 1;
 	private StatStruct.DamageObjects damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, damage);
 	
+
 	public override void _Ready()
 	{	
 		//damageObjects 
@@ -20,6 +21,13 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		//timer.WaitTime = LifeTIme; 
 		timer.Timeout += OnBulletExpireTimeout;
 		timer.Start();//Note that this method of grabbing time needs autoStart disabbled.
+
+		// var parent = FindParent("Player");
+		// if (parent == null)
+		// {
+		// 	CollisionLayer = 16;
+		// 	CollisionMask = 
+		// } 
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,11 +69,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 			
 		// 	return;
 		// }
-		if (target is RigidBody2D)
-		{	
-			QueueFree();
-		}
-		else if (target is player)
+		if (target is player)
 		{
 
 		//Debug.Print("Player Self Hit!");
@@ -73,7 +77,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		}
 		else if (target is Enemy)
 		{
-			QueueFree();
+			//QueueFree();
 
 
 		}
