@@ -5,7 +5,7 @@ using System.Diagnostics;
 //using System.Diagnostics;
 //using System.Security.Cryptography.X509Certificates;
 
-public partial class player : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
 
 	[Export] public float acceleration = 10;
@@ -35,14 +35,20 @@ public partial class player : CharacterBody2D
 
 	private StatStruct.Stats PCStats = new StatStruct.Stats(10,0,0);
 	private StatStruct.ObjectFlags PCFlags = new StatStruct.ObjectFlags(true, StatStruct.ObjectFlags.IFF.Player);
+	
+	[Export]
 	private Sprite2D Weapon; 
 
+	[Export]
 	private Node2D SpawnContainer; 
 
 	
 
 	public override void _Ready()
 	{	
+		//Debug.Print(GetPath());
+
+
 		SpawnContainer = GetNode<Node2D>("ChildSpawns");
 		Weapon = GetNode<Sprite2D>("Weapon");
 		//load and configure animations for player object
@@ -97,7 +103,7 @@ public partial class player : CharacterBody2D
 	public void TakeDamage(int damage)
 	{
 		PCStats.Health -= damage;
-		Debug.Print("HP of ship:" + PCStats.Health);
+		//Debug.Print("HP of ship:" + PCStats.Health);
 	}
 
 	private void OnWeaponTimerTimeout()

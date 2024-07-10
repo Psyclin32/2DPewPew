@@ -25,11 +25,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D"]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon")]
 collision_layer = 32
 collision_mask = 15
+mass = 500.0
 physics_material_override = SubResource("PhysicsMaterial_nwne1")
 script = ExtResource("1_vix0l")
+_weaponTimer = NodePath("WeaponTimer")
+RotationTimer = NodePath("RotationTimer")
+SpawnContainer = NodePath("ChildSpawns")
+Weapon = NodePath("Weapon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -40,13 +45,18 @@ scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("1_6xpkm")
 
 [node name="Weapon" parent="." instance=ExtResource("2_u4f3b")]
-visible = false
 position = Vector2(0, -1)
 rotation = 0.0
+
+[node name="GunBarrelPos" parent="Weapon" index="0"]
+position = Vector2(0, -55)
 
 [node name="WeaponTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+autostart = true
+
+[node name="RotationTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="Thrusters" type="Node2D" parent="."]
@@ -72,5 +82,7 @@ position = Vector2(0, 16)
 scale = Vector2(0.75, 0.919)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
+
+[node name="ChildSpawns" type="Node2D" parent="."]
 
 [editable path="Weapon"]

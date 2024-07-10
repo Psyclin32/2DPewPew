@@ -31,7 +31,7 @@ public partial class Environment : Node2D
 	} 
 	private void EnemySpawner(int n)
 	{
-		for (int i =0 ;  i <= n ; i++)
+		for (int i =1 ;  i <= n ; i++)
 		{
 		RigidBody2D newEnemy = Enemy.Instantiate<RigidBody2D>();
 		newEnemy.Position = new Vector2(150,150);

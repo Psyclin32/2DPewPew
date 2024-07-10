@@ -28,7 +28,6 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		// 	CollisionLayer = 16;
 		// 	CollisionMask = 
 		// } 
-
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -69,15 +68,20 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 			
 		// 	return;
 		// }
-		if (target is player)
+		if (target is Asteroid)
 		{
+			QueueFree();
+		} 
 
+		if (target is Player)
+		{
+			QueueFree();
 		//Debug.Print("Player Self Hit!");
 		//EmitSignal(player.SignalName.PlayerTakesDammage, damageObjects.damageValue);
 		}
 		else if (target is Enemy)
 		{
-			//QueueFree();
+			QueueFree();
 
 
 		}
