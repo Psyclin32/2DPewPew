@@ -27,6 +27,8 @@ private Node2D SpawnContainer;
 
 [Export] Sprite2D Weapon;
 
+[Export] Marker2D gun_Barrel;
+
 public bool Reload = false;
 
     public override void _Ready()
@@ -38,19 +40,26 @@ public bool Reload = false;
         _weaponTimer = GetNode<Timer>("WeaponTimer");
 		_weaponTimer.Timeout += OnWeaponTimerTimeout;    
 
-        RotationTimer = GetNode<Timer>("RotationTimer");
-		RotationTimer.Timeout += OnRotationTimerTimeout;  
+        gun_Barrel = Weapon.GetNode<Marker2D>("GunBarrelPos");
+
+        // RotationTimer = GetNode<Timer>("RotationTimer");
+		// RotationTimer.Timeout += OnRotationTimerTimeout;  
     }
 
     public override void _Process(double delta)
     {
-       var gun_Barrel = Weapon.GetNode<Marker2D>("GunBarrelPos");
        
        
+        AquireTarget();
         if(Reload) { EnemyFire(gun_Barrel.GlobalPosition); }
         base._Process(delta);
     }
 
+    public void AquireTarget()
+    {
+        LookAt(target.GlobalPosition);
+        Rotate (MathF.PI/2);
+    }
     public void OnRotationTimerTimeout()
     {
         LookAt(target.GlobalPosition);
@@ -69,7 +78,7 @@ public bool Reload = false;
         _weaponTimer.Start();
         RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>();
         projectile.CollisionLayer = 16;
-        projectile.CollisionMask = 15;
+        projectile.CollisionMask = 14;
         projectile.Position = pos; //Muzzel position
         projectile.LookAt(target.GlobalPosition);
         //projectile.Rotate();

@@ -27,6 +27,8 @@ animations = [{
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Weapon", "SpawnContainer")]
 collision_mask = 54
 motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_on_leave = 2
 script = ExtResource("1_knpjq")
 max_speed = 200.0
 Weapon = NodePath("Weapon")

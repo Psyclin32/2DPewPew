@@ -25,16 +25,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon")]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel")]
 collision_layer = 32
 collision_mask = 15
-mass = 500.0
+mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_nwne1")
 script = ExtResource("1_vix0l")
 _weaponTimer = NodePath("WeaponTimer")
 RotationTimer = NodePath("RotationTimer")
 SpawnContainer = NodePath("ChildSpawns")
 Weapon = NodePath("Weapon")
+gun_Barrel = NodePath("Weapon/GunBarrelPos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -49,10 +50,10 @@ position = Vector2(0, -1)
 rotation = 0.0
 
 [node name="GunBarrelPos" parent="Weapon" index="0"]
-position = Vector2(0, -55)
+position = Vector2(0, -58.015)
 
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 autostart = true
 

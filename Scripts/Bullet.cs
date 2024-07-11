@@ -74,16 +74,15 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		} 
 
 		if (target is Player)
-		{
+		{	
 			QueueFree();
 		//Debug.Print("Player Self Hit!");
 		//EmitSignal(player.SignalName.PlayerTakesDammage, damageObjects.damageValue);
 		}
 		else if (target is Enemy)
 		{
-			QueueFree();
-
-
+			
+			//QueueFree();
 		}
 	}
 }

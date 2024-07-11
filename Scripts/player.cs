@@ -47,7 +47,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{	
 		//Debug.Print(GetPath());
-
+		MaxSlides = 1;
 
 		SpawnContainer = GetNode<Node2D>("ChildSpawns");
 		Weapon = GetNode<Sprite2D>("Weapon");
@@ -68,6 +68,8 @@ public partial class Player : CharacterBody2D
 		//Weapon turret looking at cursor
 		Weapon.LookAt(GetGlobalMousePosition()); //Lookat requires Global Coords of mouse pointers
 		Weapon.Rotate(MathF.PI / 2); //current asset is -90deg off, needs dynamic rotation to keep accurate. Rotation in code is in Radians thus PI/2.  
+
+		
 
 		//Firing mechanism for gun
 		if (Input.IsActionPressed("Fire Weapon") & ready_fire)
