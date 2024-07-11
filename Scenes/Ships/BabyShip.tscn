@@ -8,8 +8,9 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nwne1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2d3r"]
 radius = 6.0
+height = 27.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
@@ -30,16 +31,19 @@ collision_layer = 32
 collision_mask = 15
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_nwne1")
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_vix0l")
 _weaponTimer = NodePath("WeaponTimer")
+BulletSpeed = 300
 RotationTimer = NodePath("RotationTimer")
 SpawnContainer = NodePath("ChildSpawns")
 Weapon = NodePath("Weapon")
 gun_Barrel = NodePath("Weapon/GunBarrelPos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_6w0v8")
+position = Vector2(0, -0.5)
+shape = SubResource("CapsuleShape2D_e2d3r")
 
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
@@ -51,6 +55,7 @@ rotation = 0.0
 
 [node name="GunBarrelPos" parent="Weapon" index="0"]
 position = Vector2(0, -58.015)
+rotation = 0.0
 
 [node name="WeaponTimer" type="Timer" parent="."]
 wait_time = 0.5

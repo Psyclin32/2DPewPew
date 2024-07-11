@@ -5,7 +5,7 @@ using System.Diagnostics;
 //using System.Diagnostics;
 //using System.Security.Cryptography.X509Certificates;
 
-public partial class Player : CharacterBody2D
+public partial class Player : RigidBody2D
 {
 
 	[Export] public float acceleration = 10;
@@ -47,7 +47,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{	
 		//Debug.Print(GetPath());
-		MaxSlides = 1;
+		//MaxSlides = 1;
 
 		SpawnContainer = GetNode<Node2D>("ChildSpawns");
 		Weapon = GetNode<Sprite2D>("Weapon");
@@ -93,9 +93,9 @@ public partial class Player : CharacterBody2D
 		RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
 		projectile.Position = pos;  // gun_barrel POS
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
-		projectile.LinearVelocity = Velocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
+		projectile.LinearVelocity = LinearVelocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
-		projectile.CollisionMask = 54; //bit mask for bits 2 + 3 + 5 + 6;
+		projectile.CollisionMask = 38; //bit mask for bits 2 + 3 + 6;
 		SpawnContainer.AddChild(projectile); 
 		
 		//GetNode("Level Environment").AddChild(projectile);
@@ -117,8 +117,8 @@ public partial class Player : CharacterBody2D
 	{
 		float time = (float)delta;
 		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
-		Velocity += inputs.Rotated(Rotation) * acceleration;
-		Velocity = Velocity.LimitLength(max_speed); //limtis magnitude to input variable. 
+		LinearVelocity += inputs.Rotated(Rotation) * acceleration;
+		LinearVelocity = LinearVelocity.LimitLength(max_speed); //limtis magnitude to input variable. 
 
 		// apparently with the engine, I don't need Velocity to always be multiplied by delta time? This breaks when I add it manually. 
 		//C# refresher - capitol letters are indicating class objects that are inherited. In this case Velocity  & Rotation. 
@@ -135,13 +135,13 @@ public partial class Player : CharacterBody2D
 		//MATH: Need Mathf library for DegtoRad method as the function Rotate from Node2D expects angles in RADS. 
 		// so put simply Rotate(rotation direction * speed * Delta Time)
 		//I guess this one does needed delta time for better smoothing. 
-		if (inputs.Y == 0)
-		{
-			Velocity = Velocity.MoveToward(Vector2.Zero, dampening);
-		}
+		// if (inputs.Y == 0)
+		// {
+		// 	LinVelocity = Velocity.MoveToward(Vector2.Zero, dampening);
+		// }
 		//a very quick and dirty "gravity" but works regardless of current velocity direction. 
 		// change dampening factor for different effects. 
-		MoveAndSlide();
+		//MoveAndSlide();
 		//mandatory call for physics movement. Call after math calcs for that. 
 	}
 	private void OnPlayerTakesDamage(int x)

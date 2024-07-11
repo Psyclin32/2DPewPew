@@ -29,10 +29,14 @@ private Node2D SpawnContainer;
 
 [Export] Marker2D gun_Barrel;
 
+[Export] float angularSpeed = 8000;
 public bool Reload = false;
+
+
 
     public override void _Ready()
     {
+        
         SpawnContainer = GetNode<Node2D>("ChildSpawns");
 
         target = GetNode<Player>("/root/Main/Player");
@@ -50,15 +54,24 @@ public bool Reload = false;
     {
        
        
-        AquireTarget();
+        
         if(Reload) { EnemyFire(gun_Barrel.GlobalPosition); }
         base._Process(delta);
     }
 
+    public override void _PhysicsProcess(double delta)
+    {   
+        AquireTarget();
+        base._PhysicsProcess(delta);
+    }
+
     public void AquireTarget()
     {
-        LookAt(target.GlobalPosition);
-        Rotate (MathF.PI/2);
+
+        var dir = Transform.X.Dot(Position.DirectionTo(target.Position));
+        ConstantTorque = dir* angularSpeed;
+        //LookAt(target.GlobalPosition);
+        //Rotate (MathF.PI/2);
     }
     public void OnRotationTimerTimeout()
     {
@@ -78,10 +91,10 @@ public bool Reload = false;
         _weaponTimer.Start();
         RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>();
         projectile.CollisionLayer = 16;
-        projectile.CollisionMask = 14;
+        projectile.CollisionMask = 15-8;
         projectile.Position = pos; //Muzzel position
-        projectile.LookAt(target.GlobalPosition);
-        //projectile.Rotate();
+        //projectile.LookAt(target.GlobalPosition);
+        projectile.Rotate(Rotation - MathF.PI/2);
         projectile.LinearVelocity =  -Transform.Y * BulletSpeed;
         projectile.TopLevel = true;
         SpawnContainer.AddChild(projectile);

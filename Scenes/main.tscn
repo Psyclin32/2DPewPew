@@ -12,9 +12,6 @@ script = ExtResource("1_nngie")
 
 [node name="Player" parent="." groups=["Characters"] instance=ExtResource("1_htbm3")]
 unique_name_in_owner = true
-wall_min_slide_angle = 0.53058
-platform_on_leave = 2
-safe_margin = 2.666
 acceleration = 3.0
 rotation_speed = 150
 max_speed = 225.0

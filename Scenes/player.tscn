@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://boxuyb78ue02g"]
+[gd_scene load_steps=10 format=3 uid="uid://boxuyb78ue02g"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_knpjq"]
 [ext_resource type="Texture2D" uid="uid://bjjbps6kwkb3p" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Medium/body_01.png" id="2_nbx85"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="3_f67or"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_wsk7x"]
 [ext_resource type="Script" path="res://Scripts/Thrusters.cs" id="7_d4skv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0b0q8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0
@@ -24,11 +26,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Weapon", "SpawnContainer")]
-collision_mask = 54
-motion_mode = 1
-wall_min_slide_angle = 0.0
-platform_on_leave = 2
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("Weapon", "SpawnContainer")]
+collision_mask = 0
+mass = 1000.0
+physics_material_override = SubResource("PhysicsMaterial_0b0q8")
+linear_damp = 0.33
 script = ExtResource("1_knpjq")
 max_speed = 200.0
 Weapon = NodePath("Weapon")

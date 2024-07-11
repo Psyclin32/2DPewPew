@@ -82,7 +82,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		else if (target is Enemy)
 		{
 			
-			//QueueFree();
+			QueueFree();
 		}
 	}
 }
