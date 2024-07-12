@@ -88,13 +88,13 @@ public partial class Player : RigidBody2D
 		base._Process(delta);
 	}
 
-	private void fire_Weapon(Vector2 pos)
+	private void fire_Weapon(Vector2 pos)   //being pass muzzel position.  
 	{
 		RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
 		projectile.Position = pos;  // gun_barrel POS
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
-		//projectile.LinearVelocity = LinearVelocity + pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
-		projectile.LinearVelocity = pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;
+		projectile.LinearVelocity = LinearVelocity + (pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed);  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
+		//projectile.LinearVelocity = pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;
 		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
 		projectile.CollisionMask = 38; //bit mask for bits 2 + 3 + 6;
 		SpawnContainer.AddChild(projectile); 
