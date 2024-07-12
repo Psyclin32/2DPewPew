@@ -103,7 +103,6 @@ animations = [{
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 6
-mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_p1d22")
 max_contacts_reported = 1
 contact_monitor = true

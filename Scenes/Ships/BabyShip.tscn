@@ -29,7 +29,7 @@ animations = [{
 [node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel")]
 collision_layer = 32
 collision_mask = 15
-mass = 100.0
+mass = 200.0
 physics_material_override = SubResource("PhysicsMaterial_nwne1")
 max_contacts_reported = 5
 contact_monitor = true

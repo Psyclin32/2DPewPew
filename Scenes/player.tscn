@@ -32,7 +32,7 @@ mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_0b0q8")
 linear_damp = 0.33
 script = ExtResource("1_knpjq")
-max_speed = 200.0
+max_speed = 500.0
 Weapon = NodePath("Weapon")
 SpawnContainer = NodePath("ChildSpawns")
 
@@ -45,6 +45,12 @@ scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("2_nbx85")
 
 [node name="Weapon" parent="." instance=ExtResource("3_f67or")]
+
+[node name="Line2D" type="Line2D" parent="Weapon"]
+z_index = 2
+points = PackedVector2Array(0, 0, 0, -500)
+width = 2.0
+default_color = Color(0.643742, 0.180875, 0.172373, 1)
 
 [node name="WeaponTimer" type="Timer" parent="."]
 wait_time = 0.1
