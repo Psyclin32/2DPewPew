@@ -31,7 +31,8 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{			
+	{		
+			//debug	
 
 	}
     public override void _PhysicsProcess(double delta)
@@ -46,6 +47,13 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 		}
 
         base._PhysicsProcess(delta);
+    }
+
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+        
+		Debug.Print("Bullet Velocity: " + LinearVelocity.ToString());
+		base._IntegrateForces(state);
     }
 
     //Class Methods

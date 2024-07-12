@@ -27,6 +27,7 @@ public partial class Player : RigidBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	public Vector2 vel_dir; 
 	
 	private Timer _weaponTimer;
 	private AnimationPlayer _weaponAnims;
@@ -41,6 +42,7 @@ public partial class Player : RigidBody2D
 
 	[Export]
 	private Node2D SpawnContainer; 
+
 
 	
 
@@ -93,11 +95,16 @@ public partial class Player : RigidBody2D
 		RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
 		projectile.Position = pos;  // gun_barrel POS
 		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
-		projectile.LinearVelocity = LinearVelocity + (pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed);  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
+		//projectile.LinearVelocity = LinearVelocity + (pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed);  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		//projectile.LinearVelocity = pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;
+		//projectile.LinearVelocity = LinearVelocity;
+		projectile.ApplyCentralImpulse(pos.DirectionTo(GetGlobalMousePosition())*400);
+		//Debug.Print("Player Velocity: " + LinearVelocity.ToString());
 		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
 		projectile.CollisionMask = 38; //bit mask for bits 2 + 3 + 6;
 		SpawnContainer.AddChild(projectile); 
+
+		
 		
 		//GetNode("Level Environment").AddChild(projectile);
 		//Debug.Print(GetTreeStringPretty());
@@ -116,10 +123,11 @@ public partial class Player : RigidBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		float time = (float)delta;
-		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
-		LinearVelocity += inputs.Rotated(Rotation) * acceleration;
-		LinearVelocity = LinearVelocity.LimitLength(max_speed); //limtis magnitude to input variable. 
+		//float time = (float)delta;
+		
+		
+		//LinearVelocity += inputs.Rotated(Rotation) * acceleration;
+		//LinearVelocity = LinearVelocity.LimitLength(max_speed); //limtis magnitude to input variable. 
 
 		// apparently with the engine, I don't need Velocity to always be multiplied by delta time? This breaks when I add it manually. 
 		//C# refresher - capitol letters are indicating class objects that are inherited. In this case Velocity  & Rotation. 
@@ -129,7 +137,7 @@ public partial class Player : RigidBody2D
 		//side thoughts: note that with the global Vars I don't need to make so many locals and can directly manipulate as needed. 
 		//Debug.Print("Speed:   "+ Velocity.Length());
 
-		Rotate(Mathf.DegToRad(Input.GetAxis("Rotate Left", "Rotate Right") * rotation_speed * time));
+		Rotate(Mathf.DegToRad(Input.GetAxis("Rotate Left", "Rotate Right") * rotation_speed * (float)delta));
 		// above is very dense but here it is. 
 		// GetAxis returns [-1 0 1] based on input. In this case, left is -1 rotation direction and right is +1 direction. 
 		// Returns 0 if nothing pressed
@@ -149,4 +157,14 @@ public partial class Player : RigidBody2D
 	{
 		PCStats.Health -= x;
 	}
+
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
+		vel_dir = inputs*acceleration;
+
+		ApplyCentralForce(vel_dir.Rotated(Rotation));
+
+        base._IntegrateForces(state);
+    }
 }
