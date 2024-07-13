@@ -34,6 +34,7 @@ private Node2D SpawnContainer;
 [Export] public int EnemyHealth = 10;
 
 [Export] public CpuParticles2D particles;
+[Export] public TextureProgressBar HPBar;
 
 public bool Reload = false;
 
@@ -57,9 +58,11 @@ public bool Reload = false;
 
     public override void _Process(double delta)
     {
+        
+
         if(Reload) EnemyFire(gun_Barrel.GlobalPosition); 
      
-        if(EnemyHealth <= 3) particles.Visible = true;
+        if(EnemyHealth <= 3) particles.Emitting = true;
      
         base._Process(delta);
     }
@@ -73,6 +76,8 @@ public bool Reload = false;
     public void TakeDamage(int damage)
     {
         EnemyHealth -= damage;
+        HPBar.Value = EnemyHealth;
+
     }
 
     public void AquireTarget()

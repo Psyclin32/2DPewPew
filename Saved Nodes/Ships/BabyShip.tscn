@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd1830g3y5imi"]
+[gd_scene load_steps=10 format=3 uid="uid://cd1830g3y5imi"]
 
 [ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="1_6xpkm"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_vix0l"]
-[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="2_u4f3b"]
+[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Ships/Equipment/Ballistics01.tscn" id="2_u4f3b"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_beqya"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_jhuty"]
+[ext_resource type="PackedScene" uid="uid://d33kmyjcfc8nh" path="res://Saved Nodes/UI_UX/hp_bar.tscn" id="6_3ldmk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nwne1"]
 
@@ -26,7 +27,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel", "particles")]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel", "particles", "HPBar")]
 collision_layer = 32
 collision_mask = 15
 mass = 200.0
@@ -41,6 +42,7 @@ SpawnContainer = NodePath("ChildSpawns")
 Weapon = NodePath("Weapon")
 gun_Barrel = NodePath("Weapon/GunBarrelPos")
 particles = NodePath("CPUParticles2D")
+HPBar = NodePath("HPBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -93,7 +95,7 @@ animation = &"Exhaust"
 [node name="ChildSpawns" type="Node2D" parent="."]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
+emitting = false
 amount = 20
 emission_shape = 2
 emission_sphere_radius = 8.0
@@ -102,5 +104,12 @@ gravity = Vector2(0, 0)
 orbit_velocity_min = -5.0
 orbit_velocity_max = 5.0
 color = Color(0.686275, 0.160784, 0.14902, 1)
+
+[node name="HPBar" parent="." instance=ExtResource("6_3ldmk")]
+offset_left = -27.0
+offset_top = -46.0
+offset_right = 118.0
+offset_bottom = 99.0
+scale = Vector2(0.394262, 0.40497)
 
 [editable path="Weapon"]

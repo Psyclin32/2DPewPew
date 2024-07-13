@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctp12r8dqicg4"]
+
+[ext_resource type="Texture2D" uid="uid://bbmffckurd8kc" path="res://addons/Health Bar Asset Pack 2 by Adwit Rahman/Health Bar Asset Pack 2 by Adwit Rahman/greenbar (3).png" id="1_v0l1c"]
+
+[sub_resource type="Gradient" id="Gradient_u2uau"]
+offsets = PackedFloat32Array(0, 0.386503)
+colors = PackedColorArray(0.8, 0, 0, 1, 0.104286, 0.388044, 0.185088, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6t1o"]
+gradient = SubResource("Gradient_u2uau")
+width = 100
+height = 8
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 47.0
+offset_right = 39.0
+offset_bottom = 87.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10.0
+step = 0.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
+texture_under = ExtResource("1_v0l1c")
+texture_progress = SubResource("GradientTexture2D_v6t1o")
+texture_progress_offset = Vector2(18, 52)
