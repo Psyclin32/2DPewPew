@@ -7,6 +7,8 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 {	
 	private AnimatedSprite2D anims; 
 	[Export] private static int damage = 1;
+
+	[Export] public bool DamageDelt = false;
 	private StatStruct.DamageObjects damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, damage);
 	
 
@@ -38,12 +40,15 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
     public override void _PhysicsProcess(double delta)
     {
 		var collision = MoveAndCollide(LinearVelocity * (float)delta);
-		if(collision != null)
+		if(collision != null & !DamageDelt)
 		{
 			if(collision.GetCollider().HasMethod("TakeDamage"))
 			{
-				collision.GetCollider().Call("TakeDamage", GetDamage());
+				collision.GetCollider().CallDeferred("TakeDamage", GetDamage());
 			}
+
+			DamageDelt = true;
+
 		}
 
         base._PhysicsProcess(delta);

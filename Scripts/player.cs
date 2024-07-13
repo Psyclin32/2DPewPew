@@ -17,6 +17,8 @@ public partial class Player : RigidBody2D
 
 	[Export] public int Bullet_Speed = 350;
 
+	[Export] public TextureProgressBar hpBar;
+
 	//[Signal]  public delegate void PlayerTakesDammageEventHandler();
 
 	//[Export] public StatsClass PCStats;
@@ -50,6 +52,7 @@ public partial class Player : RigidBody2D
 	{	
 		//Debug.Print(GetPath());
 		//MaxSlides = 1;
+
 
 		SpawnContainer = GetNode<Node2D>("ChildSpawns");
 		Weapon = GetNode<Sprite2D>("Weapon");
@@ -111,7 +114,9 @@ public partial class Player : RigidBody2D
 	public void TakeDamage(int damage)
 	{
 		PCStats.Health -= damage;
-		//Debug.Print("HP of ship:" + PCStats.Health);
+		hpBar.Value -= damage;
+		
+		Debug.Print("HP of ship:" + PCStats.Health);
 	}
 
 	private void OnWeaponTimerTimeout()
