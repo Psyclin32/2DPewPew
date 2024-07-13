@@ -30,6 +30,11 @@ private Node2D SpawnContainer;
 [Export] Marker2D gun_Barrel;
 
 [Export] float angularSpeed = 8000;
+
+[Export] public int EnemyHealth = 10;
+
+[Export] public CpuParticles2D particles;
+
 public bool Reload = false;
 
 
@@ -52,10 +57,10 @@ public bool Reload = false;
 
     public override void _Process(double delta)
     {
-       
-       
-        
-        if(Reload) { EnemyFire(gun_Barrel.GlobalPosition); }
+        if(Reload) EnemyFire(gun_Barrel.GlobalPosition); 
+     
+        if(EnemyHealth <= 3) particles.Visible = true;
+     
         base._Process(delta);
     }
 
@@ -63,6 +68,11 @@ public bool Reload = false;
     {   
         AquireTarget();
         base._PhysicsProcess(delta);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        EnemyHealth -= damage;
     }
 
     public void AquireTarget()
@@ -84,7 +94,7 @@ public bool Reload = false;
         Reload = true;
     }
 
-    public void EnemyFire(Vector2 pos)
+    public void EnemyFire(Vector2 pos)  //passed muzzel global position, 
     {
         // Debug.Print("Enemy FIRE!");
         Reload = false;

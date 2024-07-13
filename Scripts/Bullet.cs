@@ -52,7 +52,7 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         
-		Debug.Print("Bullet Velocity: " + LinearVelocity.ToString());
+		//Debug.Print("Bullet Velocity: " + LinearVelocity.ToString());
 		base._IntegrateForces(state);
     }
 

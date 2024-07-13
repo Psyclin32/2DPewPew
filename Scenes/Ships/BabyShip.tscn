@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cd1830g3y5imi"]
 
 [ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="1_6xpkm"]
-[ext_resource type="Script" path="res://Scenes/Ships/Enemy.cs" id="1_vix0l"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_vix0l"]
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Scenes/Equipment/Ballistics01.tscn" id="2_u4f3b"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_beqya"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_jhuty"]
@@ -26,7 +26,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel")]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel", "particles")]
 collision_layer = 32
 collision_mask = 15
 mass = 200.0
@@ -40,6 +40,7 @@ RotationTimer = NodePath("RotationTimer")
 SpawnContainer = NodePath("ChildSpawns")
 Weapon = NodePath("Weapon")
 gun_Barrel = NodePath("Weapon/GunBarrelPos")
+particles = NodePath("CPUParticles2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -50,6 +51,7 @@ scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("1_6xpkm")
 
 [node name="Weapon" parent="." instance=ExtResource("2_u4f3b")]
+visible = false
 position = Vector2(0, -1)
 rotation = 0.0
 
@@ -58,7 +60,7 @@ position = Vector2(0, -58.015)
 rotation = 0.0
 
 [node name="WeaponTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 2.0
 one_shot = true
 autostart = true
 
@@ -90,5 +92,16 @@ sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
 
 [node name="ChildSpawns" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+amount = 20
+emission_shape = 2
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+orbit_velocity_min = -5.0
+orbit_velocity_max = 5.0
+color = Color(0.686275, 0.160784, 0.14902, 1)
 
 [editable path="Weapon"]

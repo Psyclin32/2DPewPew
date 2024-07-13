@@ -26,12 +26,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("Weapon", "SpawnContainer")]
 collision_mask = 0
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_0b0q8")
 script = ExtResource("1_knpjq")
 acceleration = 1000.0
+Weapon = NodePath("Weapon")
+SpawnContainer = NodePath("ChildSpawns")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -82,3 +84,5 @@ script = ExtResource("7_d4skv")
 This_Engine_Type = 2
 
 [node name="ChildSpawns" type="Node2D" parent="."]
+
+[editable path="Weapon"]
