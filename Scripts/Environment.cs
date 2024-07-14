@@ -4,8 +4,8 @@ using System.Diagnostics;
 
 public partial class Environment : Node2D
 {
-	public PackedScene Asteroid = GD.Load<PackedScene>("res://Scenes/asteroid.tscn");
-	public PackedScene Enemy = GD.Load<PackedScene>("res://Scenes/Ships/BabyShip.tscn");
+	public PackedScene Asteroid = GD.Load<PackedScene>("res://Saved Nodes/Programer Art/asteroid.tscn");
+	public PackedScene Enemy = GD.Load<PackedScene>("res://Saved Nodes/Ships/Enemy01.tscn");
 
 	[Export]
 	public int numberEnemy = 1;
@@ -18,6 +18,7 @@ public partial class Environment : Node2D
 		AsteroidSpawner(range[0], range[1]);
 		EnemySpawner(numberEnemy);
 	}
+
 	private void AsteroidSpawner(int low, int high)
 	{
 		int n = GD.RandRange(low, high);

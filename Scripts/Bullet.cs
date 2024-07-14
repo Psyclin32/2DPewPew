@@ -33,24 +33,36 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{		
-			//debug	
+	{			
 
 	}
     public override void _PhysicsProcess(double delta)
     {
-		var collision = MoveAndCollide(LinearVelocity * (float)delta);
+        KinematicCollision2D collision = MoveAndCollide(LinearVelocity * (float)delta);
 		if(collision != null & !DamageDelt)
 		{
-			if(collision.GetCollider().HasMethod("TakeDamage"))
+			if(collision.GetCollider() is Player playerInstance)
 			{
-				collision.GetCollider().CallDeferred("TakeDamage", GetDamage());
+				//Debug.Print("Cast!");
+				playerInstance.TakeDamage(GetDamage());
 			}
 
+			if(collision.GetCollider() is Enemy enemyInstance)
+			{
+				//Debug.Print("Cast!");
+				enemyInstance.TakeDamage(GetDamage());
+			}
+			if(collision.GetCollider() is Asteroid rockInstance)
+			{
+				//Debug.Print("Cast!");
+				rockInstance.TakeDamage(GetDamage());
+			}
+			// if(collision.GetCollider().HasMethod("TakeDamage"))
+			// {
+			// 	collision.GetCollider().CallDeferred("TakeDamage", GetDamage());
+			// }
 			DamageDelt = true;
-
 		}
-
         base._PhysicsProcess(delta);
     }
 
