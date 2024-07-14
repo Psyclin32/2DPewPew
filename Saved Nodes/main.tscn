@@ -1,25 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=5 format=3 uid="uid://ckrkhn017qm4i"]
 
-[ext_resource type="PackedScene" uid="uid://boxuyb78ue02g" path="res://Saved Nodes/Player.tscn" id="1_htbm3"]
 [ext_resource type="Script" path="res://Scripts/Game_Manager.cs" id="1_nngie"]
 [ext_resource type="Script" path="res://Scripts/Environment.cs" id="3_exadr"]
 [ext_resource type="Texture2D" uid="uid://b0lq6dr2y78gr" path="res://addons/space_breaker_asset/space_breaker_asset/Background/galaxy.png" id="3_vqudf"]
 [ext_resource type="Texture2D" uid="uid://bmlaajn3wjlcd" path="res://addons/space_breaker_asset/space_breaker_asset/Background/stars_texture.png" id="5_t8kga"]
-[ext_resource type="PackedScene" uid="uid://cd1830g3y5imi" path="res://Saved Nodes/Ships/BabyShip.tscn" id="6_k7hoj"]
 
 [node name="Main" type="Node2D" groups=["MainScene"]]
 position = Vector2(-2, 2)
 script = ExtResource("1_nngie")
-
-[node name="Player" parent="." groups=["Characters"] instance=ExtResource("1_htbm3")]
-unique_name_in_owner = true
-mass = 200.0
-linear_damp = 0.25
-acceleration = 5000.0
-rotation_speed = 50
-max_speed = 225.0
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Level Environment" type="Node2D" parent="."]
 script = ExtResource("3_exadr")
@@ -51,6 +39,3 @@ position = Vector2(373, -210)
 scale = Vector2(1.12, 1.23333)
 texture = ExtResource("3_vqudf")
 metadata/_edit_lock_ = true
-
-[node name="EnemyAI" parent="." instance=ExtResource("6_k7hoj")]
-position = Vector2(194, 84)

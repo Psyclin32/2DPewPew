@@ -27,6 +27,8 @@ private Node2D SpawnContainer;
 
 [Export] Sprite2D Weapon;
 
+
+
 [Export] Marker2D gun_Barrel;
 
 [Export] float angularSpeed = 8000;

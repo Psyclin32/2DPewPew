@@ -63,13 +63,21 @@ public partial class Asteroid : RigidBody2D
         base._Process(delta);
     }
 
+    public void TakeDamage(int damage)
+	{
+		MyStats.Health -= damage;
+		//hpBar.Value -= damage;
+		
+		//Debug.Print("HP of Object:" + MyStats.Health);
+	}
+
     private void OnBodyEntered(Node2D body)
     {
-        if (body is Bullet)
-        {
-            Bullet bullet = (Bullet) body;
-            MyStats.Health -= bullet.GetDamage(); 
-        }
+        // if (body is Bullet)
+        // {
+        //     Bullet bullet = (Bullet) body;
+        //     MyStats.Health -= bullet.GetDamage(); 
+        // }
 
         // Debug.Print("You hit: " + Name);
         // Debug.Print("Health of target hit: " + MyStats.Health);
