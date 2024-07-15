@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://crvwfwhih0cqs"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_s81pw"]
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/Bullet.cs" id="1_s81pw"]
 [ext_resource type="Texture2D" uid="uid://bn1dkbov41s6r" path="res://addons/Lunar Lander Upload/Effects/Fx_02.png" id="2_l74lm"]
 [ext_resource type="Texture2D" uid="uid://cjskqo45ipocy" path="res://addons/Lunar Lander Upload/Effects/Explosion.png" id="3_p6bco"]
 
@@ -100,14 +100,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" node_paths=PackedStringArray("animation", "timer")]
 collision_layer = 8
-collision_mask = 6
+collision_mask = 63
 physics_material_override = SubResource("PhysicsMaterial_p1d22")
 max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.2
 script = ExtResource("1_s81pw")
+animation = NodePath("BulletSprites")
+timer = NodePath("BulletExpire")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

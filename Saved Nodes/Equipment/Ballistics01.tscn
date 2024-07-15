@@ -1,7 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://kb7x5vtk0gsy"]
+[gd_scene load_steps=11 format=3 uid="uid://kb7x5vtk0gsy"]
 
 [ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="1_hvtu1"]
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponEquipment.cs" id="2_h22n4"]
 [ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="2_pupil"]
+[ext_resource type="Script" path="res://Resources/DataResources/EquipmentStatsResource.cs" id="2_rbu1v"]
+
+[sub_resource type="Resource" id="Resource_hunl0"]
+script = ExtResource("2_rbu1v")
+WeaponStats = {
+"damage": 1,
+"projectileBloom": 2,
+"projectileHealth": 1,
+"projectileMass": 5,
+"projectileSpeed": 500,
+"turretRotationSpeed": 300
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6ek4"]
 atlas = ExtResource("2_pupil")
@@ -50,7 +63,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ShootingSprite:frame")
+tracks/1/path = NodePath("../ShootingSprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -77,27 +90,43 @@ _data = {
 "Fire": SubResource("Animation_4h8bk")
 }
 
-[node name="Weapon" type="Sprite2D"]
+[node name="WeaponTurret" type="Node2D" node_paths=PackedStringArray("WeaponTurret", "shootingVFX", "muzzel", "TimerROF")]
+script = ExtResource("2_h22n4")
+weaponStats = SubResource("Resource_hunl0")
+WeaponTurret = NodePath("Weapon")
+shootingVFX = NodePath("ShootingSprite")
+muzzel = NodePath("Muzzel")
+TimerROF = NodePath("FireRate")
+
+[node name="Weapon" type="Sprite2D" parent="."]
 z_index = 1
 rotation = 1.5708
 scale = Vector2(0.35, 0.341)
 texture = ExtResource("1_hvtu1")
+offset = Vector2(0, 4)
 region_enabled = true
-region_rect = Rect2(8, 0.277161, 48, 55.7228)
-
-[node name="GunBarrelPos" type="Marker2D" parent="."]
-position = Vector2(-0.000196514, -55.7185)
-rotation = -1.5708
-scale = Vector2(1.02639, 0.974286)
+region_rect = Rect2(14, 0, 36, 54)
 
 [node name="ShootingSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -32)
-rotation = -1.5708
+position = Vector2(10.912, 3.95013e-05)
+scale = Vector2(0.341, 0.35)
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
-frame = 3
+frame = 1
 
 [node name="FireAnims" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Weapon")
 libraries = {
 "": SubResource("AnimationLibrary_6t2e8")
 }
+
+[node name="Muzzel" type="Marker2D" parent="."]
+position = Vector2(15, -3.63798e-12)
+scale = Vector2(0.349999, 0.341)
+
+[node name="FireRate" type="Timer" parent="."]
+editor_description = "Fire rate in seconds / shot (salvo). "
+one_shot = true
+
+[connection signal="animation_finished" from="FireAnims" to="." method="OnAnimatorFinished"]
+[connection signal="timeout" from="FireRate" to="." method="OnTimerROFTimeout"]

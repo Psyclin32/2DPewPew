@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq3g46re0w7ft"]
+
+[ext_resource type="Script" path="res://Scripts/Environment Scripts/Environment.cs" id="1_fneqp"]
+[ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="2_fek6j"]
+
+[node name="Level Environment" type="Node2D"]
+script = ExtResource("1_fneqp")
+Scenes = Array[PackedScene]([ExtResource("2_fek6j")])
+numberEnemy = 5
+range = Array[int]([10, 25])

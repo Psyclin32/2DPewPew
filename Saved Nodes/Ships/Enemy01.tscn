@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/Ballistics01.tscn" id="3_q62ae"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="4_ti70l"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="5_rr7ue"]
-[ext_resource type="Script" path="res://Scripts/Thrusters.cs" id="6_2kc5t"]
+[ext_resource type="Script" path="res://Scripts/zz_Deprecated/Thrusters.cs" id="6_2kc5t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0

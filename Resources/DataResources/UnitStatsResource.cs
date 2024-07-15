@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 
 
 [GlobalClass]  //needed for proper listing within Godot resources list as well as passing inspector values
-public partial class UnitStats : Resource  //if we want an object to have this resource, export a UnitStats declaration to create an data instance for said object. 
+public partial class UnitStatsResource : Resource  //if we want an object to have this resource, export a UnitStatsResource declaration to create an data instance for said object. 
 {
 	//Use for creating global flag and data objects (May create separately if needed, unlikely in short term)
 	//Tracking vitals like HP + shields and other "Live" data that is used at gameplay layer.
@@ -33,10 +33,10 @@ public partial class UnitStats : Resource  //if we want an object to have this r
 	}
 	private int[] _FactionRatings = new int[(int)FactionNames.Count]; 
 
-	public UnitStats () : this(10,0,0) {} //sets default values if none passed. 
+	public UnitStatsResource () : this(10,0,0) {} //sets default values if none passed. 
 	//Not likely to be used if using insperctor defaults. 
 
-	public UnitStats (int health, int shields, int armor)
+	public UnitStatsResource (int health, int shields, int armor)
 	{
 		Health = health;
 		Shields = shields;

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj7w3ajkgmtqm"]
+
+[ext_resource type="Texture2D" uid="uid://bmlaajn3wjlcd" path="res://addons/space_breaker_asset/space_breaker_asset/Background/stars_texture.png" id="1_l3wib"]
+[ext_resource type="Texture2D" uid="uid://b0lq6dr2y78gr" path="res://addons/space_breaker_asset/space_breaker_asset/Background/galaxy.png" id="2_c2lbo"]
+
+[node name="Background Template" type="ParallaxBackground"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(1024, 1024)
+metadata/_edit_lock_ = true
+
+[node name="Stars" type="Sprite2D" parent="ParallaxLayer2"]
+show_behind_parent = true
+texture_repeat = 3
+texture = ExtResource("1_l3wib")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+z_index = 5
+motion_scale = Vector2(0.1, 0.1)
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+z_index = 5
+texture_repeat = 3
+position = Vector2(373, -210)
+scale = Vector2(1.12, 1.23333)
+texture = ExtResource("2_c2lbo")
+metadata/_edit_lock_ = true

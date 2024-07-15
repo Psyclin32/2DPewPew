@@ -1,13 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm6jtd68tts65"]
+[gd_scene load_steps=13 format=3 uid="uid://bm6jtd68tts65"]
 
+[ext_resource type="Script" path="res://Scripts/Unit Scripts/PlayerUnit.cs" id="1_qpdfi"]
 [ext_resource type="Texture2D" uid="uid://bjjbps6kwkb3p" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Medium/body_01.png" id="1_w23hy"]
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/Ballistics01.tscn" id="2_4iasu"]
+[ext_resource type="Script" path="res://Resources/DataResources/UnitStatsResource.cs" id="2_82a1r"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_l2k0g"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_lpt7b"]
-[ext_resource type="Script" path="res://Scripts/Thrusters.cs" id="5_n52b1"]
+[ext_resource type="Script" path="res://Scripts/zz_Deprecated/Thrusters.cs" id="5_n52b1"]
 [ext_resource type="PackedScene" uid="uid://d33kmyjcfc8nh" path="res://Saved Nodes/UI_UX/hp_bar.tscn" id="6_6g3pe"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0b0q8"]
+
+[sub_resource type="Resource" id="Resource_7f75s"]
+script = ExtResource("2_82a1r")
+Health = 100
+Shields = 25
+Armor = 1
+MaxHealth = 150
+MaxShields = 100
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
@@ -30,12 +40,18 @@ height = 58.0
 collision_mask = 0
 mass = 500.0
 physics_material_override = SubResource("PhysicsMaterial_0b0q8")
+script = ExtResource("1_qpdfi")
+unitStats = SubResource("Resource_7f75s")
 
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
 texture = ExtResource("1_w23hy")
 
 [node name="Weapon" parent="." instance=ExtResource("2_4iasu")]
+offset = Vector2(0, 4)
+
+[node name="ShootingSprite" parent="Weapon" index="1"]
+frame_progress = 1.0
 
 [node name="Line2D" type="Line2D" parent="Weapon"]
 visible = false

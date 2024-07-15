@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cd1830g3y5imi"]
 
 [ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="1_6xpkm"]
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_vix0l"]
+[ext_resource type="Script" path="res://Scripts/zz_Deprecated/Enemy.cs" id="1_vix0l"]
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/Ballistics01.tscn" id="2_u4f3b"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_beqya"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_jhuty"]

@@ -2,11 +2,11 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class UnitClass : RigidBody2D
+public partial class GeneralUnit : RigidBody2D
 {
 
 [Export]
-public UnitStats MyStats; //create an instances of a UnitStats Resource
+public UnitStatsResource unitStats; //create an instances of the UnitStatsResource
 // Is edited in the inspector for now where its default values can be configured. 
 
     public override void _Ready()
@@ -16,15 +16,15 @@ public UnitStats MyStats; //create an instances of a UnitStats Resource
 
     public void TakeDamage(int damage)  //damage stored as possitives
     {
-        if (MyStats.Armor > damage)
+        if (unitStats.Armor > damage)
         {
             return;
         }
         else
         {
-            MyStats.ChangeHealth(-(damage-MyStats.Armor)); // passing damage as negative value
+            unitStats.ChangeHealth(-(damage-unitStats.Armor)); // passing damage as negative value
         }
-        GD.Print(MyStats.Health);
+        GD.Print(unitStats.Health);
     }
 
 

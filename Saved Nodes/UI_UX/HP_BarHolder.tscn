@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cop2qdqxhb1kr"]
 
 [ext_resource type="PackedScene" uid="uid://d33kmyjcfc8nh" path="res://Saved Nodes/UI_UX/hp_bar.tscn" id="1_i22pj"]
-[ext_resource type="Script" path="res://Saved Nodes/UI_UX/hp_bar.cs" id="2_qkh7q"]
+[ext_resource type="Script" path="res://Scripts/Information Scripts/hp_bar.cs" id="2_qkh7q"]
 
 [node name="PositionHolder" type="Node2D"]
 top_level = true
