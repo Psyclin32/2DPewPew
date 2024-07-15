@@ -18,7 +18,7 @@ public partial class PlayerUnit : GeneralUnit
     public override void _Process(double delta)
     {
         //continue to look at the mouse
-       AquireTarget(GetLocalMousePosition());
+       AquireTarget(GetGlobalMousePosition());
         
         base._Process(delta);
     }

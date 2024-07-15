@@ -63,16 +63,16 @@ public partial class WeaponTurret : Node2D
 
     public void RotatetoTarget(Godot.Vector2 target) //expecting global position. 
     {   
-        float tweenTime = MathF.Abs(GetAngleTo(target)) * rotationSpeed;
-        Tween tween = GetTree().CreateTween();
-        tween.TweenProperty( this, "rotation", GetAngleTo(target), tweenTime);
-
-        Debug.Print("target angle: " + GetAngleTo(target).ToString());
-        Debug.Print("current rotation: " + Rotation.ToString());
-
-        //Weapon turret looking at cursor
-		//LookAt(target); //Lookat requires Global Coords of mouse pointers  
+        //Weapon turret looking at assigend target
+		LookAt(target); //Lookat requires Global Coords of mouse pointers  
         //can be called in _Process as turret is not a physics body
+        
+        //----  
+        //Not currently working, might need some added effort to deep dive it. 
+        //float tweenTime = MathF.Abs(GetAngleTo(target)) * rotationSpeed;
+        //Tween tween = GetTree().CreateTween();
+        //tween.TweenProperty( this, "rotation", GetAngleTo(target), tweenTime);
+
     } 
 
     //Signal Methods
