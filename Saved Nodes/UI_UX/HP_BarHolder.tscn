@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://d33kmyjcfc8nh" path="res://Saved Nodes/UI_UX/hp_bar.tscn" id="1_i22pj"]
 [ext_resource type="Script" path="res://Scripts/Information Scripts/hp_bar.cs" id="2_qkh7q"]
 
-[node name="PositionHolder" type="Node2D"]
+[node name="HPBar Holder" type="Node2D"]
 top_level = true
+scale = Vector2(1.2, 1.08)
 
 [node name="HPBar" parent="." instance=ExtResource("1_i22pj")]
 offset_left = -29.0

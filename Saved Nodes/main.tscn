@@ -1,14 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=5 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="Script" path="res://Scripts/Manager Scripts/Game_Manager.cs" id="1_nngie"]
 [ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
 [ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="3_nylej"]
-[ext_resource type="PackedScene" uid="uid://bm6jtd68tts65" path="res://Saved Nodes/TestObjs/CharacterTempalte.tscn" id="5_52kup"]
-[ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="7_oi3ve"]
-[ext_resource type="PackedScene" uid="uid://crvwfwhih0cqs" path="res://Saved Nodes/Equipment/Bullet.tscn" id="8_3cat2"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkknw"]
-resource_local_to_scene = true
+[ext_resource type="PackedScene" uid="uid://bm6jtd68tts65" path="res://Saved Nodes/Units/CharacterTempalte.tscn" id="4_cdeta"]
 
 [node name="Main" type="Node2D" groups=["MainScene"]]
 position = Vector2(-2, 2)
@@ -19,14 +14,7 @@ script = ExtResource("1_nngie")
 [node name="Background Template" parent="." instance=ExtResource("3_nylej")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
-[node name="Player" parent="." instance=ExtResource("5_52kup")]
-position = Vector2(142, -23)
-
-[node name="Bullet" parent="." instance=ExtResource("8_3cat2")]
-position = Vector2(69, -24)
-linear_velocity = Vector2(50, 0)
-
-[node name="Asteroid" parent="." instance=ExtResource("7_oi3ve")]
-position = Vector2(-7, -33)
-physics_material_override = SubResource("PhysicsMaterial_rkknw")
+[node name="PlayerRoot" parent="." instance=ExtResource("4_cdeta")]
+position = Vector2(65, 1)

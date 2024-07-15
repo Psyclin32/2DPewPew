@@ -27,6 +27,10 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
         GD.Print(unitStats.Health);
     }
 
+    public void AquireTarget()
+    {
+
+    }
 
 
 

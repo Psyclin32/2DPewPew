@@ -1,19 +1,18 @@
 [gd_scene load_steps=11 format=3 uid="uid://kb7x5vtk0gsy"]
 
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponTurret.cs" id="1_geml0"]
 [ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="1_hvtu1"]
-[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponEquipment.cs" id="2_h22n4"]
+[ext_resource type="Script" path="res://Resources/DataResources/DamageStatsResource.cs" id="2_aijqm"]
 [ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="2_pupil"]
-[ext_resource type="Script" path="res://Resources/DataResources/EquipmentStatsResource.cs" id="2_rbu1v"]
 
-[sub_resource type="Resource" id="Resource_hunl0"]
-script = ExtResource("2_rbu1v")
+[sub_resource type="Resource" id="Resource_ny4c5"]
+script = ExtResource("2_aijqm")
 WeaponStats = {
-"damage": 1,
 "projectileBloom": 2,
+"projectileDamage": 1,
 "projectileHealth": 1,
 "projectileMass": 5,
-"projectileSpeed": 500,
-"turretRotationSpeed": 300
+"projectileSpeed": 500
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6ek4"]
@@ -27,10 +26,7 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_swygi"]
 animations = [{
 "frames": [{
-"duration": 0.5,
-"texture": null
-}, {
-"duration": 5.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_n6ek4")
 }, {
 "duration": 5.0,
@@ -47,6 +43,7 @@ animations = [{
 [sub_resource type="Animation" id="Animation_4h8bk"]
 resource_name = "Fire"
 length = 0.1
+loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -70,19 +67,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1, 2, 3]
+"values": [0, 1, 3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath(".:offset")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 4), Vector2(0, 0)]
+"values": [Vector2(0, 3), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6t2e8"]
@@ -90,29 +87,30 @@ _data = {
 "Fire": SubResource("Animation_4h8bk")
 }
 
-[node name="WeaponTurret" type="Node2D" node_paths=PackedStringArray("WeaponTurret", "shootingVFX", "muzzel", "TimerROF")]
-script = ExtResource("2_h22n4")
-weaponStats = SubResource("Resource_hunl0")
-WeaponTurret = NodePath("Weapon")
+[node name="WeaponTurret" type="Node2D" node_paths=PackedStringArray("turretSprite", "shootingVFX", "animator", "muzzel", "timerROF")]
+script = ExtResource("1_geml0")
+weaponStats = SubResource("Resource_ny4c5")
+turretSprite = NodePath("Weapon")
 shootingVFX = NodePath("ShootingSprite")
+animator = NodePath("FireAnims")
 muzzel = NodePath("Muzzel")
-TimerROF = NodePath("FireRate")
+timerROF = NodePath("FireRate")
 
 [node name="Weapon" type="Sprite2D" parent="."]
 z_index = 1
 rotation = 1.5708
 scale = Vector2(0.35, 0.341)
 texture = ExtResource("1_hvtu1")
-offset = Vector2(0, 4)
 region_enabled = true
 region_rect = Rect2(14, 0, 36, 54)
 
 [node name="ShootingSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(10.912, 3.95013e-05)
+z_index = 2
+position = Vector2(11, 0)
 scale = Vector2(0.341, 0.35)
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
-frame = 1
+frame = 2
 
 [node name="FireAnims" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Weapon")

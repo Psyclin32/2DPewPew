@@ -33,7 +33,14 @@ public partial class UnitStatsResource : Resource  //if we want an object to hav
 	}
 	private int[] _FactionRatings = new int[(int)FactionNames.Count]; 
 
-	public UnitStatsResource () : this(10,0,0) {} //sets default values if none passed. 
+	public UnitStatsResource () 
+	{
+		Health = 100;
+		MaxHealth = 100;
+		Shields = 50;
+		MaxShields = 50;
+		Armor = 1;
+	} //sets default values if none passed. 
 	//Not likely to be used if using insperctor defaults. 
 
 	public UnitStatsResource (int health, int shields, int armor)
