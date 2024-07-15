@@ -34,7 +34,7 @@ public partial class Player : RigidBody2D
 	private Timer _weaponTimer;
 	private AnimationPlayer _weaponAnims;
 	private bool ready_fire = false;
-	private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Programer Art/Bullet.tscn");
+	private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
 
 	private StatStruct.Stats PCStats = new StatStruct.Stats(10,0,0);
 	private StatStruct.ObjectFlags PCFlags = new StatStruct.ObjectFlags(true, StatStruct.ObjectFlags.IFF.Player);

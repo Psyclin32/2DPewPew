@@ -9,7 +9,7 @@ public partial class Enemy : RigidBody2D
 private Player target; 
 
 [Export]
-private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Programer Art/Bullet.tscn");
+private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
 
 [Export]
 public Timer _weaponTimer;

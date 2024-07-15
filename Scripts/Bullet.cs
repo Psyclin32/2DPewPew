@@ -6,10 +6,10 @@ using System.Diagnostics;
 public partial class Bullet : RigidBody2D  //Needs to extend to get physics methods when object called. 
 {	
 	private AnimatedSprite2D anims; 
-	[Export] private static int damage = 1;
+	[Export] private int damage = 5;
 
 	[Export] public bool DamageDelt = false;
-	private StatStruct.DamageObjects damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, damage);
+	//private StatStruct.DamageObjects damageObjects = new StatStruct.DamageObjects(StatStruct.DamageObjects.WeaponType.Ballistic, true, damage);
 	
 
 	public override void _Ready()
@@ -41,27 +41,35 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
         KinematicCollision2D collision = MoveAndCollide(LinearVelocity * (float)delta);
 		if(collision != null & !DamageDelt)
 		{
-			if(collision.GetCollider() is Player playerInstance)
+			DamageDelt = true;
+			if(collision.GetCollider() is UnitClass unitInstance)
 			{
-				//Debug.Print("Cast!");
-				playerInstance.TakeDamage(GetDamage());
+				unitInstance.TakeDamage(damage);
+				QueueFree();
 			}
 
-			if(collision.GetCollider() is Enemy enemyInstance)
-			{
-				//Debug.Print("Cast!");
-				enemyInstance.TakeDamage(GetDamage());
-			}
-			if(collision.GetCollider() is Asteroid rockInstance)
-			{
-				//Debug.Print("Cast!");
-				rockInstance.TakeDamage(GetDamage());
-			}
+
+
+			// if(collision.GetCollider() is Player playerInstance)
+			// {
+			// 	//Debug.Print("Cast!");
+			// 	playerInstance.TakeDamage(GetDamage());
+			// }
+
+			// if(collision.GetCollider() is Enemy enemyInstance)
+			// {
+			// 	//Debug.Print("Cast!");
+			// 	enemyInstance.TakeDamage(GetDamage());
+			// }
+			// if(collision.GetCollider() is Asteroid rockInstance)
+			// {
+			// 	//Debug.Print("Cast!");
+			// 	rockInstance.TakeDamage(GetDamage());
+			// }
 			// if(collision.GetCollider().HasMethod("TakeDamage"))
 			// {
 			// 	collision.GetCollider().CallDeferred("TakeDamage", GetDamage());
 			// }
-			DamageDelt = true;
 		}
         base._PhysicsProcess(delta);
     }
@@ -74,9 +82,9 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
     }
 
     //Class Methods
-    public int GetDamage()
+    private void GetDamage()
 	{
-		return damageObjects.damageValue;
+		return;
 	}
 
 	//Signaling call backs
