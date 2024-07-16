@@ -14,10 +14,12 @@ public partial class WeaponTurret : Node2D
                 - Timer with expected ROF in seconds / shot. 
           */   
     [ExportGroup("Stats")]
-    [Export] public DamageStatsResource  weaponStats; //defaults can be configured in inspector. 
+    //[Export] public DamageStatsResource  damageStats; //defaults can be configured in inspector. 
+
     [Export] public float turningSpeed = 45; //in degrees per second? (easier for intuitive changes, need conversion to radians in methods) 
     
     [ExportGroup("Attached Nodes")]
+    [Export] public PackedScene             projectile;
     [Export] public Sprite2D                turretSprite;
     [Export] public AnimatedSprite2D        shootingVFX;
     [Export] public AnimationPlayer         animator;
@@ -46,19 +48,25 @@ public partial class WeaponTurret : Node2D
     }
     // General Methods
     public void FireWeapon(Godot.Vector2 targetPos)
-    {   
-        //Timer control for ROF
-        ReadyFire = false;
-        timerROF.Start();
+    {  
+        if(ReadyFire)
+        {
+            //Timer control for ROF
+            ReadyFire = false; 
+            timerROF.Start();
 
-        //control firing animation
-        if(!animator.IsPlaying())
-			{
-				animator.Play("Fire");
-			}
-        
-        GD.Print("Bang!");
-        //Spawn the projectile on Marker2D pointed at the target.
+            //control firing animation
+            if(!animator.IsPlaying())
+                {
+                    animator.Play("Fire");
+                }
+            
+            ProjectileAsset newProjectile = projectile.Instantiate<ProjectileAsset>();
+            //newProjectile.
+
+        }
+
+
     }
 
     public void RotatetoTarget(Godot.Vector2 target) //expecting global position. 

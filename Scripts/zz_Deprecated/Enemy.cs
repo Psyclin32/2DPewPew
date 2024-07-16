@@ -8,8 +8,8 @@ public partial class Enemy : RigidBody2D
 {
 private Player target; 
 
-[Export]
-private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
+//[Export]
+//private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
 
 [Export]
 public Timer _weaponTimer;
@@ -106,15 +106,15 @@ public bool Reload = false;
         // Debug.Print("Enemy FIRE!");
         Reload = false;
         _weaponTimer.Start();
-        RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>();
-        projectile.CollisionLayer = 16;
-        projectile.CollisionMask = 15-8;
-        projectile.Position = pos; //Muzzel position
-        //projectile.LookAt(target.GlobalPosition);
-        projectile.Rotate(Rotation - MathF.PI/2);
-        projectile.LinearVelocity =  -Transform.Y * BulletSpeed;
-        projectile.TopLevel = true;
-        SpawnContainer.AddChild(projectile);
+        // RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>();
+        // projectile.CollisionLayer = 16;
+        // projectile.CollisionMask = 15-8;
+        // projectile.Position = pos; //Muzzel position
+        // //projectile.LookAt(target.GlobalPosition);
+        // projectile.Rotate(Rotation - MathF.PI/2);
+        // projectile.LinearVelocity =  -Transform.Y * BulletSpeed;
+        // projectile.TopLevel = true;
+        // SpawnContainer.AddChild(projectile);
     }
 
 
