@@ -21,6 +21,7 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
 
     public override void _Ready()
     {   
+        unitStats.ResourceLocalToScene = true;
         unitSprite.Animation = "DamageStates";
         base._Ready();
     }
@@ -56,6 +57,10 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
     public void DeathAnimation()
     {   
         unitSprite.Play("Death");
+        GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true); 
+        //If error thrown, check that the scene tree has the collider as the fist child for the time being.  
+        //Above is a bit cumbersome. Likely want to automate this by using Animation players instead so more complicated sequences can play out with a single call..
+        // instead of needing all those nodes and properties loaded up all the time. 
         isDead = true;
     }
 
