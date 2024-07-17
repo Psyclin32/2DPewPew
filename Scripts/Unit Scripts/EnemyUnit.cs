@@ -5,18 +5,23 @@ using System.Diagnostics;
 public partial class EnemyUnit : GeneralUnit
 {
     private bool Reloaded = false;
+    
+    [Export] public Timer debugTimer;
+    
     public override void _Ready()
     {   
-        turret.timerROF.Timeout += OnReload;
+        //debugTimer.Timeout += OnReload;
         base._Ready();
     }
 
     public override void _Process(double delta)
     {
-        if(Reloaded) 
+        if(turret.ReadyFire) 
         {
-            turret.FireWeapon(CollisionLayer);
-            Debug.Print("Fire!");
+            turret.FireFixedRotationed(CollisionLayer, Rotation); //IMPORTANT: FIXED HARDPOINTS NEED SHIP ORIENTATION ALIGNED IN SAME DIRECTION AS MUZZEL. 
+            //Debug.Print("Fire!");
+            //Reloaded = false;
+            //debugTimer.Start();
         }
         base._Process(delta);
     }

@@ -14,7 +14,7 @@ public partial class PlayerUnit : GeneralUnit
         //continue to look at the mouse
        AquireTarget(GetGlobalMousePosition());
        //Fire on mouse click
-       if(Input.IsActionPressed("Fire"))  turret.FireWeapon(CollisionLayer);
+       if(Input.IsActionPressed("Fire"))  turret.FireTurret(CollisionLayer);
 
         base._Process(delta);
     }

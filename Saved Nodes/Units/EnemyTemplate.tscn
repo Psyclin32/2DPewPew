@@ -1,12 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cmtvicifgbmum"]
 
 [ext_resource type="Script" path="res://Scripts/Unit Scripts/EnemyUnit.cs" id="1_kogsk"]
-[ext_resource type="Texture2D" uid="uid://sxwc4j8c6dl3" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/body_03.png" id="2_4l7jo"]
 [ext_resource type="Script" path="res://Resources/DataResources/UnitStatsResource.cs" id="2_qphny"]
 [ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/BallisticsTurret.tscn" id="3_4vc0i"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="4_8rl3n"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="5_axtfj"]
-[ext_resource type="PackedScene" uid="uid://bolivhe6anfv5" path="res://Saved Nodes/Managent and Utility/hp_bar_remote.tscn" id="5_mf7d1"]
+[ext_resource type="PackedScene" uid="uid://cop2qdqxhb1kr" path="res://Saved Nodes/UI_UX/HP_BarHolder.tscn" id="7_136a1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nwne1"]
 
@@ -22,6 +21,19 @@ MaxShields = 10
 radius = 6.0
 height = 27.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcwsn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"DamageStates",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
 "frames": [{
@@ -36,7 +48,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("turret", "engines")]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("debugTimer", "turret", "engines")]
 collision_layer = 16
 collision_mask = 23
 mass = 200.0
@@ -44,23 +56,36 @@ physics_material_override = SubResource("PhysicsMaterial_nwne1")
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_kogsk")
+debugTimer = NodePath("debugTimer")
 turret = NodePath("WeaponTurret")
 engines = NodePath("Engines")
 unitStats = SubResource("Resource_xukp0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_e2d3r")
 
-[node name="Ship" type="Sprite2D" parent="."]
+[node name="Ship" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
 scale = Vector2(0.472656, 0.492188)
-texture = ExtResource("2_4l7jo")
+sprite_frames = SubResource("SpriteFrames_gcwsn")
+animation = &"Death"
 
 [node name="WeaponTurret" parent="." instance=ExtResource("3_4vc0i")]
-visible = false
 position = Vector2(0, -1)
 
+[node name="Weapon" parent="WeaponTurret" index="0"]
+visible = false
+
+[node name="ShootingSprite" parent="WeaponTurret" index="1"]
+visible = false
+
+[node name="FireRate" parent="WeaponTurret" index="4"]
+wait_time = 1.0
+
 [node name="Engines" type="Node2D" parent="."]
+rotation = 1.5708
 
 [node name="Left_Th" type="AnimatedSprite2D" parent="Engines"]
 visible = false
@@ -84,11 +109,17 @@ scale = Vector2(0.75, 0.919)
 sprite_frames = SubResource("SpriteFrames_6wn5x")
 animation = &"Exhaust"
 
-[node name="RotationTimer" type="Timer" parent="."]
+[node name="debugTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 autostart = true
 
-[node name="HPBar Remote" parent="." instance=ExtResource("5_mf7d1")]
+[node name="HPBar Holder" parent="." instance=ExtResource("7_136a1")]
+scale = Vector2(1, 1)
 
-[connection signal="timeout" from="WeaponTurret/FireRate" to="." method="OnReload"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../HPBar Holder")
+update_rotation = false
+update_scale = false
 
 [editable path="WeaponTurret"]

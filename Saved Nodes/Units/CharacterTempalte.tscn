@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_l2k0g"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_lpt7b"]
 [ext_resource type="Script" path="res://Scripts/zz_Deprecated/Thrusters.cs" id="5_n52b1"]
-[ext_resource type="PackedScene" uid="uid://bolivhe6anfv5" path="res://Saved Nodes/Managent and Utility/hp_bar_remote.tscn" id="8_q76k3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0b0q8"]
 
@@ -36,7 +35,26 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6w0v8"]
 height = 58.0
 
-[node name="PlayerRoot" type="RigidBody2D" node_paths=PackedStringArray("turret", "engines")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5yb2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w23hy")
+}],
+"loop": false,
+"name": &"DamageStates",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[node name="PlayerRoot" type="RigidBody2D" node_paths=PackedStringArray("turret", "engines", "unitSprite")]
 collision_mask = 23
 mass = 500.0
 physics_material_override = SubResource("PhysicsMaterial_0b0q8")
@@ -47,6 +65,7 @@ angular_damp = 0.15
 script = ExtResource("1_qpdfi")
 turret = NodePath("WeaponTurret")
 engines = NodePath("Engines")
+unitSprite = NodePath("Ship")
 unitStats = SubResource("Resource_5p7fg")
 
 [node name="WeaponTurret" parent="." instance=ExtResource("3_1sj6m")]
@@ -82,8 +101,7 @@ This_Engine_Type = 2
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_6w0v8")
 
-[node name="Ship" type="Sprite2D" parent="."]
+[node name="Ship" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
-texture = ExtResource("1_w23hy")
-
-[node name="HPBar Remote" parent="." instance=ExtResource("8_q76k3")]
+sprite_frames = SubResource("SpriteFrames_5yb2b")
+animation = &"DamageStates"

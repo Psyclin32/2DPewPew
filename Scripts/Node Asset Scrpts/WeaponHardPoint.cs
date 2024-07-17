@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Numerics;
 
-public partial class WeaponTurret : Node2D
+public partial class WeaponHardPoint : Node2D
 {
         /*expected Node structure
         Parent  - Sprite with loaded weapon texture
@@ -27,7 +27,7 @@ public partial class WeaponTurret : Node2D
     [Export] public Timer                   timerROF;
 
     private float rotationSpeed;
-    private bool ReadyFire = true;
+    public bool ReadyFire = true;
     public override void _Ready()
     {
         //Rotation Speed converted from Degrees to radians / second
@@ -47,7 +47,7 @@ public partial class WeaponTurret : Node2D
         base._Process(delta);
     }
     // General Methods
-    public void FireWeapon(uint collisionLayer)
+    public void FireTurret(uint collisionLayer)
     {  
         if(ReadyFire)
         {
@@ -62,6 +62,7 @@ public partial class WeaponTurret : Node2D
             ProjectileAsset newProjectile = projectile.Instantiate<ProjectileAsset>();
             newProjectile.ExternalData(collisionLayer, Rotation, muzzel.GlobalPosition);
             AddChild(newProjectile);
+            Debug.Print("Bullet Added");
             timerROF.Start();
 
         }
@@ -82,6 +83,31 @@ public partial class WeaponTurret : Node2D
         //tween.TweenProperty( this, "rotation", GetAngleTo(target), tweenTime);
 
     } 
+
+public void FireFixedRotationed(uint collisionLayer, float shipRotation)
+    {  
+        if(ReadyFire)
+        {
+            //Timer control for ROF
+            ReadyFire = false; 
+            //control firing animation
+            if(!animator.IsPlaying())
+                {
+                    animator.Play("Fire");
+                }
+            //Create Projectile
+            ProjectileAsset newProjectile = projectile.Instantiate<ProjectileAsset>();
+            newProjectile.ExternalData(collisionLayer, shipRotation, muzzel.GlobalPosition);
+            AddChild(newProjectile);
+            //GD.Print("Bullet Added");
+            timerROF.Start();
+
+        }
+
+
+    }
+
+
 
     //Signal Methods
     private void OnTimerROFTimeout()
