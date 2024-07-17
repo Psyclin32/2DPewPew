@@ -1,22 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://crvwfwhih0cqs"]
+[gd_scene load_steps=20 format=3 uid="uid://crvwfwhih0cqs"]
 
 [ext_resource type="Script" path="res://Saved Nodes/Equipment/ProjectileAsset.cs" id="1_fsgcr"]
-[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/Bullet.cs" id="1_s81pw"]
 [ext_resource type="Script" path="res://Resources/DataResources/DamageStatsResource.cs" id="2_1mxcs"]
 [ext_resource type="Texture2D" uid="uid://bn1dkbov41s6r" path="res://addons/Lunar Lander Upload/Effects/Fx_02.png" id="2_l74lm"]
 [ext_resource type="Texture2D" uid="uid://cjskqo45ipocy" path="res://addons/Lunar Lander Upload/Effects/Explosion.png" id="3_p6bco"]
 
-[sub_resource type="Resource" id="Resource_auday"]
-script = ExtResource("2_1mxcs")
-WeaponStats = {
-"projectileBloom": 2,
-"projectileDamage": 1,
-"projectileHealth": 1,
-"projectileMass": 5,
-"projectileSpeed": 500
-}
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p1d22"]
+
+[sub_resource type="Resource" id="Resource_aakmm"]
+script = ExtResource("2_1mxcs")
+Damage = 1
+Health = 1
+Speed = 400.0
+Mass = 1.0
+Bloom = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s5nm"]
 radius = 2.0
@@ -112,25 +109,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ProjectileParent" type="Node2D" node_paths=PackedStringArray("rigidBody", "animatedSprite", "lifeTimer")]
-script = ExtResource("1_fsgcr")
-damageStats = SubResource("Resource_auday")
-rigidBody = NodePath("ProjectileRB")
-animatedSprite = NodePath("Sprites")
-lifeTimer = NodePath("lifeTimer")
-
-[node name="ProjectileRB" type="RigidBody2D" parent="." node_paths=PackedStringArray("animation", "timer")]
+[node name="ProjectileRB" type="RigidBody2D" node_paths=PackedStringArray("animatedSprite", "lifeTimer")]
+top_level = true
 collision_layer = 8
 collision_mask = 23
 physics_material_override = SubResource("PhysicsMaterial_p1d22")
 max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.2
-script = ExtResource("1_s81pw")
-animation = NodePath("../Sprites")
-timer = NodePath("../lifeTimer")
+script = ExtResource("1_fsgcr")
+damageStats = SubResource("Resource_aakmm")
+animatedSprite = NodePath("Sprites")
+lifeTimer = NodePath("lifeTimer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileRB"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1s5nm")
 
@@ -143,4 +135,7 @@ animation = &"Bullets"
 wait_time = 5.0
 one_shot = true
 
-[connection signal="body_entered" from="ProjectileRB" to="ProjectileRB" method="OnBodyEntered"]
+[node name="ProjectileParent" type="Node2D" parent="."]
+top_level = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

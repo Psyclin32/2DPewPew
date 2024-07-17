@@ -1,26 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://kb7x5vtk0gsy"]
+[gd_scene load_steps=10 format=3 uid="uid://kb7x5vtk0gsy"]
 
-[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponTurret.cs" id="1_geml0"]
-[ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="1_hvtu1"]
-[ext_resource type="Script" path="res://Resources/DataResources/DamageStatsResource.cs" id="2_aijqm"]
-[ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="2_pupil"]
-
-[sub_resource type="Resource" id="Resource_ny4c5"]
-script = ExtResource("2_aijqm")
-WeaponStats = {
-"projectileBloom": 2,
-"projectileDamage": 1,
-"projectileHealth": 1,
-"projectileMass": 5,
-"projectileSpeed": 500
-}
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponTurret.cs" id="1_vosca"]
+[ext_resource type="PackedScene" uid="uid://crvwfwhih0cqs" path="res://Saved Nodes/Equipment/Projectile.tscn" id="2_lqe1v"]
+[ext_resource type="Texture2D" uid="uid://bkxjdebsxp7du" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Medium/turret_medium_64x64.png" id="3_rbtpo"]
+[ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="4_pt6gp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6ek4"]
-atlas = ExtResource("2_pupil")
+atlas = ExtResource("4_pt6gp")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0m5p"]
-atlas = ExtResource("2_pupil")
+atlas = ExtResource("4_pt6gp")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_swygi"]
@@ -43,7 +33,6 @@ animations = [{
 [sub_resource type="Animation" id="Animation_4h8bk"]
 resource_name = "Fire"
 length = 0.1
-loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -88,8 +77,8 @@ _data = {
 }
 
 [node name="WeaponTurret" type="Node2D" node_paths=PackedStringArray("turretSprite", "shootingVFX", "animator", "muzzel", "timerROF")]
-script = ExtResource("1_geml0")
-weaponStats = SubResource("Resource_ny4c5")
+script = ExtResource("1_vosca")
+projectile = ExtResource("2_lqe1v")
 turretSprite = NodePath("Weapon")
 shootingVFX = NodePath("ShootingSprite")
 animator = NodePath("FireAnims")
@@ -100,7 +89,8 @@ timerROF = NodePath("FireRate")
 z_index = 1
 rotation = 1.5708
 scale = Vector2(0.35, 0.341)
-texture = ExtResource("1_hvtu1")
+texture = ExtResource("3_rbtpo")
+offset = Vector2(0, 3)
 region_enabled = true
 region_rect = Rect2(14, 0, 36, 54)
 
@@ -110,7 +100,6 @@ position = Vector2(11, 0)
 scale = Vector2(0.341, 0.35)
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
-frame = 2
 
 [node name="FireAnims" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Weapon")
@@ -124,6 +113,7 @@ scale = Vector2(0.349999, 0.341)
 
 [node name="FireRate" type="Timer" parent="."]
 editor_description = "Fire rate in seconds / shot (salvo). "
+wait_time = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="FireAnims" to="." method="OnAnimatorFinished"]

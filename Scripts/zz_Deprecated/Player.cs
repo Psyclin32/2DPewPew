@@ -34,7 +34,7 @@ public partial class Player : RigidBody2D
 	private Timer _weaponTimer;
 	private AnimationPlayer _weaponAnims;
 	private bool ready_fire = false;
-	private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
+	//private PackedScene _bulletScene = GD.Load<PackedScene>("res://Saved Nodes/Equipment/Bullet.tscn");
 
 	private StatStruct.Stats PCStats = new StatStruct.Stats(10,0,0);
 	private StatStruct.ObjectFlags PCFlags = new StatStruct.ObjectFlags(true, StatStruct.ObjectFlags.IFF.Player);
@@ -92,13 +92,13 @@ public partial class Player : RigidBody2D
 
 	private void fire_Weapon(Vector2 pos)   //being pass muzzel position.  
 	{
-		RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
-		projectile.GlobalPosition = pos;  // gun_barrel POS
-		projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
-		projectile.ApplyCentralImpulse(pos.DirectionTo(GetGlobalMousePosition())*Bullet_Speed);
-		projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
-		projectile.CollisionMask = 38; //bit mask for bits 2 + 3 + 6;
-		SpawnContainer.AddChild(projectile); 
+	// 	RigidBody2D projectile = _bulletScene.Instantiate<RigidBody2D>(); //<> notation converts type of resource as RigidBody2D. Associated Nodes script must extend the Node version we want to upack at its top level. 
+	// 	projectile.GlobalPosition = pos;  // gun_barrel POS
+	// 	projectile.LookAt(GetGlobalMousePosition()); //rotate the sprite to point at mouse
+	// 	projectile.ApplyCentralImpulse(pos.DirectionTo(GetGlobalMousePosition())*Bullet_Speed);
+	// 	projectile.TopLevel = true;  //prevents the bullets being tied to the Player nodes's transform changes
+	// 	projectile.CollisionMask = 38; //bit mask for bits 2 + 3 + 6;
+	// 	SpawnContainer.AddChild(projectile); 
 
 		//projectile.LinearVelocity = LinearVelocity + (pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed);  // sets initial velocity. Currently accounts for ship velocity. Realistic but maybe not good for UX.																									
 		//projectile.LinearVelocity = pos.DirectionTo(GetGlobalMousePosition()) * Bullet_Speed;
@@ -108,13 +108,13 @@ public partial class Player : RigidBody2D
 		//Debug.Print(GetTreeStringPretty());
 	}
 
-	public void TakeDamage(int damage)
-	{
-		PCStats.Health -= damage;
-		hpBar.Value -= damage;
+	// public void TakeDamage(int damage)
+	// {
+	// 	PCStats.Health -= damage;
+	// 	hpBar.Value -= damage;
 		
-		Debug.Print("HP of ship:" + PCStats.Health);
-	}
+	// 	Debug.Print("HP of ship:" + PCStats.Health);
+	// }
 
 	private void OnWeaponTimerTimeout()
 	{

@@ -1,32 +1,35 @@
 using Godot;
 using System;
+using System.Diagnostics;
+using System.Numerics;
+using Vector2 = Godot.Vector2;
 
-public partial class ProjectileAsset : Node2D
+public partial class ProjectileAsset : RigidBody2D
 {
 	[Export] public DamageStatsResource  damageStats;
 	
 	[ExportGroup("Attached Nodes")]
-	[Export] public RigidBody2D 		rigidBody;
+	//[Export] public RigidBody2D 		rigidBody;
 	[Export] public AnimatedSprite2D 	animatedSprite;
 	[Export] public Timer 				lifeTimer;
 
-	private float 						newRotation;
+	//private float 						newRotation;
 	// Called when the node enters the scene tree for the first time
 	
-	public ProjectileAsset(uint OwnerColliderLayer, float rotation)
-	{
-		SetMask(OwnerColliderLayer);	
-		newRotation = rotation;      //rotation
-
-	}
 	
+	public void ExternalData(uint OwnerColliderLayer, float turretRotation, Vector2 muzzel)
+	{
+		SetMask(OwnerColliderLayer);	//See method for details.
+		Rotation = turretRotation;      			//rotation, needs global Coords. 
+		Position = muzzel;				//Position of muzzel. Should be global position because bullet is sent to top level. 
+		SetPhysics(turretRotation);
+	}
 	
 	
 	public override void _Ready()
 	{	
-		
-
 		lifeTimer.Timeout += OnLifeTimerTimeout; //connects to the Timers Timeout signal
+		//SetPhysics();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,9 +38,9 @@ public partial class ProjectileAsset : Node2D
 	
 	}
 
-	public void SetMask(uint bitMask)
+	private void SetMask(uint bitMask)
 	{
-		rigidBody.CollisionMask =  rigidBody.CollisionMask ^ bitMask; 
+		CollisionMask =  CollisionMask ^ bitMask; 
 		//example idea
 		// Player is on layer 			0b00001
 		// Bullet default mask is on 	0b10111
@@ -47,6 +50,15 @@ public partial class ProjectileAsset : Node2D
 	public void OnLifeTimerTimeout()
 	{
 		QueueFree();
+	}
+
+	private void SetPhysics(float turretRotation)
+	{
+		ApplyCentralImpulse(Vector2.Right.Rotated(turretRotation) * damageStats.Speed);
+		//ApplyCentralImpulse(Position.DirectionTo(target) * damageStats.Speed);       //the parent is rotatated. Forward is in +x direction of the asset. 
+		//GD.Print("Angle from BuletPOS: " + Position.DirectionTo(target));
+		
+		//rigidBody.ApplyCentralImpulse(damageStats.DamageStats.["projectileSpeed"]);
 	}
 
 

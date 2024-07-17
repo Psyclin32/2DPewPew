@@ -1,12 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm6jtd68tts65"]
+[gd_scene load_steps=13 format=3 uid="uid://bm6jtd68tts65"]
 
 [ext_resource type="Script" path="res://Scripts/Unit Scripts/PlayerUnit.cs" id="1_qpdfi"]
 [ext_resource type="Texture2D" uid="uid://bjjbps6kwkb3p" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Medium/body_01.png" id="1_w23hy"]
-[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/Ballistics01.tscn" id="2_4iasu"]
 [ext_resource type="Script" path="res://Resources/DataResources/UnitStatsResource.cs" id="2_82a1r"]
+[ext_resource type="PackedScene" uid="uid://kb7x5vtk0gsy" path="res://Saved Nodes/Equipment/BallisticsTurret.tscn" id="3_1sj6m"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="3_l2k0g"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="4_lpt7b"]
-[ext_resource type="PackedScene" uid="uid://crvwfwhih0cqs" path="res://Saved Nodes/Equipment/Projectile.tscn" id="4_mn5jf"]
 [ext_resource type="Script" path="res://Scripts/zz_Deprecated/Thrusters.cs" id="5_n52b1"]
 [ext_resource type="PackedScene" uid="uid://cop2qdqxhb1kr" path="res://Saved Nodes/UI_UX/HP_BarHolder.tscn" id="6_p18t5"]
 
@@ -48,8 +47,7 @@ turret = NodePath("WeaponTurret")
 engines = NodePath("Engines")
 unitStats = SubResource("Resource_5p7fg")
 
-[node name="WeaponTurret" parent="." instance=ExtResource("2_4iasu")]
-projectile = ExtResource("4_mn5jf")
+[node name="WeaponTurret" parent="." instance=ExtResource("3_1sj6m")]
 
 [node name="Engines" type="Node2D" parent="."]
 

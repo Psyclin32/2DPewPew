@@ -47,22 +47,22 @@ public partial class WeaponTurret : Node2D
         base._Process(delta);
     }
     // General Methods
-    public void FireWeapon(Godot.Vector2 targetPos)
+    public void FireWeapon(uint collisionLayer)
     {  
         if(ReadyFire)
         {
             //Timer control for ROF
             ReadyFire = false; 
-            timerROF.Start();
-
             //control firing animation
             if(!animator.IsPlaying())
                 {
                     animator.Play("Fire");
                 }
-            
+            //Create Projectile
             ProjectileAsset newProjectile = projectile.Instantiate<ProjectileAsset>();
-            //newProjectile.
+            newProjectile.ExternalData(collisionLayer, Rotation, muzzel.GlobalPosition);
+            AddChild(newProjectile);
+            timerROF.Start();
 
         }
 
