@@ -5,6 +5,13 @@ using System.Diagnostics;
 public partial class GeneralUnit : RigidBody2D
 {
 
+[ExportGroup("General Nodes")]
+[Export] public WeaponTurret   turret;
+[Export] public Node2D         engines;
+
+
+
+[ExportGroup("General Stats")]
 [Export]
 public UnitStatsResource unitStats; //create an instances of the UnitStatsResource
 // Is edited in the inspector for now where its default values can be configured. 
@@ -22,14 +29,9 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
         }
         else
         {
-            unitStats.ChangeHealth(-(damage-unitStats.Armor)); // passing damage as negative value
+            unitStats.ChangeHealth(-(damage-unitStats.Armor)); //passing damage as negative value
         }
         GD.Print(unitStats.Health);
-    }
-
-    public void AquireTarget()
-    {
-
     }
 
 

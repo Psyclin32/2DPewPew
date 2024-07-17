@@ -27,7 +27,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "gun_Barrel", "particles", "HPBar")]
+[node name="EnemyAI" type="RigidBody2D" node_paths=PackedStringArray("_weaponTimer", "RotationTimer", "SpawnContainer", "Weapon", "particles", "HPBar")]
 collision_layer = 32
 collision_mask = 15
 mass = 200.0
@@ -40,7 +40,6 @@ BulletSpeed = 300
 RotationTimer = NodePath("RotationTimer")
 SpawnContainer = NodePath("ChildSpawns")
 Weapon = NodePath("Weapon")
-gun_Barrel = NodePath("Weapon/GunBarrelPos")
 particles = NodePath("CPUParticles2D")
 HPBar = NodePath("HPBar")
 
@@ -55,11 +54,6 @@ texture = ExtResource("1_6xpkm")
 [node name="Weapon" parent="." instance=ExtResource("2_u4f3b")]
 visible = false
 position = Vector2(0, -1)
-rotation = 0.0
-
-[node name="GunBarrelPos" parent="Weapon" index="0"]
-position = Vector2(0, -58.015)
-rotation = 0.0
 
 [node name="WeaponTimer" type="Timer" parent="."]
 one_shot = true

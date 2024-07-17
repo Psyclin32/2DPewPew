@@ -65,10 +65,10 @@ tracks/2/path = NodePath(".:offset")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 3), Vector2(0, 0)]
+"values": [Vector2(0, 4), Vector2(0, 3), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6t2e8"]
@@ -90,7 +90,7 @@ z_index = 1
 rotation = 1.5708
 scale = Vector2(0.35, 0.341)
 texture = ExtResource("3_rbtpo")
-offset = Vector2(0, 3)
+offset = Vector2(0, 4)
 region_enabled = true
 region_rect = Rect2(14, 0, 36, 54)
 
@@ -100,6 +100,7 @@ position = Vector2(11, 0)
 scale = Vector2(0.341, 0.35)
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
+frame = 2
 
 [node name="FireAnims" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Weapon")

@@ -4,12 +4,6 @@ using System;
 public partial class PlayerUnit : GeneralUnit
 {
     //[Export] public UnitStats PlayerStats; -> comes from general units class
-
-    [ExportGroup("Attached Nodes")]
-    //[Export] RigidBody2D    Rigidbody;
-    [Export] WeaponTurret   turret;
-    [Export] Node2D         engines;
-
     public override void _Ready()
     {
         base._Ready();
