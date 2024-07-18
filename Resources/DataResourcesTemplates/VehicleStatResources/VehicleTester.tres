@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="VehicleStats" load_steps=2 format=3 uid="uid://7aa5wgseascg"]
+
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/VehicleStats.cs" id="1_oabsb"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_oabsb")
+ForwardThrust = 3000.0
+RotationThrust = 2000.0
+StrafeThrust = 1000.0
+ReverseRatio = 0.5
+Mass = 100.0
+Dampening = 0.25

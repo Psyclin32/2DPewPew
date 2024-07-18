@@ -162,7 +162,6 @@ public partial class Player : RigidBody2D
     {
 		Vector2 inputs = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
 		vel_dir = inputs*acceleration;
-
 		ApplyCentralForce(vel_dir.Rotated(Rotation));
 
         base._IntegrateForces(state);

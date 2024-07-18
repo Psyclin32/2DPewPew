@@ -60,7 +60,7 @@ public partial class WeaponHardPoint : Node2D
                 }
             //Create Projectile
             ProjectileAsset newProjectile = projectile.Instantiate<ProjectileAsset>();
-            newProjectile.ExternalData(collisionLayer, Rotation, muzzel.GlobalPosition);
+            newProjectile.ExternalData(collisionLayer, GlobalRotation, muzzel.GlobalPosition);
             AddChild(newProjectile);
             Debug.Print("Bullet Added");
             timerROF.Start();

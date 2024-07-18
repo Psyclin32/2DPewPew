@@ -9,20 +9,14 @@ public partial class UnitStatsResource : Resource  //if we want an object to hav
 	//Use for creating global flag and data objects (May create separately if needed, unlikely in short term)
 	//Tracking vitals like HP + shields and other "Live" data that is used at gameplay layer.
 
-	[ExportGroup("Stats")]
-	[Export]
-	public int Health { get; set; }
-	[Export]
-	public int Shields { get; set; }
-	[Export]
-	public int Armor { get; set; }
+	[ExportGroup("Unit Stats")]
+	[Export] public int MaxHealth { get; set; }
+	[Export] public int Health { get; set; }	
+	[Export] public int MaxShields { get; set; }
+	[Export] public int Shields { get; set; }
+	[Export] public int TotalArmor { get; set; }
 	
-	[ExportSubgroup("Max Values")]
-	[Export]
-	private int MaxHealth { get; set; }
-	[Export]
-	private int MaxShields { get; set; }
-
+	
 	public enum FactionNames
 	{
 		Faction0,
@@ -39,7 +33,7 @@ public partial class UnitStatsResource : Resource  //if we want an object to hav
 		MaxHealth = 100;
 		Shields = 50;
 		MaxShields = 50;
-		Armor = 1;
+		TotalArmor = 1;
 	} //sets default values if none passed. 
 	//Not likely to be used if using insperctor defaults. 
 
@@ -47,7 +41,7 @@ public partial class UnitStatsResource : Resource  //if we want an object to hav
 	{
 		Health = health;
 		Shields = shields;
-		Armor = armor;
+		TotalArmor = armor;
 	
 	}
 	public int GetMaxHealth()
@@ -90,13 +84,13 @@ public partial class UnitStatsResource : Resource  //if we want an object to hav
 	}
 	public void ChangeArmor(int delta) //damage is signed. Intended to accomodate for both damage and healing. 
 	{
-		if(Armor + delta <= 0 )   // clamp to zero
+		if(TotalArmor + delta <= 0 )   // clamp to zero
 		{
-			Armor = 0;
+			TotalArmor = 0;
 		}
 		else
 		{
-			Armor += delta; //apply change
+			TotalArmor += delta; //apply change
 		}
 	}
 	

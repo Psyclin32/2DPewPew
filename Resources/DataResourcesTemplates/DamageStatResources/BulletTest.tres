@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DamageStatsResource" load_steps=2 format=3 uid="uid://b8ah04s44j0w0"]
+
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/DamageStatsResource.cs" id="1_q5lyc"]
+
+[resource]
+script = ExtResource("1_q5lyc")
+Damage = 2
+Health = 1
+Speed = 600.0
+Mass = 2.0
+Bloom = 1.0

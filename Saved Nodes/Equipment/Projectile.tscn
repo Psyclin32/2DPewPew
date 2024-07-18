@@ -1,19 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://crvwfwhih0cqs"]
+[gd_scene load_steps=19 format=3 uid="uid://crvwfwhih0cqs"]
 
 [ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/ProjectileAsset.cs" id="1_wqjhj"]
-[ext_resource type="Script" path="res://Resources/DataResources/DamageStatsResource.cs" id="2_1mxcs"]
+[ext_resource type="Resource" uid="uid://b8ah04s44j0w0" path="res://Resources/DataResourcesTemplates/DamageStatResources/BulletTest.tres" id="2_jkuhu"]
 [ext_resource type="Texture2D" uid="uid://bn1dkbov41s6r" path="res://addons/Lunar Lander Upload/Effects/Fx_02.png" id="2_l74lm"]
 [ext_resource type="Texture2D" uid="uid://cjskqo45ipocy" path="res://addons/Lunar Lander Upload/Effects/Explosion.png" id="3_p6bco"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p1d22"]
-
-[sub_resource type="Resource" id="Resource_aakmm"]
-script = ExtResource("2_1mxcs")
-Damage = 1
-Health = 1
-Speed = 400.0
-Mass = 1.0
-Bloom = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s5nm"]
 radius = 2.0
@@ -118,7 +110,7 @@ max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.2
 script = ExtResource("1_wqjhj")
-damageStats = SubResource("Resource_aakmm")
+damageStats = ExtResource("2_jkuhu")
 animatedSprite = NodePath("Sprites")
 lifeTimer = NodePath("lifeTimer")
 
@@ -132,8 +124,8 @@ sprite_frames = SubResource("SpriteFrames_ero2s")
 animation = &"Bullets"
 
 [node name="lifeTimer" type="Timer" parent="."]
-wait_time = 5.0
 one_shot = true
+autostart = true
 
 [node name="ProjectileParent" type="Node2D" parent="."]
 top_level = true

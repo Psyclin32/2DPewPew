@@ -11,20 +11,20 @@ public partial class GeneralUnit : RigidBody2D
 [Export] public AnimatedSprite2D    unitSprite;
 
 private bool isDead = false;
-private bool ON = true;
-private bool OFF = false;
+public bool ON = true;
+public bool OFF = false;
 
 
-[ExportGroup("General Stats")]
-[Export]
-public UnitStatsResource unitStats; //create an instances of the UnitStatsResource
+[ExportGroup("Units Stats")]
+[Export] public UnitStatsResource unitStats;
+[ExportGroup("Vehicle Stats")]
+[Export] public VehicleStats vehicleStats;
+//create an instances of the UnitStatsResource
 // Is edited in the inspector for now where its default values can be configured. 
 
     public override void _Ready()
     {   
-
-
-        unitStats.ResourceLocalToScene = true;
+        //unitStats.ResourceLocalToScene = true; -> should be already set on the resources. 
         unitSprite.Animation = "DamageStates";
         //GD.Print(engines.ForwardEngine.GetInstanceId());
         base._Ready();
@@ -32,10 +32,7 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
 
     public override void _Process(double delta)
     {
-        //Engine Animations
-        EngineAnimations();
-
-        //GD.Print(engines.ForwardEngine.GetInstanceId());
+        DeathCheck();
         
         base._Process(delta);
     }
@@ -44,49 +41,16 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
     {
         base._PhysicsProcess(delta);
     }
-    public void EngineAnimations()
-    {
-        //Forward Movement 
-        if (Input.IsActionPressed("Forward"))
-        {
-            engines.Forward(ON);
-        }
-        else
-        { 
-            engines.Forward(OFF);
-        }
-        //GD.Print(Input.IsActionPressed("Forward"));
-        
-
-        //Rotation Movement 
-        float axis  = Input.GetAxis("Rotate Left", "Rotate Right");
-        if (axis > 0)
-        {
-            engines.RightYaw(ON);
-            engines.LeftYaw(OFF);
-        } 
-        else if (axis < 0)
-        {
-            engines.RightYaw(OFF);
-            engines.LeftYaw(ON);
-        }
-        else
-        {
-            engines.RightYaw(OFF);
-            engines.LeftYaw(OFF);
-        }
-        //GD.Print(axis);
-    }
 
     public void TakeDamage(int damage)  //damage stored as possitives
     {
-        if (unitStats.Armor > damage)
+        if (unitStats.TotalArmor > damage)
         {
             return;
         }
         else
         {
-            unitStats.ChangeHealth(-(damage-unitStats.Armor)); //passing damage as negative value
+            unitStats.ChangeHealth(-(damage-unitStats.TotalArmor)); //passing damage as negative value
         }
         GD.Print(unitStats.Health);
     }
@@ -96,6 +60,8 @@ public UnitStatsResource unitStats; //create an instances of the UnitStatsResour
         if(unitStats.Health <=0  & !isDead)  //Play Death animation when dead
         {
             DeathAnimation();
+            GD.Print("Play Dead Anim");
+            GD.Print(isDead);
         }
         else if(!unitSprite.IsPlaying() & isDead)
         {

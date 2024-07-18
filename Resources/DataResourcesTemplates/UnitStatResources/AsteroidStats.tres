@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitStatsResource" load_steps=2 format=3 uid="uid://dqqwi12cj1up4"]
+
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="1_xvoqk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_xvoqk")
+MaxHealth = 6
+Health = 25
+MaxShields = 0
+Shields = 0
+TotalArmor = 0

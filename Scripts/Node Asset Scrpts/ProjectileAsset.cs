@@ -30,7 +30,7 @@ public partial class ProjectileAsset : RigidBody2D
 	
 	public override void _Ready()
 	{	
-		lifeTimer.Timeout += OnLifeTimerTimeout; //connects to the Timers Timeout signal
+		lifeTimer.Timeout += OnLifeTimerTimeout; //connects to the Timers Timeout signal, Timer should be set to auto start on Instance spawn. 
 		//SetPhysics();
 	}
 
