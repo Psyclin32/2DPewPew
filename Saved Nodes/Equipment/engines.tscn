@@ -1,27 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwrqwxq81bedj"]
 
-[ext_resource type="Script" path="res://Saved Nodes/Units/EnginesAssets.cs" id="1_hnc8t"]
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/EnginesAssets.cs" id="1_q7juc"]
 [ext_resource type="Texture2D" uid="uid://dub65rkaylang" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01b.png" id="2_joamg"]
 [ext_resource type="Texture2D" uid="uid://bkw36puuf6n44" path="res://addons/space_breaker_asset/space_breaker_asset/Ships/Small/Exhaust/exhaust_01a.png" id="3_dxq2m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wn5x"]
 animations = [{
 "frames": [{
-"duration": 2.0,
+"duration": 2.5,
 "texture": ExtResource("2_joamg")
 }, {
-"duration": 10.0,
+"duration": 11.0,
 "texture": ExtResource("3_dxq2m")
 }],
-"loop": false,
+"loop": true,
 "name": &"Exhaust",
-"speed": 5.0
+"speed": 10.0
 }]
 
-[node name="Engines" type="Node2D" node_paths=PackedStringArray("Engines")]
-position = Vector2(368, 130)
-script = ExtResource("1_hnc8t")
-Engines = []
+[node name="Engines" type="Node2D" node_paths=PackedStringArray("ForwardEngine", "RightYawEngine", "LeftYawEngine")]
+script = ExtResource("1_q7juc")
+ForwardEngine = NodePath("Forward")
+RightYawEngine = NodePath("RightYaw")
+LeftYawEngine = NodePath("LeftYaw")
 
 [node name="Forward" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 34)

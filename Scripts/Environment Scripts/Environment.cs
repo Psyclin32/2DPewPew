@@ -20,7 +20,7 @@ public partial class Environment : Node2D
 	public override void _Ready()
 	{
 		
-		AsteroidSpawner(range[0], range[1]);
+		//AsteroidSpawner(range[0], range[1]);
 		//EnemySpawner(numberEnemy);
 	}
 

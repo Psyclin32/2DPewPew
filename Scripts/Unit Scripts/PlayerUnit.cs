@@ -4,14 +4,16 @@ using System;
 public partial class PlayerUnit : GeneralUnit
 {
     //[Export] public UnitStats PlayerStats; -> comes from general units class
+
     public override void _Ready()
     {
         base._Ready();
     }
 
     public override void _Process(double delta)
-    {
-        //continue to look at the mouse
+    {  
+       
+        //continue to look at the mouse, asses mouse position before firing for best accuracy.
        AquireTarget(GetGlobalMousePosition());
        //Fire on mouse click
        if(Input.IsActionPressed("Fire"))  turret.FireTurret(CollisionLayer);

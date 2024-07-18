@@ -58,10 +58,9 @@ shape = SubResource("CapsuleShape2D_6w0v8")
 
 [node name="WeaponTurret" parent="." instance=ExtResource("3_1sj6m")]
 
-[node name="Engines" parent="." node_paths=PackedStringArray("Engines") instance=ExtResource("4_3mtpb")]
-Engines = []
-
 [node name="Ship" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.472656, 0.492188)
 sprite_frames = SubResource("SpriteFrames_5yb2b")
 animation = &"DamageStates"
+
+[node name="Engines" parent="." instance=ExtResource("4_3mtpb")]
