@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc40xavaaoctm"]
+
+[ext_resource type="Script" path="res://Scripts/Node Asset Scrpts/WeaponHardPoint.cs" id="1_dd045"]
+[ext_resource type="PackedScene" uid="uid://crvwfwhih0cqs" path="res://Saved Nodes/Equipment/Projectile.tscn" id="2_ojraw"]
+[ext_resource type="Texture2D" uid="uid://dtfdqlyb3aaaa" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Small/Cannon/turret_01_mk1.png" id="3_48ka5"]
+[ext_resource type="Texture2D" uid="uid://to0n31q2l83p" path="res://addons/Lunar Lander Upload/Effects/Fx_03.png" id="4_87iak"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0y0i"]
+atlas = ExtResource("4_87iak")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py32h"]
+atlas = ExtResource("4_87iak")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwl2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0y0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py32h")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ovtuq"]
+resource_name = "Fire"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponVFX:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yuym1"]
+_data = {
+"Fire": SubResource("Animation_ovtuq")
+}
+
+[node name="Turret" type="Node2D" node_paths=PackedStringArray("turretSprite", "shootingVFX", "animator", "muzzel", "timerROF")]
+script = ExtResource("1_dd045")
+projectile = ExtResource("2_ojraw")
+turretSprite = NodePath("Sprite")
+shootingVFX = NodePath("WeaponVFX")
+animator = NodePath("AnimationPlayer")
+muzzel = NodePath("Marker2D")
+timerROF = NodePath("RateOfFire")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(5.96046e-08, 1.19209e-07)
+rotation = 1.5708
+scale = Vector2(1.51301, 1.78582)
+texture = ExtResource("3_48ka5")
+
+[node name="WeaponVFX" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_cwl2k")
+animation = &"Fire"
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yuym1")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(31, 1.49012e-08)
+rotation = 0.0175453
+scale = Vector2(1.80296, 1.7604)
+
+[node name="RateOfFire" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true

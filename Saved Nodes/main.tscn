@@ -1,76 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=6 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="Script" path="res://Scripts/Manager Scripts/Game_Manager.cs" id="1_nngie"]
 [ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
-[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="3_jvshc"]
 [ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="3_nylej"]
-[ext_resource type="PackedScene" uid="uid://bm6jtd68tts65" path="res://Saved Nodes/Units/CharacterTempalte.tscn" id="4_cdeta"]
-[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/VehicleStats.cs" id="4_mvti4"]
 [ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="6_7lue0"]
-
-[sub_resource type="Resource" id="Resource_x1bmn"]
-resource_local_to_scene = true
-script = ExtResource("3_jvshc")
-MaxHealth = 100
-Health = 100
-MaxShields = 50
-Shields = 50
-TotalArmor = 1
-
-[sub_resource type="Resource" id="Resource_rt52x"]
-resource_local_to_scene = true
-script = ExtResource("4_mvti4")
-ForwardThrust = 3000.0
-RotationThrust = 2000.0
-StrafeThrust = 1000.0
-ReverseRatio = 0.5
-Mass = 100.0
-Dampening = 0.25
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a7k68"]
-resource_local_to_scene = true
-
-[sub_resource type="Resource" id="Resource_lgppt"]
-resource_local_to_scene = true
-script = ExtResource("3_jvshc")
-MaxHealth = 10
-Health = 25
-MaxShields = 0
-Shields = 0
-TotalArmor = 0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q1pfm"]
-resource_local_to_scene = true
-
-[sub_resource type="Resource" id="Resource_eaer1"]
-resource_local_to_scene = true
-script = ExtResource("3_jvshc")
-MaxHealth = 10
-Health = 25
-MaxShields = 0
-Shields = 0
-TotalArmor = 0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f2dwx"]
-resource_local_to_scene = true
-
-[sub_resource type="Resource" id="Resource_iqmkp"]
-resource_local_to_scene = true
-script = ExtResource("3_jvshc")
-MaxHealth = 10
-Health = 25
-MaxShields = 0
-Shields = 0
-TotalArmor = 0
+[ext_resource type="PackedScene" uid="uid://catdoss8hprui" path="res://Saved Nodes/Environment/BasicTurret.tscn" id="8_ihkxk"]
 
 [node name="Main" type="Node2D" groups=["MainScene"]]
 script = ExtResource("1_nngie")
 
-[node name="PlayerRoot" parent="." instance=ExtResource("4_cdeta")]
-unitStats = SubResource("Resource_x1bmn")
-vehicleStats = SubResource("Resource_rt52x")
-
-[node name="Camera2D" type="Camera2D" parent="PlayerRoot"]
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Level Environment" parent="." instance=ExtResource("2_rrl4c")]
 aseteroids = Array[PackedScene]([ExtResource("6_7lue0")])
@@ -78,17 +17,11 @@ range = Array[int]([1, 10])
 
 [node name="Background Template" parent="." instance=ExtResource("3_nylej")]
 
-[node name="Asteroid" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(-171, -143)
-physics_material_override = SubResource("PhysicsMaterial_a7k68")
-objectStats = SubResource("Resource_lgppt")
+[node name="StaticStructure" parent="." instance=ExtResource("8_ihkxk")]
+position = Vector2(-283, -97)
 
-[node name="Asteroid2" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(222, -81)
-physics_material_override = SubResource("PhysicsMaterial_q1pfm")
-objectStats = SubResource("Resource_eaer1")
+[node name="StaticStructure2" parent="." instance=ExtResource("8_ihkxk")]
+position = Vector2(310, 136)
 
-[node name="Asteroid3" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(-223, 199)
-physics_material_override = SubResource("PhysicsMaterial_f2dwx")
-objectStats = SubResource("Resource_iqmkp")
+[node name="StaticStructure3" parent="." instance=ExtResource("8_ihkxk")]
+position = Vector2(150, -65)

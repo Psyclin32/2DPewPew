@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://catdoss8hprui"]
+
+[ext_resource type="Script" path="res://Scripts/Unit Scripts/StaticUnits.cs" id="1_pe0yv"]
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="2_cn7cl"]
+[ext_resource type="Texture2D" uid="uid://b151wp55oul78" path="res://addons/space_breaker_asset/space_breaker_asset/Others/Towers/tower01_pixart_128.png" id="2_ik0km"]
+[ext_resource type="PackedScene" uid="uid://dc40xavaaoctm" path="res://Saved Nodes/Equipment/BulletTurret.tscn" id="2_yx5ev"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_np3l7"]
+rough = true
+absorbent = true
+
+[sub_resource type="Resource" id="Resource_wshwa"]
+script = ExtResource("2_cn7cl")
+MaxHealth = 30
+Health = 30
+MaxShields = 0
+Shields = 0
+TotalArmor = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ud2sg"]
+size = Vector2(73, 74)
+
+[node name="StaticStructure" type="StaticBody2D" node_paths=PackedStringArray("fixedTurret")]
+collision_layer = 4
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_np3l7")
+script = ExtResource("1_pe0yv")
+StatsUnitStats = SubResource("Resource_wshwa")
+fixedTurret = NodePath("Turret")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ud2sg")
+
+[node name="Platform" type="Sprite2D" parent="."]
+texture = ExtResource("2_ik0km")
+
+[node name="Turret" parent="." instance=ExtResource("2_yx5ev")]

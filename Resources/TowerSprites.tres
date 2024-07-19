@@ -1,0 +1,56 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://smqlwtk7mlp5"]
+
+[ext_resource type="Texture2D" uid="uid://bwpsrl4dn4euq" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Small/Cannon/turret_01_mk3.png" id="1_bp2ah"]
+[ext_resource type="Texture2D" uid="uid://bwdkrqfsx8ln6" path="res://addons/space_breaker_asset/space_breaker_asset/Weapons/Small/Cannon/turret_01_explosion.png" id="2_o2jo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opa6h"]
+atlas = ExtResource("2_o2jo2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6haad"]
+atlas = ExtResource("2_o2jo2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8lmf"]
+atlas = ExtResource("2_o2jo2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6gpj"]
+atlas = ExtResource("2_o2jo2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62a8b"]
+atlas = ExtResource("2_o2jo2")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bp2ah")
+}],
+"loop": false,
+"name": &"DamageStates",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opa6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6haad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8lmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6gpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62a8b")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
