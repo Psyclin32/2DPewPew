@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://kaihxv5sskb1"]
 
 [ext_resource type="Texture2D" uid="uid://yxll5jwbv5oc" path="res://addons/Foozle_2DS0015_Void_EnvironmentPack/Foozle_2DS0015_Void_EnvironmentPack/Asteroids/PNGs/Asteroid 01 - Explode.png" id="1_c1soc"]
-[ext_resource type="Script" path="res://Scripts/Unit Scripts/GeneralUnit.cs" id="2_61hiw"]
 [ext_resource type="PhysicsMaterial" uid="uid://2cw333iwglng" path="res://Resources/Asteroids.tres" id="2_kqeld"]
+[ext_resource type="Script" path="res://Scripts/Unit Scripts/ObjectUnits.cs" id="2_x01r5"]
 [ext_resource type="Resource" uid="uid://dqqwi12cj1up4" path="res://Resources/DataResourcesTemplates/UnitStatResources/AsteroidStats.tres" id="3_m5mf8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlxr8"]
@@ -86,9 +86,9 @@ physics_material_override = ExtResource("2_kqeld")
 max_contacts_reported = 20
 contact_monitor = true
 linear_damp = 0.1
-script = ExtResource("2_61hiw")
+script = ExtResource("2_x01r5")
+objectStats = ExtResource("3_m5mf8")
 unitSprite = NodePath("Asteroid")
-unitStats = ExtResource("3_m5mf8")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)

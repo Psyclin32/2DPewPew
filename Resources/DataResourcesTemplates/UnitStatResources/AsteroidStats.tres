@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_xvoqk")
-MaxHealth = 6
+MaxHealth = 10
 Health = 25
 MaxShields = 0
 Shields = 0

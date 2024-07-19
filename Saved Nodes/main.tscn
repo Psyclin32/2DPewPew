@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=16 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="Script" path="res://Scripts/Manager Scripts/Game_Manager.cs" id="1_nngie"]
 [ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
@@ -27,53 +27,41 @@ ReverseRatio = 0.5
 Mass = 100.0
 Dampening = 0.25
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11fks"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a7k68"]
 resource_local_to_scene = true
 
-[sub_resource type="Resource" id="Resource_fqyh6"]
+[sub_resource type="Resource" id="Resource_lgppt"]
 resource_local_to_scene = true
 script = ExtResource("3_jvshc")
-MaxHealth = 6
+MaxHealth = 10
 Health = 25
 MaxShields = 0
 Shields = 0
 TotalArmor = 0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gw4da"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q1pfm"]
 resource_local_to_scene = true
 
-[sub_resource type="Resource" id="Resource_3oi3s"]
+[sub_resource type="Resource" id="Resource_eaer1"]
 resource_local_to_scene = true
 script = ExtResource("3_jvshc")
-MaxHealth = 25
+MaxHealth = 10
 Health = 25
 MaxShields = 0
 Shields = 0
-TotalArmor = 1
+TotalArmor = 0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mcfmx"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f2dwx"]
 resource_local_to_scene = true
 
-[sub_resource type="Resource" id="Resource_n2ekk"]
+[sub_resource type="Resource" id="Resource_iqmkp"]
 resource_local_to_scene = true
 script = ExtResource("3_jvshc")
-MaxHealth = 25
+MaxHealth = 10
 Health = 25
 MaxShields = 0
 Shields = 0
-TotalArmor = 1
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rcnev"]
-resource_local_to_scene = true
-
-[sub_resource type="Resource" id="Resource_awgs6"]
-resource_local_to_scene = true
-script = ExtResource("3_jvshc")
-MaxHealth = 25
-Health = 25
-MaxShields = 0
-Shields = 0
-TotalArmor = 1
+TotalArmor = 0
 
 [node name="Main" type="Node2D" groups=["MainScene"]]
 script = ExtResource("1_nngie")
@@ -91,21 +79,16 @@ range = Array[int]([1, 10])
 [node name="Background Template" parent="." instance=ExtResource("3_nylej")]
 
 [node name="Asteroid" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(-226, -187)
-physics_material_override = SubResource("PhysicsMaterial_11fks")
-unitStats = SubResource("Resource_fqyh6")
+position = Vector2(-171, -143)
+physics_material_override = SubResource("PhysicsMaterial_a7k68")
+objectStats = SubResource("Resource_lgppt")
 
 [node name="Asteroid2" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(272, -177)
-physics_material_override = SubResource("PhysicsMaterial_gw4da")
-unitStats = SubResource("Resource_3oi3s")
+position = Vector2(222, -81)
+physics_material_override = SubResource("PhysicsMaterial_q1pfm")
+objectStats = SubResource("Resource_eaer1")
 
 [node name="Asteroid3" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(-297, 127)
-physics_material_override = SubResource("PhysicsMaterial_mcfmx")
-unitStats = SubResource("Resource_n2ekk")
-
-[node name="Asteroid4" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(330, 118)
-physics_material_override = SubResource("PhysicsMaterial_rcnev")
-unitStats = SubResource("Resource_awgs6")
+position = Vector2(-223, 199)
+physics_material_override = SubResource("PhysicsMaterial_f2dwx")
+objectStats = SubResource("Resource_iqmkp")
