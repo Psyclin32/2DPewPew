@@ -1,13 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=5 format=3 uid="uid://ckrkhn017qm4i"]
 
-[ext_resource type="Script" path="res://Scripts/Manager Scripts/Game_Manager.cs" id="1_nngie"]
+[ext_resource type="Script" path="res://Saved Nodes/mainTest.cs" id="1_n63pq"]
 [ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
 [ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="3_nylej"]
 [ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="6_7lue0"]
-[ext_resource type="PackedScene" uid="uid://catdoss8hprui" path="res://Saved Nodes/Environment/BasicTurret.tscn" id="8_ihkxk"]
 
 [node name="Main" type="Node2D" groups=["MainScene"]]
-script = ExtResource("1_nngie")
+script = ExtResource("1_n63pq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -16,12 +15,3 @@ aseteroids = Array[PackedScene]([ExtResource("6_7lue0")])
 range = Array[int]([1, 10])
 
 [node name="Background Template" parent="." instance=ExtResource("3_nylej")]
-
-[node name="StaticStructure" parent="." instance=ExtResource("8_ihkxk")]
-position = Vector2(-283, -97)
-
-[node name="StaticStructure2" parent="." instance=ExtResource("8_ihkxk")]
-position = Vector2(310, 136)
-
-[node name="StaticStructure3" parent="." instance=ExtResource("8_ihkxk")]
-position = Vector2(150, -65)

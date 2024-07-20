@@ -18,9 +18,10 @@ Shields = 0
 TotalArmor = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud2sg"]
-size = Vector2(73, 74)
+size = Vector2(56, 53)
 
 [node name="StaticStructure" type="StaticBody2D" node_paths=PackedStringArray("fixedTurret")]
+scale = Vector2(0.75, 0.75)
 collision_layer = 4
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_np3l7")
@@ -29,11 +30,11 @@ StatsUnitStats = SubResource("Resource_wshwa")
 fixedTurret = NodePath("Turret")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, 0)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_ud2sg")
 
 [node name="Platform" type="Sprite2D" parent="."]
+scale = Vector2(0.762639, 0.737211)
 texture = ExtResource("2_ik0km")
 
 [node name="Turret" parent="." instance=ExtResource("2_yx5ev")]

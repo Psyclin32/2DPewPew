@@ -4,9 +4,12 @@ using System;
 public partial class PlayerUnit : GeneralUnit
 {
     //[Export] public UnitStats PlayerStats; -> comes from general units class
+    public GlobalVars globalVars {get; set;}//
 
     public override void _Ready()
-    {
+    {   
+        globalVars = GetNodeOrNull("/root/Globals") as GlobalVars;
+        globalVars.Player = this;
         base._Ready();
     }
 

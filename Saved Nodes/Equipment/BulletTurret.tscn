@@ -65,7 +65,7 @@ timerROF = NodePath("RateOfFire")
 z_index = 1
 position = Vector2(5.96046e-08, 1.19209e-07)
 rotation = 1.5708
-scale = Vector2(1.51301, 1.78582)
+scale = Vector2(1.36005, 1.4928)
 texture = ExtResource("3_48ka5")
 
 [node name="WeaponVFX" type="AnimatedSprite2D" parent="."]
