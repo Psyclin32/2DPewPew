@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://qmfhsn8peg7j"]
+[gd_scene load_steps=5 format=3 uid="uid://qmfhsn8peg7j"]
 
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_86uhv"]
 [ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="1_tnxon"]
+[ext_resource type="PackedScene" uid="uid://ckrkhn017qm4i" path="res://Saved Nodes/LevelTemplates/main.tscn" id="2_psuco"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wpfm"]
 bg_color = Color(0.290196, 0.431373, 0.690196, 0.811765)
 
-[node name="Panel" type="CenterContainer"]
+[node name="MainMenu" type="CenterContainer" node_paths=PackedStringArray("StartButton", "QuitButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,19 +16,24 @@ offset_bottom = -331.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.38113, 1.58412)
+script = ExtResource("1_86uhv")
+StartButton = NodePath("VBoxContainer/Start")
+QuitButton = NodePath("VBoxContainer/Quit")
+LevelScene = ExtResource("2_psuco")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 30
+alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_7wpfm")
 text = "START GAME	"
 
-[node name="Quick" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
@@ -35,3 +42,4 @@ text = "QUIT
 "
 
 [node name="Background Template" parent="." instance=ExtResource("1_tnxon")]
+scroll_offset = Vector2(-2091.32, -1070.51)

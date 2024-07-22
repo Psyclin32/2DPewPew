@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckrkhn017qm4i"]
+
+[ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
+[ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="3_nylej"]
+[ext_resource type="PackedScene" uid="uid://bm6jtd68tts65" path="res://Saved Nodes/Units/CharacterTempalte.tscn" id="4_axv7n"]
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="5_1ef88"]
+[ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="6_7lue0"]
+[ext_resource type="Script" path="res://Resources/DataResourcesTemplates/VehicleStats.cs" id="6_wrkd3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s5t0q"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_jnp3n"]
+resource_local_to_scene = true
+script = ExtResource("5_1ef88")
+MaxHealth = 10
+Health = 25
+MaxShields = 0
+Shields = 0
+TotalArmor = 0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s1o2u"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_lxt1x"]
+resource_local_to_scene = true
+script = ExtResource("5_1ef88")
+MaxHealth = 10
+Health = 25
+MaxShields = 0
+Shields = 0
+TotalArmor = 0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vatax"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_y0tdu"]
+resource_local_to_scene = true
+script = ExtResource("5_1ef88")
+MaxHealth = 10
+Health = 25
+MaxShields = 0
+Shields = 0
+TotalArmor = 0
+
+[sub_resource type="Resource" id="Resource_wm53p"]
+resource_local_to_scene = true
+script = ExtResource("5_1ef88")
+MaxHealth = 100
+Health = 100
+MaxShields = 50
+Shields = 50
+TotalArmor = 1
+
+[sub_resource type="Resource" id="Resource_d0cwu"]
+resource_local_to_scene = true
+script = ExtResource("6_wrkd3")
+ForwardThrust = 3000.0
+RotationThrust = 2000.0
+StrafeThrust = 1000.0
+ReverseRatio = 0.5
+Mass = 100.0
+Dampening = 0.25
+
+[node name="Main" type="Node2D" groups=["MainScene"]]
+
+[node name="Level Environment" parent="." instance=ExtResource("2_rrl4c")]
+aseteroids = Array[PackedScene]([ExtResource("6_7lue0")])
+range = Array[int]([1, 10])
+
+[node name="Background Template" parent="." instance=ExtResource("3_nylej")]
+
+[node name="Asteroid" parent="." instance=ExtResource("6_7lue0")]
+position = Vector2(-303, -102)
+physics_material_override = SubResource("PhysicsMaterial_s5t0q")
+objectStats = SubResource("Resource_jnp3n")
+
+[node name="Asteroid2" parent="." instance=ExtResource("6_7lue0")]
+position = Vector2(273, -68)
+physics_material_override = SubResource("PhysicsMaterial_s1o2u")
+objectStats = SubResource("Resource_lxt1x")
+
+[node name="Asteroid3" parent="." instance=ExtResource("6_7lue0")]
+position = Vector2(-268, 233)
+physics_material_override = SubResource("PhysicsMaterial_vatax")
+objectStats = SubResource("Resource_y0tdu")
+
+[node name="PlayerRoot" parent="." instance=ExtResource("4_axv7n")]
+top_level = true
+unitStats = SubResource("Resource_wm53p")
+vehicleStats = SubResource("Resource_d0cwu")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerRoot"]

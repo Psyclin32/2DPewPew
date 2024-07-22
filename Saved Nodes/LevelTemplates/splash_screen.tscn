@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/SplashScreen.cs" id="1_6ky83"]
 [ext_resource type="Texture2D" uid="uid://c34g531rlmtd6" path="res://icon.svg" id="1_oim4h"]
 
-[node name="Splash Screen" type="ColorRect"]
+[node name="Splash Screen" type="ColorRect" node_paths=PackedStringArray("Durration")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.321543, 0.264848, 0.580739, 1)
 script = ExtResource("1_6ky83")
+Durration = NodePath("Durration")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

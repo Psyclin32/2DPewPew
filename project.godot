@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2DPewPew"
-run/main_scene="res://Saved Nodes/main.tscn"
+run/main_scene="res://Saved Nodes/LevelTemplates/splash_screen.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.354508, 0.0795243, 0.439357, 1)
 config/icon="res://icon.svg"
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Globals="res://Scripts/Information Scripts/GlobalVars.cs"
 GameManager="res://Scripts/Manager Scripts/GameManager.cs"
+SceneLoader="*res://AutoLoaders/scene_loader.tscn"
 
 [display]
 

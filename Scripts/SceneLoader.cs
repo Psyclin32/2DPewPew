@@ -6,9 +6,14 @@ public partial class SceneLoader : Node
     
     [Export] private string _sceneFolder;
 
-    public void ChangeToScene(string sceneName) {
-        string f = _sceneFolder == "" ? "" : $"{_sceneFolder}/";
-        GetTree().ChangeSceneToFile($"res://{f}{sceneName}");
+    public void ChangeToScene(PackedScene sceneName) 
+    {
+        GetTree().ChangeSceneToPacked(sceneName);
+    }
+
+    public void ChangeToMenu()
+    {
+        GetTree().ChangeSceneToFile("res://Saved Nodes/LevelTemplates/MainMenu.tscn");
     }
 
 }
