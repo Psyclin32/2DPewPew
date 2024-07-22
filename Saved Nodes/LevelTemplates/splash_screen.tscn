@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvd70ntn1p84v"]
+
+[ext_resource type="Script" path="res://Scripts/SplashScreen.cs" id="1_6ky83"]
+[ext_resource type="Texture2D" uid="uid://c34g531rlmtd6" path="res://icon.svg" id="1_oim4h"]
+
+[node name="Splash Screen" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.321543, 0.264848, 0.580739, 1)
+script = ExtResource("1_6ky83")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_oim4h")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+text = "MADE IN GODOT	"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Durration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

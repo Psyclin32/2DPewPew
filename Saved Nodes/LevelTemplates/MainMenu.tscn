@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://qmfhsn8peg7j"]
+
+[ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="1_tnxon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wpfm"]
+bg_color = Color(0.290196, 0.431373, 0.690196, 0.811765)
+
+[node name="Panel" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -440.0
+offset_bottom = -331.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.38113, 1.58412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wpfm")
+text = "START GAME	"
+
+[node name="Quick" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wpfm")
+text = "QUIT
+"
+
+[node name="Background Template" parent="." instance=ExtResource("1_tnxon")]

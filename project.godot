@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Scripts/Information Scripts/GlobalVars.cs"
-GameManager="*res://Scripts/Manager Scripts/GameManager.cs"
+Globals="res://Scripts/Information Scripts/GlobalVars.cs"
+GameManager="res://Scripts/Manager Scripts/GameManager.cs"
 
 [display]
 

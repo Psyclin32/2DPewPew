@@ -12,7 +12,7 @@ public partial class GameManager : Node
 		//Globals = GetNode("/root/Globals") as GlobalVars;
 		//GD.Print(Globals.Player);
 		//GetNode("/root/Main").AddChild(Globals.Player);
-		GD.Print(GetTreeStringPretty());
+		//GD.Print(GetTreeStringPretty());
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
