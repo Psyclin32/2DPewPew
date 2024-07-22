@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections;
 
 public partial class PlayerUnit : GeneralUnit
 {
@@ -8,6 +9,9 @@ public partial class PlayerUnit : GeneralUnit
 
     public override void _Ready()
     {   
+
+        GetNode<Timer>("Death").Timeout += OnDeathTimeout;
+
         globalVars = GetNodeOrNull("/root/Globals") as GlobalVars;
         globalVars.Player = this;
         base._Ready();
@@ -79,4 +83,37 @@ public partial class PlayerUnit : GeneralUnit
             engines.LeftYaw(OFF);
         }
     }
+
+    public void OnDeathTimeout()
+    {
+        OnPlayerDeath(); //
+        GD.Print(GetParent().GetTreeStringPretty());
+        QueueFree();
+        
+    }
+
+    public void OnPlayerDeath()
+    {
+        GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true); 
+        //Play death animations here
+        //Likely done in sync with the animation, a Method would call when DeathAnim finished to bring up Game Over Screen
+        
+        //Steps:  
+        //1) prepare camera in scene tree, moving off player ship. 
+        //2) move control to camera's position, add as child. 
+        var camera = GetChild(0);
+        RemoveChild(camera);
+        AddSibling(camera);
+        
+        
+        PackedScene Scene  = GetNode<SceneLoader>("/root/SceneLoader").gameOver;
+        Control gameOver = Scene.Instantiate<Control>();
+        
+        camera.AddSibling(gameOver);
+        
+
+
+    }
+
+
 }

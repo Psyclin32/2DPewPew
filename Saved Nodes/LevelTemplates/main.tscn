@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckrkhn017qm4i"]
+[gd_scene load_steps=16 format=3 uid="uid://ckrkhn017qm4i"]
 
 [ext_resource type="PackedScene" uid="uid://cq3g46re0w7ft" path="res://Saved Nodes/Managent and Utility/level_environment.tscn" id="2_rrl4c"]
 [ext_resource type="PackedScene" uid="uid://cj7w3ajkgmtqm" path="res://Saved Nodes/Environment/background_template.tscn" id="3_nylej"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="5_1ef88"]
 [ext_resource type="PackedScene" uid="uid://kaihxv5sskb1" path="res://Saved Nodes/Environment/asteroid.tscn" id="6_7lue0"]
 [ext_resource type="Script" path="res://Resources/DataResourcesTemplates/VehicleStats.cs" id="6_wrkd3"]
+[ext_resource type="PackedScene" uid="uid://by2yqd1anlv1k" path="res://Saved Nodes/UI_UX/game_over.tscn" id="7_p0nfh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s5t0q"]
 resource_local_to_scene = true
@@ -76,18 +77,25 @@ physics_material_override = SubResource("PhysicsMaterial_s5t0q")
 objectStats = SubResource("Resource_jnp3n")
 
 [node name="Asteroid2" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(273, -68)
+position = Vector2(579, 749)
 physics_material_override = SubResource("PhysicsMaterial_s1o2u")
 objectStats = SubResource("Resource_lxt1x")
 
 [node name="Asteroid3" parent="." instance=ExtResource("6_7lue0")]
-position = Vector2(-268, 233)
+position = Vector2(1498, 267)
 physics_material_override = SubResource("PhysicsMaterial_vatax")
 objectStats = SubResource("Resource_y0tdu")
 
 [node name="PlayerRoot" parent="." instance=ExtResource("4_axv7n")]
 top_level = true
+position = Vector2(875, 459)
 unitStats = SubResource("Resource_wm53p")
 vehicleStats = SubResource("Resource_d0cwu")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerRoot"]
+
+[node name="Control" parent="." instance=ExtResource("7_p0nfh")]
+offset_left = 439.6
+offset_top = 247.6
+offset_right = 439.6
+offset_bottom = 247.6

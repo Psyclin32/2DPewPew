@@ -5,10 +5,11 @@ public partial class SceneLoader : Node
 {
     
     [Export] private string _sceneFolder;
+    [Export] public PackedScene gameOver;
 
-    public void ChangeToScene(PackedScene sceneName) 
+    public void ChangeToScene(PackedScene Scene) 
     {
-        GetTree().ChangeSceneToPacked(sceneName);
+        GetTree().ChangeSceneToPacked(Scene);
     }
 
     public void ChangeToMenu()
