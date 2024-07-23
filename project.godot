@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneLoader="*res://AutoLoaders/scene_loader.tscn"
-Globals="*res://Scripts/Information Scripts/GlobalVars.cs"
 GameManager="*res://Scripts/Manager Scripts/GameManager.cs"
+Globals="*res://AutoLoaders/Globals.tscn"
 
 [display]
 

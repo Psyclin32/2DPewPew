@@ -29,16 +29,32 @@ public partial class Bullet : RigidBody2D  //Needs to extend to get physics meth
     {
         KinematicCollision2D collision = MoveAndCollide(LinearVelocity * (float)delta);  //gathers the identified collision object
 		if(collision != null & !hasDeltDamage)  //null check, else it would fail. Checks if damage has already been triggered, prevents any double tap issues if QueueFree() isnt fast enough.  
-		{
+		{	
+			
 			hasDeltDamage = true;
 			if(collision.GetCollider() is GeneralUnit unitInstance)  //Checks type of entity hit. 
 			{
+				GD.Print("hit! Unit");
 				unitInstance.TakeDamage(damage);
 				QueueFree();
 			}
 			else if (collision.GetCollider() is PlayerUnit playerInstance)
 			{
+				GD.Print("hit! Player");
 				playerInstance.TakeDamage(damage);
+				QueueFree();
+			}
+			else if (collision.GetCollider() is StaticUnits staticUnits)
+			{
+				GD.Print("hit! Static");
+				staticUnits.TakeDamage(damage);
+				QueueFree();
+
+			}
+			else if (collision.GetCollider() is ObjectUnits objectUnits)
+			{
+				GD.Print("hit! Object");
+				objectUnits.TakeDamage(damage);
 				QueueFree();
 			}
 		}

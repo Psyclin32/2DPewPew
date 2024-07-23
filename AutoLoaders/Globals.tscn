@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c21t63r55hv3l"]
+
+[ext_resource type="Script" path="res://AutoLoaders/GlobalVars.cs" id="1_bu1as"]
+
+[node name="Globals" type="Node"]
+script = ExtResource("1_bu1as")

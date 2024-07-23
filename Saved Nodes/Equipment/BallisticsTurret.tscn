@@ -93,6 +93,7 @@ z_index = 1
 rotation = 1.5708
 scale = Vector2(0.35, 0.341)
 texture = ExtResource("3_rbtpo")
+offset = Vector2(0, 4)
 region_enabled = true
 region_rect = Rect2(14, 0, 36, 54)
 
@@ -102,7 +103,7 @@ position = Vector2(11, 0)
 scale = Vector2(0.341, 0.35)
 sprite_frames = SubResource("SpriteFrames_swygi")
 animation = &"Muzzel Flash"
-frame = 3
+frame = 1
 
 [node name="FireAnims" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Weapon")

@@ -5,12 +5,15 @@ using System.Collections;
 public partial class PlayerUnit : GeneralUnit
 {
     //[Export] public UnitStats PlayerStats; -> comes from general units class
+    
+    private Timer Death;
+
     public GlobalVars globalVars {get; set;}//
 
     public override void _Ready()
     {   
-
-        GetNode<Timer>("Death").Timeout += OnDeathTimeout;
+        Death = GetNode<Timer>("Death"); 
+        Death.Timeout += OnDeathTimeout;
 
         globalVars = GetNodeOrNull("/root/Globals") as GlobalVars;
         globalVars.Player = this;
@@ -20,6 +23,8 @@ public partial class PlayerUnit : GeneralUnit
     public override void _Process(double delta)
     {  
        
+        if(isDead)  Death.Start();
+
         //continue to look at the mouse, asses mouse position before firing for best accuracy.
        AquireTarget(GetGlobalMousePosition());
        //Fire on mouse click
@@ -33,7 +38,7 @@ public partial class PlayerUnit : GeneralUnit
         //PlayerMovement Physics
         Rotate(Mathf.DegToRad(Input.GetAxis("Rotate Left", "Rotate Right") * 100 * (float)delta));
 
-        EngineAnimations();
+        if(!isDead) EngineAnimations();
 
         base._PhysicsProcess(delta);
     }
@@ -45,10 +50,12 @@ public partial class PlayerUnit : GeneralUnit
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
+        if(!isDead)
+        {
         Vector2 vel_dir = new Vector2(0f, Input.GetAxis("Forward", "Reverse"));
 		vel_dir = vel_dir*vehicleStats.ForwardThrust;
 		ApplyCentralForce(vel_dir.Rotated(Rotation));
-
+        }
 
     }
     public void EngineAnimations()
@@ -86,21 +93,26 @@ public partial class PlayerUnit : GeneralUnit
 
     public void OnDeathTimeout()
     {
-        OnPlayerDeath(); //
-        //GD.Print(GetParent().GetTreeStringPretty());
-        QueueFree();
-        
-    }
-
-    public void OnPlayerDeath()
-    {
-        GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true); 
         //Play death animations here
         //Likely done in sync with the animation, a Method would call when DeathAnim finished to bring up Game Over Screen
         
         //Steps:  
         //1) prepare camera in scene tree, moving off player ship. 
         //2) move control to camera's position, add as child. 
+
+
+        OnGameOver(); //Player GameOver screen when animations have completed. 
+        //GD.Print(GetParent().GetTreeStringPretty());
+        QueueFree();
+        
+    }
+
+    public void OnGameOver()
+    {
+        //GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true); 
+        // ^Above is duplicate and technically handled in GeneralUnits 
+
+
         CanvasLayer canvasLayer = GetNode<CanvasLayer>("../CanvasLayer");
         PackedScene Scene  = GetNode<SceneLoader>("/root/SceneLoader").gameOver;
         Control gameOver = Scene.Instantiate<Control>();

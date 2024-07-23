@@ -29,7 +29,7 @@ public partial class ObjectUnits : RigidBody2D
         {
             objectStats.ChangeHealth(-(damage-objectStats.TotalArmor)); //passing damage as negative value
         }
-        GD.Print(objectStats.Health);
+        //GD.Print(objectStats.Health);
     }
     public void DeathCheck()
     {
@@ -53,6 +53,8 @@ public void DeathAnimation()
         //If error thrown, check that the scene tree has the collider as the fist child for the time being.  
         //Above is a bit cumbersome. Likely want to automate this by using Animation players instead so more complicated sequences can play out with a single call..
         // instead of needing all those nodes and properties loaded up all the time. 
+
+        
         
     }
 }

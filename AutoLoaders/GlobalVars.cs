@@ -7,9 +7,7 @@ public partial class GlobalVars : Node
 //public Player 
 public PlayerUnit Player;
 
-public string PlayerScenePath = "res://Saved Nodes/Units/CharacterTempalte.tscn";
-
-[Export] public PackedScene[] Scenes;
+//[Export] public PackedScene[] Scenes;
 
 public enum SceneName
 {
