@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://by2yqd1anlv1k"]
+[gd_scene load_steps=3 format=3 uid="uid://by2yqd1anlv1k"]
+
+[ext_resource type="Script" path="res://Saved Nodes/UI_UX/game_over.cs" id="1_d3mt5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68bkw"]
 bg_color = Color(0.511189, 0.0977771, 0.159974, 0.52549)
 
-[node name="Control" type="Control"]
+[node name="GameOver" type="Control" node_paths=PackedStringArray("Restart", "MainMenu", "Quit")]
 top_level = true
 layout_mode = 3
 anchor_left = -0.101
@@ -16,6 +18,10 @@ offset_right = -163.2
 offset_bottom = -156.6
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d3mt5")
+Restart = NodePath("VBoxContainer/Restart")
+MainMenu = NodePath("VBoxContainer/Main Menu")
+Quit = NodePath("VBoxContainer/Quit")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

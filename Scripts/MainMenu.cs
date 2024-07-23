@@ -6,8 +6,6 @@ public partial class MainMenu : Node
 	[Export] public Button StartButton;
 	[Export] public Button QuitButton;
 
-	[Export] public PackedScene LevelScene;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -23,11 +21,11 @@ public partial class MainMenu : Node
 
 	public void OnStartGamePressed()
 	{
-		GetNode<SceneLoader>("/root/SceneLoader").ChangeToScene(LevelScene);
+		GetNode<SceneLoader>("/root/SceneLoader").StartGame();
 	}
 	public void OnQuitGamePressed()
 	{
-		GetTree().Quit();
+		GetNode<SceneLoader>("/root/SceneLoader").QuitGame();
 	}
 
 

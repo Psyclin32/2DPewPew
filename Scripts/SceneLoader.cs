@@ -4,7 +4,8 @@ using System;
 public partial class SceneLoader : Node
 {
     
-    [Export] private string _sceneFolder;
+    [Export] private PackedScene GameScene;
+    [Export] private PackedScene MainMenu;
     [Export] public PackedScene gameOver;
 
     public void ChangeToScene(PackedScene Scene) 
@@ -14,7 +15,17 @@ public partial class SceneLoader : Node
 
     public void ChangeToMenu()
     {
-        GetTree().ChangeSceneToFile("res://Saved Nodes/LevelTemplates/MainMenu.tscn");
+        GetTree().ChangeSceneToPacked(MainMenu);
+    }
+
+    public void StartGame()
+    {
+        GetTree().ChangeSceneToPacked(GameScene);
+    }
+
+    public void QuitGame()
+    {
+        GetTree().Quit();
     }
 
 }

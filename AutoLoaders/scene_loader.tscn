@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct381i0klsg43"]
+[gd_scene load_steps=5 format=3 uid="uid://ct381i0klsg43"]
 
 [ext_resource type="Script" path="res://Scripts/SceneLoader.cs" id="1_46ub6"]
+[ext_resource type="PackedScene" uid="uid://ckrkhn017qm4i" path="res://Saved Nodes/LevelTemplates/main.tscn" id="2_khkfc"]
 [ext_resource type="PackedScene" uid="uid://by2yqd1anlv1k" path="res://Saved Nodes/UI_UX/game_over.tscn" id="2_ntgv4"]
+[ext_resource type="PackedScene" uid="uid://qmfhsn8peg7j" path="res://Saved Nodes/LevelTemplates/MainMenu.tscn" id="3_sol0s"]
 
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_46ub6")
+GameScene = ExtResource("2_khkfc")
+MainMenu = ExtResource("3_sol0s")
 gameOver = ExtResource("2_ntgv4")

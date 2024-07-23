@@ -87,7 +87,7 @@ public partial class PlayerUnit : GeneralUnit
     public void OnDeathTimeout()
     {
         OnPlayerDeath(); //
-        GD.Print(GetParent().GetTreeStringPretty());
+        //GD.Print(GetParent().GetTreeStringPretty());
         QueueFree();
         
     }
@@ -101,15 +101,13 @@ public partial class PlayerUnit : GeneralUnit
         //Steps:  
         //1) prepare camera in scene tree, moving off player ship. 
         //2) move control to camera's position, add as child. 
-        var camera = GetChild(0);
-        RemoveChild(camera);
-        AddSibling(camera);
-        
-        
+        CanvasLayer canvasLayer = GetNode<CanvasLayer>("../CanvasLayer");
         PackedScene Scene  = GetNode<SceneLoader>("/root/SceneLoader").gameOver;
         Control gameOver = Scene.Instantiate<Control>();
+        gameOver.Position = Position;
+        canvasLayer.AddChild(gameOver);
         
-        camera.AddSibling(gameOver);
+        
         
 
 
