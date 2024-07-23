@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Diagnostics;
 
 public partial class PlayerUnit : GeneralUnit
 {
@@ -17,14 +18,20 @@ public partial class PlayerUnit : GeneralUnit
 
         globalVars = GetNodeOrNull("/root/Globals") as GlobalVars;
         globalVars.Player = this;
+
+        GD.Print("Test");
+
         base._Ready();
     }
 
     public override void _Process(double delta)
     {  
        
-        if(isDead)  Death.Start();
-
+        if(isDead & Death.IsStopped())  //Temporary. Need to fix with a proper Death animation player to control these events. 
+        {
+            Death.Start();
+            GD.Print("Death Timer Start");
+        }
         //continue to look at the mouse, asses mouse position before firing for best accuracy.
        AquireTarget(GetGlobalMousePosition());
        //Fire on mouse click
@@ -100,7 +107,8 @@ public partial class PlayerUnit : GeneralUnit
         //1) prepare camera in scene tree, moving off player ship. 
         //2) move control to camera's position, add as child. 
 
-
+        Debug.Print("Death Timer End");
+        Death.Paused = true;
         OnGameOver(); //Player GameOver screen when animations have completed. 
         //GD.Print(GetParent().GetTreeStringPretty());
         QueueFree();
@@ -111,7 +119,7 @@ public partial class PlayerUnit : GeneralUnit
     {
         //GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true); 
         // ^Above is duplicate and technically handled in GeneralUnits 
-
+        globalVars.Player = null;
 
         CanvasLayer canvasLayer = GetNode<CanvasLayer>("../CanvasLayer");
         PackedScene Scene  = GetNode<SceneLoader>("/root/SceneLoader").gameOver;

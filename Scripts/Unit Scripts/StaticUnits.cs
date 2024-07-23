@@ -17,18 +17,17 @@ public partial class StaticUnits : StaticBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(globalVars.Player is null) return;
-
 		
-
-		//fixedTurret.RotatetoTarget(GetGlobalMousePosition());
-		//fixedTurret.FireTurret(CollisionLayer);
+		base._Process(delta);
 	}
 
     public override void _PhysicsProcess(double delta)
-    {
+    {	
+		if(globalVars.Player is not null)
+		{
 		fixedTurret.RotatetoTarget(globalVars.Player.GlobalPosition);
 		fixedTurret.FireTurret(CollisionLayer);
+		}
 
         base._PhysicsProcess(delta);
     }
