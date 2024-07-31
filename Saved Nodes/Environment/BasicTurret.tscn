@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://catdoss8hprui"]
+[gd_scene load_steps=9 format=3 uid="uid://catdoss8hprui"]
 
 [ext_resource type="Script" path="res://Scripts/Unit Scripts/StaticUnits.cs" id="1_pe0yv"]
 [ext_resource type="Script" path="res://Resources/DataResourcesTemplates/UnitStatsResource.cs" id="2_cn7cl"]
@@ -9,32 +9,56 @@
 rough = true
 absorbent = true
 
-[sub_resource type="Resource" id="Resource_wshwa"]
+[sub_resource type="Resource" id="Resource_kiil1"]
 script = ExtResource("2_cn7cl")
-MaxHealth = 30
-Health = 30
+MaxHealth = 10
+Health = 10
 MaxShields = 0
 Shields = 0
-TotalArmor = 0
+TotalArmor = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud2sg"]
 size = Vector2(56, 53)
 
-[node name="StaticStructure" type="StaticBody2D" node_paths=PackedStringArray("fixedTurret")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxpna"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ik0km")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StaticStructure" type="StaticBody2D" node_paths=PackedStringArray("fixedTurret", "unitSprite")]
 scale = Vector2(0.75, 0.75)
 collision_layer = 4
-collision_mask = 0
+collision_mask = 8
 physics_material_override = SubResource("PhysicsMaterial_np3l7")
 script = ExtResource("1_pe0yv")
-StatsUnitStats = SubResource("Resource_wshwa")
+unitStats = SubResource("Resource_kiil1")
 fixedTurret = NodePath("Turret")
+unitSprite = NodePath("Platform")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_ud2sg")
 
-[node name="Platform" type="Sprite2D" parent="."]
+[node name="Platform" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.762639, 0.737211)
-texture = ExtResource("2_ik0km")
+sprite_frames = SubResource("SpriteFrames_cxpna")
+animation = &"Death"
 
 [node name="Turret" parent="." instance=ExtResource("2_yx5ev")]

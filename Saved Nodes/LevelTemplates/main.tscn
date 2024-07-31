@@ -51,7 +51,7 @@ MaxHealth = 5
 Health = 5
 MaxShields = 20
 Shields = 20
-TotalArmor = 1
+TotalArmor = 4
 
 [sub_resource type="Resource" id="Resource_d0cwu"]
 resource_local_to_scene = true

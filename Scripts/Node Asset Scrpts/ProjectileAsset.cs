@@ -61,6 +61,11 @@ public partial class ProjectileAsset : RigidBody2D
 				objectInstance.TakeDamage(damageStats.Damage);
 				QueueFree();
 			}
+			else if (collision.GetCollider() is StaticUnits staticInstance)
+			{
+				staticInstance.TakeDamage(damageStats.Damage);
+				QueueFree();
+			}
 		}
         base._PhysicsProcess(delta);
 	}

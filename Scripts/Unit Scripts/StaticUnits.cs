@@ -3,8 +3,12 @@ using System;
 
 public partial class StaticUnits : StaticBody2D
 {
-	[Export] public UnitStatsResource StatsUnitStats;
+	[Export] public UnitStatsResource unitStats;
 	[Export] public WeaponHardPoint fixedTurret;
+
+	[Export] public AnimatedSprite2D unitSprite;
+
+	[Export] public bool isDead= false;
 
 	public GlobalVars globalVars {get; set;}
 
@@ -17,7 +21,7 @@ public partial class StaticUnits : StaticBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		DeathCheck();
 		base._Process(delta);
 	}
 
@@ -34,15 +38,30 @@ public partial class StaticUnits : StaticBody2D
 
 	public void TakeDamage(int damage)  //damage stored as possitives
     {
-        if (StatsUnitStats.TotalArmor > damage)
+        if (unitStats.TotalArmor > damage)
         {
             return;
         }
         else
         {
-            StatsUnitStats.ChangeHealth(-(damage-StatsUnitStats.TotalArmor)); //passing damage as negative value
+            unitStats.ChangeHealth(-(damage-unitStats.TotalArmor)); //passing damage as negative value
         }
-        GD.Print(StatsUnitStats.Health);
+        GD.Print(unitStats.Health);
     }
 
+	public void DeathCheck()
+    {
+        if(unitStats.Health <=0  & !isDead)  //Play Death animation when dead
+        {
+            //DeathAnimation();
+			isDead = true;
+            GD.Print("Play Dead Anim");
+            GD.Print(isDead);
+        }
+        else if(!unitSprite.IsPlaying() & isDead)	
+        {
+            GD.Print("I should Die now");
+            QueueFree();
+        }   //When done playing, kill unit.
+    }
 }
